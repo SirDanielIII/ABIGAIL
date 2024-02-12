@@ -1,67 +1,53 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed = 25f;
-    public float decelerationFactor = 0.95f; // Adjust this for slower deceleration
+
+    // setting a rigidbody object 
     private Rigidbody2D rb;
-    private bool isMoving;
+    public float speed; // Speed of the character
+    public float jumpForce;
+    private float moveInput; // Values for the horizontal input movement
+    private bool isGrounded;
+    private bool isJumping;
+    public Transform feet;
+    public float checkRadius;
+    public LayerMask whatIsGround;
 
-    public bool collide = false;
-
-    public Vector2 jumpV = new Vector2(0, 10f);
-
-    public KeyCode k_w = KeyCode.W;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
+    private float jumpTimeCounter;
+    public float jumpTime;
+    void Start() { 
+        rb = GetComponent<Rigidbody2D>(); // initializing the rigidbody
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            collide = false;
-            Debug.Log("Collided with the specific 2D object!");
-        }
+    void FixedUpdate() {
+        moveInput = Input.GetAxisRaw("Horizontal"); // setting the move input to horizontal
+        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y); // giving that moveinput some force
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            collide = true;
-        }
-    }
-}
+    void Update() {
+        isGrounded = Physics2D.OverlapCircle(feet.position, checkRadius, whatIsGround);
 
-    void Update()
-    
-    {
-        float moveH = Input.GetAxis("Horizontal");
-        isMoving = Mathf.Abs(moveH) > 0.01f;
-
-
-        if (isMoving)
-        {
-            // Apply movement
-            rb.velocity = new Vector2(moveH * speed, rb.velocity.y);
-        }
-        else
-        {
-            // Apply custom deceleration
-            rb.velocity = new Vector2(rb.velocity.x * decelerationFactor, rb.velocity.y);
+        if (isGrounded == true && Input.GetKeyDown(KeyCode.Space)) {
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            rb.velocity = Vector2.up * jumpForce;
         }
 
-        if (collide)
-        {
-            if (Input.GetKeyDown(k_w))
-            {
-                Debug.Log("JUMPIN");
-                rb.AddForce(Vector2.up * speed, ForceMode2D.Impulse);
+        if (Input.GetKey(KeyCode.Space) && isJumping == true) {
+            if (jumpTimeCounter > 0) {
+                rb.velocity = Vector2.up * jumpForce;
+                jumpTimeCounter -= Time.deltaTime;
+            } else { 
+                isJumping = false;
             }
         }
+
+        if (Input.GetKeyUp(KeyCode.Space)) { 
+            isJumping = false;
+        }
+
     }
 }
-
