@@ -23,8 +23,14 @@ public class Movement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        moveInput = Input.GetAxisRaw("Horizontal"); // setting the move input to horizontal
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y); // giving that moveinput some force
+        moveInput = Input.GetAxisRaw("Horizontal"); // setting the move input to horizontal// giving that moveinput some force
+
+        if (Mathf.Abs(moveInput) > 0) { 
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+            Debug.Log("Moving");
+        } else {
+            Debug.Log("Not Moving");
+        }
     }
 
     void Update() {
