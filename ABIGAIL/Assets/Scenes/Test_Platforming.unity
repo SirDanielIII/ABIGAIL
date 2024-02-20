@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 2066442120}
   - component: {fileID: 2066442124}
   m_Layer: 0
-  m_Name: Main_Character_Box
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,7 +495,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.20461684, y: 0.24971354, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1481587930}
@@ -513,14 +513,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3dc453b5d81fa48b876ee86a1145f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  jumpForce: 10
-  feet: {fileID: 1481587930}
-  checkRadius: 0.3
-  whatIsGround:
+  movementSpeed: 11
+  jumpInitialPower: 8
+  jumpHoldApplyAfter: 0.05
+  jumpHoldPower: 10
+  jumpHoldTime: 0.2
+  playerFeet: {fileID: 1481587930}
+  checkRadius: 0.1
+  groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  jumpTime: 0.3
 --- !u!1001 &1801471640476801161
 PrefabInstance:
   m_ObjectHideFlags: 0
