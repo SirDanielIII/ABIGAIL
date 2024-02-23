@@ -125,12 +125,12 @@ namespace Abigail
                 Debug.Log("Jump: Let Go");
             }
 
-            // Crouch Movement
-            if (Input.GetKeyDown(KeyCode.S))
+            // Crouch Movement S or DownArrow
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
             {
                 Crouch(true);
             }
-            else if (Input.GetKeyUp(KeyCode.S))
+            else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
             {
                 Crouch(false);
             }
