@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 826310291}
   - component: {fileID: 826310290}
   - component: {fileID: 826310289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9333f4dc4bcac4897786b73f614dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 1
 --- !u!61 &826310290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -311,8 +311,8 @@ Transform:
   m_GameObject: {fileID: 826310288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.46, y: -3.09, z: 0}
-  m_LocalScale: {x: 0.6788, y: 0.8929, z: 1}
+  m_LocalPosition: {x: 7.46, y: -3.0735, z: 0}
+  m_LocalScale: {x: 0.6788, y: 0.90941864, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -498,9 +498,10 @@ GameObject:
   - component: {fileID: 2066442121}
   - component: {fileID: 2066442120}
   - component: {fileID: 2066442124}
+  - component: {fileID: 2066442125}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Abigail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -527,7 +528,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -667,6 +668,19 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &2066442125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066442119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 662b0620fb7b0af46af449c839d56b59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1001 &1801471640476801161
 PrefabInstance:
   m_ObjectHideFlags: 0
