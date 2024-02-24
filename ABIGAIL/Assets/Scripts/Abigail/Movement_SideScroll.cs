@@ -1,6 +1,11 @@
+
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
+
 
 namespace Abigail
 {
@@ -27,9 +32,25 @@ namespace Abigail
         // Timers
         private float jumpTimeStart;
 
+        public bool platformingOn;
+
+        // Public strings so we can change the scene tranfer in unity for changing levels.
+        public string platforming_scene = "Platforming";
+        public string topDown_scene = "TopDown";
+
         void Start()
         {
             rb = GetComponent<Rigidbody2D>(); // initializing the rigidbody
+
+
+            // Partial if statement for current state of the perspective
+            if (SceneManager.GetActiveScene().name == platforming_scene)
+            {
+                platformingOn = true;
+            } else if (SceneManager.GetActiveScene().name == topDown_scene)
+            {
+                platformingOn = false;
+            }
         }
 
         void FixedUpdate()
@@ -39,7 +60,17 @@ namespace Abigail
 
         void Update()
         {
-            HandleInput();
+            
+            /* Note for DANIEL ZHUO: if possible try to link the scene changes entirely to the active scene rather 
+            than to the platformingOn boolean. Just to make it more fluid. I would do it myself but I spent 20 minutes setting up
+            the current system (which I know is dumb) to ima just lay it onto you.
+            */
+            HandlePerspectiveInput();
+            if (platformingOn) {
+                HandlePlatformingInput();
+            } else {
+                HandleTopdownInput();
+            }
         }
 
         private bool isGrounded()
@@ -49,11 +80,39 @@ namespace Abigail
 
         void MovePlayer()
         {
-            rb.velocity = new Vector2(movement.x * movementSpeed, rb.velocity.y);
+            if (SceneManager.GetActiveScene().name == platforming_scene)
+            {
+                rb.velocity = new Vector2(movement.x * movementSpeed, rb.velocity.y);
+            } else if (SceneManager.GetActiveScene().name == topDown_scene) 
+            { 
+                rb.velocity = new Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
+            }
         }
 
+        void HandlePerspectiveInput() 
+        { 
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                
+                platformingOn = !platformingOn;
 
-        void HandleInput()
+                if (platformingOn == true) { 
+                    SceneManager.LoadScene(platforming_scene);
+                } else { 
+                    SceneManager.LoadScene(topDown_scene);
+                }
+
+            }
+        }
+
+        void HandleTopdownInput() 
+        { 
+            Debug.Log("Player is in topdown view");
+
+            movement.x = Input.GetAxis("Horizontal");
+            movement.y = Input.GetAxis("Vertical");
+        }
+        void HandlePlatformingInput()
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
