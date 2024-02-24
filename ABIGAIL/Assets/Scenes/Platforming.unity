@@ -404,17 +404,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
-    - target: {fileID: 6805288339120356005, guid: 39c806f5845b24a16be7d8e0e1343154, type: 3}
-      propertyPath: m_DrawMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6966409880937693036, guid: 39c806f5845b24a16be7d8e0e1343154, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 157.28006
-      objectReference: {fileID: 0}
     - target: {fileID: 6966409880937693036, guid: 39c806f5845b24a16be7d8e0e1343154, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0113
+      value: -0.5438
       objectReference: {fileID: 0}
     - target: {fileID: 6966409880937693036, guid: 39c806f5845b24a16be7d8e0e1343154, type: 3}
       propertyPath: m_LocalPosition.y
@@ -504,78 +496,6 @@ PrefabInstance:
     - target: {fileID: 2471449428059224015, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: sprintSpeed
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: staminaTotal
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: jumpHoldPower
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: movementSpeed
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: sprintHoldTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: sprintJumpBoost
-      value: 1.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: staminaJumpRate
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: slideHoldDuration
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: staminaSprintRate
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: jumpHoldApplyAfter
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: sprintTimeRecovery
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: movementSpeedSprint
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: staminaRecoveryRate
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: staminaRecoveryDelay
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: staminaSprintJumpRate
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: slideSpeedBoostDuration
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: sprintTimeBeforeRecovery
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
-      propertyPath: slideSpeedBoostMultiplier
-      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8336422800393701509, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
       propertyPath: m_Name
