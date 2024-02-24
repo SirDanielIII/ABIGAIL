@@ -1,6 +1,11 @@
+
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
+
 
 namespace Abigail
 {
@@ -31,12 +36,30 @@ namespace Abigail
         // Timers
         private float jumpTimeStart;
 
+        private bool platformingEnable;
+
+        // Public strings so we can change the scene transfer in unity for changing levels.
+        public string scenePlatformer = "Platforming";
+        public string sceneTopDown = "TopDown";
+
         void Start()
         {
             rb = GetComponent<Rigidbody2D>(); // initializing the rigidbody
+
+            // Partial if statement for current state of the perspective
+            if (SceneManager.GetActiveScene().name == scenePlatformer)
+            {
+                platformingEnable = true;
+            }
+            else if (SceneManager.GetActiveScene().name == sceneTopDown)
+            {
+                platformingEnable = false;
+            }
+
             playerCollider = GetComponent<BoxCollider2D>(); // Get the player's collider
             standingColliderSize = playerCollider.size; // Store the original size
-            crouchingColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y / 2); // Define a smaller size for crouching
+            crouchingColliderSize =
+                new Vector2(playerCollider.size.x, playerCollider.size.y / 2); // Define a smaller size for crouching
         }
 
         void FixedUpdate()
@@ -46,7 +69,19 @@ namespace Abigail
 
         void Update()
         {
-            HandleInput();
+            /* Note for DANIEL ZHUO: if possible try to link the scene changes entirely to the active scene rather
+            than to the platformingOn boolean. Just to make it more fluid. I would do it myself but I spent 20 minutes setting up
+            the current system (which I know is dumb) to ima just lay it onto you.
+            */
+            HandlePerspectiveInput();
+            if (platformingEnable)
+            {
+                HandlePlatformingInput();
+            }
+            else
+            {
+                HandleTopdownInput();
+            }
         }
 
         private bool isGrounded()
@@ -56,11 +91,42 @@ namespace Abigail
 
         void MovePlayer()
         {
-            rb.velocity = new Vector2(movement.x * movementSpeed, rb.velocity.y);
+            if (SceneManager.GetActiveScene().name == scenePlatformer)
+            {
+                rb.velocity = new Vector2(movement.x * movementSpeed, rb.velocity.y);
+            }
+            else if (SceneManager.GetActiveScene().name == sceneTopDown)
+            {
+                rb.velocity = new Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
+            }
         }
 
+        void HandlePerspectiveInput()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                platformingEnable = !platformingEnable;
 
-        void HandleInput()
+                if (platformingEnable == true)
+                {
+                    SceneManager.LoadScene(scenePlatformer);
+                }
+                else
+                {
+                    SceneManager.LoadScene(sceneTopDown);
+                }
+            }
+        }
+
+        void HandleTopdownInput()
+        {
+            Debug.Log("Player is in topdown view");
+
+            movement.x = Input.GetAxis("Horizontal");
+            movement.y = Input.GetAxis("Vertical");
+        }
+
+        void HandlePlatformingInput()
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
@@ -102,12 +168,6 @@ namespace Abigail
 
                         // Apply the jump force
                         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                        
-//                      // Old Jump Code
-//                        if (elapsedTime >= jumpHoldApplyAfter)
-//                        {
-//                            rb.velocity = new Vector2(rb.velocity.x, jumpHoldPower);
-//                        }
                         Debug.Log("Jump Elapsed Time: " + Math.Round(elapsedTime, 2) + " sec");
                     }
                     else if (elapsedTime >= jumpHoldTime)
@@ -126,7 +186,7 @@ namespace Abigail
             }
 
             // Crouch Movement S or DownArrow
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 Crouch(true);
             }
@@ -151,6 +211,7 @@ namespace Abigail
                 if (transform != null) transform.localScale = localScale;
             }
         }
+
         void Crouch(bool isCrouching)
         {
             this.isCrouching = isCrouching;
