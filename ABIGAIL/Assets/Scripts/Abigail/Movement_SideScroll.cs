@@ -28,6 +28,10 @@ namespace Abigail
         private Vector2 movement;
         private bool isFacingRight;
         private bool isJumping;
+        private BoxCollider2D playerCollider;
+        private Vector2 standingColliderSize;
+        private Vector2 crouchingColliderSize;
+        private bool isCrouching = false;
 
         // Timers
         private float jumpTimeStart;
@@ -51,6 +55,9 @@ namespace Abigail
             {
                 platformingOn = false;
             }
+            playerCollider = GetComponent<BoxCollider2D>(); // Get the player's collider
+            standingColliderSize = playerCollider.size; // Store the original size
+            crouchingColliderSize = new Vector2(playerCollider.size.x, playerCollider.size.y / 2); // Define a smaller size for crouching
         }
 
         void FixedUpdate()
@@ -177,6 +184,17 @@ namespace Abigail
                 Debug.Log("Jump: Let Go");
             }
 
+            // Crouch Movement S or DownArrow
+            if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) 
+            {
+                Crouch(true);
+            }
+            else if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+            {
+                Crouch(false);
+            }
+
+
             // Flip sprite image
             Flip();
         }
@@ -191,6 +209,11 @@ namespace Abigail
                 localScale.x *= -1f;
                 if (transform != null) transform.localScale = localScale;
             }
+        }
+        void Crouch(bool isCrouching)
+        {
+            this.isCrouching = isCrouching;
+            playerCollider.size = isCrouching ? crouchingColliderSize : standingColliderSize;
         }
     }
 }
