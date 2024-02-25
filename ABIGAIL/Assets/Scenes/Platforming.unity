@@ -501,6 +501,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: sprintSpeed
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: jumpHoldTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: staminaTotal
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: jumpHoldPower
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: sprintJumpBoost
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: staminaJumpRate
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: staminaSprintRate
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: jumpHoldApplyAfter
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: staminaRecoveryRate
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: staminaRecoveryDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: staminaSprintJumpRate
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8336422800393701509, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
       propertyPath: m_Name
       value: Player
