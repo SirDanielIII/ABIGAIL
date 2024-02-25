@@ -17,29 +17,29 @@ namespace Abigail
     {
         // Ground Check
         public Transform playerFeet;
-        public float checkRadius;
+        public float checkRadius = 0.1f;
         public LayerMask groundLayer;
 
         // Movement Values
-        public float movementSpeed; // Speed of the character (normal)
-        public float sprintSpeed; // Speed of the character (when sprinting)
-        public float staminaTotal;
-        public float staminaSprintRate;
-        public float staminaJumpRate;
-        public float staminaSprintJumpRate;
-        public float staminaRecoveryDelay; // The recovery delay after sprinting
-        public float staminaRecoveryRate; // How fast stamina recharges
+        public float movementSpeed = 11f; // Speed of the character (normal)
+        public float sprintSpeed = 16f; // Speed of the character (when sprinting)
+        public float staminaTotal = 100f;
+        public float staminaSprintRate = 25f;
+        public float staminaJumpRate = 25f;
+        public float staminaSprintJumpRate = 30f;
+        public float staminaRecoveryDelay = 1.5f; // The recovery delay after sprinting
+        public float staminaRecoveryRate = 15f; // How fast stamina recharges
 
         [FormerlySerializedAs("sprintJumpMultiplier")]
-        public float sprintJumpBoost; // How much extra jump there is when sprinting
+        public float sprintJumpBoost = 1.15f; // How much extra jump there is when sprinting
 
-        public float jumpInitialPower; // Speed of jump (normal)
-        public float jumpHoldApplyAfter;
-        public float jumpHoldPower; // Speed of jump (hold)
-        public float jumpHoldTime; // Jump duration
-        public float slideSpeedBoostMultiplier; // How much extra boost the player gets when sliding
-        public float slideSpeedBoostDuration; // How long the slide boost lasts for
-        public float slideHoldTime; // How long the slide lasts for
+        public float jumpInitialPower = 8f; // Speed of jump (normal)
+        public float jumpHoldApplyAfter = 0.06f;
+        public float jumpHoldPower = 11f; // Speed of jump (hold)
+        public float jumpHoldTime = 0.2f; // Jump duration
+        public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
+        public float slideSpeedBoostDuration = 0.15f; // How long the slide boost lasts for
+        public float slideHoldTime = 0.3f; // How long the slide lasts for
 
         // The Player
         private Rigidbody2D rb;
@@ -57,8 +57,8 @@ namespace Abigail
 
         // Level Modifiers
         public LevelType levelType;
-        public string sceneSideScroll = "Side Scroll";
-        public string sceneTopDown = "TopDown";
+        [FormerlySerializedAs("sceneSideScroll")] public int sideScrollSceneIndex = -1;
+        [FormerlySerializedAs("sceneTopDown")] public int topDownSceneIndex = -1;
 
         // Timers
         private float jumpTimeStart;
@@ -124,8 +124,8 @@ namespace Abigail
             else if (levelType == LevelType.TopDown)
             {
                 rb.velocity = isSprinting
-                    ? new Vector2(movement.x * sprintSpeed, rb.velocity.y * sprintSpeed)
-                    : new Vector2(movement.x * movementSpeed, rb.velocity.y * movementSpeed);
+                    ? new Vector2(movement.x * sprintSpeed, movement.y * sprintSpeed)
+                    : new Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
             }
         }
 
@@ -150,10 +150,10 @@ namespace Abigail
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
-
+            
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene(sceneSideScroll);
+                SceneManager.LoadScene(sideScrollSceneIndex);
             }
         }
 
@@ -243,7 +243,7 @@ namespace Abigail
 
             if (Input.GetKeyDown(KeyCode.R))
             {
-                SceneManager.LoadScene(sceneTopDown);
+                SceneManager.LoadScene(topDownSceneIndex);
             }
 
             OutputLogsToConsole();

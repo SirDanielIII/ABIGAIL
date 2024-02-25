@@ -501,9 +501,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6302132989676528007, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: sideScrollSceneIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8336422800393701509, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900350985843869696, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
