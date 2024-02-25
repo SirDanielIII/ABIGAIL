@@ -9,18 +9,13 @@ public class Damage : MonoBehaviour
     {
         Debug.Log("OnTriggerEnter2D called with: " + other.name);
         Debug.Log("Triggered");
-        if (other.CompareTag("Abigail")){
-
-        
-        // Check if the collider that entered is a player or an object that can take damage
-        Health health = other.GetComponent<Health>();
-
-        // If the object has a health component, apply damage
-        if (health != null)
+        if (other.CompareTag("Abigail"))
         {
-            health.TakeDamage(damageAmount);
-            Debug.Log("damage");
-        }
+            Health health = other.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damageAmount);
+            }
         }
     }
 }
