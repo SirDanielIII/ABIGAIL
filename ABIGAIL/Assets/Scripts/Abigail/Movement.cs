@@ -272,6 +272,7 @@ namespace Abigail
             return Time.realtimeSinceStartup - current;
         }
 
+
         private List<string> GetLogs()
         {
             var messages = new List<string>
