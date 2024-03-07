@@ -4,14 +4,14 @@ public class TumbleweedSpawner : MonoBehaviour
 {
     public GameObject tumbleweedPrefab;
     public GameObject[] spawnPoints;
-    public float checkInterval = 1f; // How often to check spawn points (in seconds)
+    public float checkInterval = 0.05f;
     private Camera mainCamera;
     private float nextCheckTime;
 
     private void Start()
     {
-        mainCamera = Camera.main; // Cache the main camera
-        nextCheckTime = Time.time; // Initialize the next check time
+        mainCamera = Camera.main;
+        nextCheckTime = Time.time;
     }
 
     private void Update()
@@ -20,24 +20,34 @@ public class TumbleweedSpawner : MonoBehaviour
         if (Time.time >= nextCheckTime)
         {
             SpawnTumbleweed();
-            nextCheckTime = Time.time + checkInterval; // Set the time for the next check
+            nextCheckTime = Time.time + checkInterval;
         }
     }
 
     private void SpawnTumbleweed()
     {
+        float spawnAheadDistance = 13.0f; // Adjust this value based on your level design and camera speed
+
         foreach (var spawnPoint in spawnPoints)
         {
             if (spawnPoint.activeSelf)
             {
-                Vector3 screenPoint = mainCamera.WorldToViewportPoint(spawnPoint.transform.position);
-                bool isOutside = screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
-                if (isOutside)
+                float distanceToCamera = spawnPoint.transform.position.x - mainCamera.transform.position.x;
+                
+                // For a right-moving camera
+                if (distanceToCamera > 0 && distanceToCamera < spawnAheadDistance)
                 {
                     Instantiate(tumbleweedPrefab, spawnPoint.transform.position, Quaternion.identity);
-                    spawnPoint.SetActive(false);
+                    spawnPoint.SetActive(false); // Prevent re-spawning
+                }
+                // For a left-moving camera (if applicable)
+                else if (distanceToCamera < 0 && Mathf.Abs(distanceToCamera) < spawnAheadDistance)
+                {
+                    Instantiate(tumbleweedPrefab, spawnPoint.transform.position, Quaternion.identity);
+                    spawnPoint.SetActive(false); // Prevent re-spawning
                 }
             }
         }
     }
+
 }

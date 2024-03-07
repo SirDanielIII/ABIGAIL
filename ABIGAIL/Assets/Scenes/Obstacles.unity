@@ -625,7 +625,7 @@ Transform:
   m_GameObject: {fileID: 755366777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.6, y: 4.21, z: 0.3532431}
+  m_LocalPosition: {x: 11.87, y: -0.44, z: 0.3532431}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -831,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6700479925310960577, guid: 059d36e00158e4b6485396b88276c9c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 26.93
+      value: 46.2
       objectReference: {fileID: 0}
     - target: {fileID: 6700479925310960577, guid: 059d36e00158e4b6485396b88276c9c4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -957,7 +957,6 @@ GameObject:
   - component: {fileID: 1170234686}
   - component: {fileID: 1170234685}
   - component: {fileID: 1170234684}
-  - component: {fileID: 1170234689}
   m_Layer: 7
   m_Name: Player
   m_TagString: Abigail
@@ -1014,9 +1013,11 @@ MonoBehaviour:
   slideSpeedBoostMultiplier: 1.05
   slideSpeedBoostDuration: 0.15
   slideHoldTime: 0.3
+  isKnockedBack: 0
   levelType: 0
   sideScrollSceneIndex: -1
   topDownSceneIndex: 2
+  knockbackCooldown: 1
 --- !u!114 &1170234685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,19 +1158,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1170234689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1170234682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba5aae0ef2d743d89d1524fb418f5ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounceForce: 20
 --- !u!1 &1249585188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,7 +1596,7 @@ Transform:
   m_GameObject: {fileID: 2011232644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.22, y: -1.43, z: 0.3532431}
+  m_LocalPosition: {x: 43.34, y: -1.72, z: 0.3532431}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1716,7 +1704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6966409880937693036, guid: e34abcc6a8f3ff841a005c26ab6875b1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6966409880937693036, guid: e34abcc6a8f3ff841a005c26ab6875b1, type: 3}
       propertyPath: m_LocalScale.y
@@ -1724,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6966409880937693036, guid: e34abcc6a8f3ff841a005c26ab6875b1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.59
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 6966409880937693036, guid: e34abcc6a8f3ff841a005c26ab6875b1, type: 3}
       propertyPath: m_LocalPosition.y

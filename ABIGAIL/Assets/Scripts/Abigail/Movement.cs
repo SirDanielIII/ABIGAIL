@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,6 +54,8 @@ namespace Abigail
         private bool isSprinting = false;
         private bool isSliding = false;
         private bool isCrouching = false;
+        public bool isKnockedBack = false;
+
 
         // Level Modifiers
         public LevelType levelType;
@@ -64,6 +66,10 @@ namespace Abigail
         private float jumpTimeStart;
         private float sprintTimeEnd;
         private float slideTimeStart;
+        public float knockbackCooldown = 2f;
+        private float lastKnockbackTime = -10f;
+
+        
 
         void Start()
         {
@@ -80,6 +86,8 @@ namespace Abigail
         {
             if (levelType == LevelType.SideScroll)
             {
+                if (isKnockedBack) // Skip normal movement if knocked back
+                    return;
                 // Basic left / right strafing movement
                 rb.velocity = isSprinting ? new Vector2(movement.x * sprintSpeed, rb.velocity.y) : new Vector2(movement.x * movementSpeed, rb.velocity.y);
                 // Jump
@@ -266,7 +274,24 @@ namespace Abigail
             isCrouching = crouching;
             playerCollider.size = crouching ? crouchingColliderSize : standingColliderSize;
         }
+        public bool CanBeKnockedBack() {
+            return Time.time - lastKnockbackTime >= knockbackCooldown;
+        }
 
+        public void ApplyKnockback(Vector2 knockbackVelocity, float duration) {
+            if (!CanBeKnockedBack()) return;
+
+            lastKnockbackTime = Time.time;
+            isKnockedBack = true;
+            rb.velocity = knockbackVelocity; // Apply knockback velocity directly
+            StartCoroutine(ResetKnockbackState(duration));
+        }
+
+        private IEnumerator ResetKnockbackState(float duration) {
+            yield return new WaitForSeconds(duration);
+            isKnockedBack = false;
+            // Consider adding logic here to momentarily increase the player's collision layer to ignore the tumbleweed
+        }
         private float CalculateElaspedTime(float current)
         {
             return Time.realtimeSinceStartup - current;
@@ -289,6 +314,7 @@ namespace Abigail
 
             return messages;
         }
+        
 
         private void OutputLogsToConsole()
         {
