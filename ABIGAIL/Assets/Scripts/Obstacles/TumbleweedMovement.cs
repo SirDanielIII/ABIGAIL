@@ -3,10 +3,10 @@ using Abigail;
 
 public class TumbleweedMovement : MonoBehaviour
 {
-    public float horizontalSpeed = 6f;
+    public float horizontalSpeed = 7f;
     public LayerMask Player;
     public float checkRadius = 0.75f;
-    public float bounceForce = 300f; // Adjust based on testing
+    public float bounceForce = 10000f;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -23,9 +23,11 @@ public class TumbleweedMovement : MonoBehaviour
             Movement playerMovement = playerCollider.GetComponent<Movement>();
             if (playerMovement != null && !playerMovement.isKnockedBack)
             {
-                float direction = Mathf.Sign(playerCollider.transform.position.x - transform.position.x);
-                Vector2 knockbackVelocity = new Vector2(direction * bounceForce, 1f); // No vertical component
-                playerMovement.ApplyKnockback(knockbackVelocity, 0.05f); // Adjust duration as needed
+                // float direction = Mathf.Sign(playerCollider.transform.position.x - transform.position.x);
+                // Vector2 knockbackVelocity = new Vector2(direction * bounceForce, 1f);
+                Vector2 knockbackVelocity = new Vector2(-4.00f * bounceForce, 1.20f);
+
+                playerMovement.ApplyKnockback(knockbackVelocity, 0.25f);
             }
         }
     }
