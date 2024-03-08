@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-
 namespace Abigail
 {
     public enum LevelType
@@ -32,11 +31,11 @@ namespace Abigail
 
         [FormerlySerializedAs("sprintJumpMultiplier")]
         public float sprintJumpBoost = 1.15f; // How much extra jump there is when sprinting
-
         public float jumpInitialPower = 8f; // Speed of jump (normal)
         public float jumpHoldApplyAfter = 0.06f;
         public float jumpHoldPower = 11f; // Speed of jump (hold)
         public float jumpHoldTime = 0.2f; // Jump duration
+        public float quicksandJumpHoldTime = 0.05f; // Jump duration in quicksand
         public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
         public float slideSpeedBoostDuration = 0.15f; // How long the slide boost lasts for
         public float slideHoldTime = 0.3f; // How long the slide lasts for
@@ -55,6 +54,8 @@ namespace Abigail
         private bool isSliding = false;
         private bool isCrouching = false;
         public bool isKnockedBack = false;
+        public bool isInQuicksand = false;
+        private float sinkingSpeed = -0.05f;
 
 
         // Level Modifiers
@@ -66,10 +67,12 @@ namespace Abigail
         private float jumpTimeStart;
         private float sprintTimeEnd;
         private float slideTimeStart;
-        public float knockbackCooldown = 2f;
+        public float knockbackCooldown = 1f;
         private float lastKnockbackTime = -10f;
 
-        
+        // Script References
+        [SerializeField] private Quicksand quicksand;
+
 
         void Start()
         {
@@ -81,64 +84,122 @@ namespace Abigail
             stamina = staminaTotal;
         }
 
-        // Where da player movesssss
         void FixedUpdate()
         {
+            // Handle horizontal movement
+            if (!isKnockedBack)
+            {
+                // Allow horizontal movement always, even in quicksand
+                float speed = isSprinting ? sprintSpeed : movementSpeed;
+                rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+            }
+            // Specific handling for side-scrolling level type
             if (levelType == LevelType.SideScroll)
             {
-                if (isKnockedBack) // Skip normal movement if knocked back
-                    return;
-                // Basic left / right strafing movement
-                rb.velocity = isSprinting ? new Vector2(movement.x * sprintSpeed, rb.velocity.y) : new Vector2(movement.x * movementSpeed, rb.velocity.y);
-                // Jump
-                if (doJump)
+                if (isInQuicksand)
                 {
-                    doJump = false; // Toggle off variable from Update()
-                    float multiplier = 1.0f;
-                    // If stamina is less than the full amount of stamina  
-                    if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpRate))
-                    {
-                        multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpRate); // Get percentage for multiplier
-                    }
-
-                    // Subtract from the stamina
-                    stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpRate;
-                    // Clamp the value to ensure it doesn't go below zero
-                    stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
-                    // Do the jump
-                    rb.velocity = isSprinting
-                        ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
-                        : new Vector2(rb.velocity.x, jumpInitialPower);
+                    HandleQuicksandJump();
                 }
-
-                if (isJumping)
+                else
                 {
-                    float elapsedTime = CalculateElaspedTime(jumpTimeStart);
-                    // Let's you jump higher if you hold down the key
-                    if (elapsedTime <= jumpHoldTime)
-                    {
-                        // Thanks Chat-GPT
-                        // Calculate the normalized jump hold duration
-                        float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
-                        // Calculate the jump force based on the normalized hold time
-                        float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
-                        // Apply the jump force
-                        rb.velocity = isSprinting
-                            ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
-                            : new Vector2(rb.velocity.x, jumpForce);
-                    }
+                    HandleJumping();
                 }
             }
             else if (levelType == LevelType.TopDown)
             {
+                // Apply top-down movement logic if necessary
+                float speed = isSprinting ? sprintSpeed : movementSpeed;
+                rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
+            }
+        }
+
+        void HandleJumping()
+        {
+            if (doJump)
+            {
+                Jump();
+                doJump = false;
+            }
+            if (isJumping)
+            {
+                ContinueJump();
+            }
+        }
+
+        void HandleQuicksandJump()
+        {
+            if (!doJump && !isJumping)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, sinkingSpeed);
+            }         
+            if (doJump)
+            {
+                QuicksandJump();
+                doJump = false;
+            }
+            if (isJumping)
+            {
+                ContinueQuicksandJump();
+            }
+  
+        }
+
+        private void Jump()
+        {
+            float multiplier = 1.0f;
+            // If stamina is less than the full amount of stamina  
+            if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpRate))
+            {
+                multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpRate);
+            }
+            // Subtract from the stamina
+            stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpRate;
+            // Clamp the value to ensure it doesn't go below zero
+            stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
+            // Do the jump
+            rb.velocity = isSprinting
+                ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
+                : new Vector2(rb.velocity.x, jumpInitialPower);        
+        }
+        private void ContinueJump()
+        {
+            float elapsedTime = CalculateElaspedTime(jumpTimeStart);
+            // Let's you jump higher if you hold down the key
+            if (elapsedTime <= jumpHoldTime)
+            {
+                // Calculate the normalized jump hold duration
+                float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
+                // Calculate the jump force based on the normalized hold time
+                float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
+                // Apply the jump force
                 rb.velocity = isSprinting
-                    ? new Vector2(movement.x * sprintSpeed, movement.y * sprintSpeed)
-                    : new Vector2(movement.x * movementSpeed, movement.y * movementSpeed);
+                    ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
+                    : new Vector2(rb.velocity.x, jumpForce);
+            }
+        }
+        private void QuicksandJump()
+        {
+            float multiplier = 0.3f;
+            rb.velocity = new Vector2(rb.velocity.x, jumpInitialPower * multiplier);
+        }
+
+        private void ContinueQuicksandJump()
+        {
+            float elapsedTime = CalculateElaspedTime(jumpTimeStart);
+            // Let's you jump higher if you hold down the key
+            if (elapsedTime <= quicksandJumpHoldTime)
+            {
+                // Calculate the normalized jump hold duration
+                float normalizedHoldTime = Mathf.Clamp01(elapsedTime / quicksandJumpHoldTime);
+                // Calculate the jump force based on the normalized hold time
+                float jumpForce = Mathf.Lerp(jumpInitialPower * 0.2f, 0, normalizedHoldTime);
+                // Apply the jump force
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
         }
 
         void Update()
-        {
+        { 
             if (levelType == LevelType.SideScroll)
             {
                 HandlePlatformingInput();
@@ -169,7 +230,6 @@ namespace Abigail
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
-
             // Restore Stamina
             // If not sprinting, and enough time has passed since the last sprint, start the recovery
             if (!isSprinting && CalculateElaspedTime(sprintTimeEnd) >= staminaRecoveryDelay)
@@ -178,13 +238,11 @@ namespace Abigail
                 // Clamp the value to ensure it doesn't go above the max value
                 stamina = Mathf.Clamp(stamina, 0f, staminaTotal);
             }
-
             // Allow sprint if there's enough stamina
             if (Input.GetKey(KeyCode.LeftShift) && !isSprinting && IsGrounded() && stamina >= 0)
             {
                 isSprinting = true;
             }
-
             // Handle stamina decrease for sprinting
             if (isSprinting)
             {
@@ -201,21 +259,21 @@ namespace Abigail
 
             // Jump Movement
             if (Input.GetKey(KeyCode.Space))
-            {
-                if (IsGrounded())
+            {         
+                if (IsGrounded() || isInQuicksand)
                 {
                     isJumping = true; // Indicate that we're jumping
                     doJump = true; // Tell code in FixedUpdate to jump
                     jumpTimeStart = Time.realtimeSinceStartup; // Save start time of jump
                 }
-
-                if (isJumping)
+                else if (isJumping)
                 {
                     if (CalculateElaspedTime(jumpTimeStart) >= jumpHoldTime)
                     {
                         isJumping = false; // Stop jump after a certain amount of elapsed time
                     }
                 }
+                
             }
 
             // Crouch Movement S or DownArrow
@@ -227,25 +285,21 @@ namespace Abigail
             {
                 Crouch(false);
             }
-
             // Release Crouch
             if (Input.GetKeyUp(KeyCode.LeftControl))
             {
                 isCrouching = false;
             }
-
             // Release Jump
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 isJumping = false;
             }
-
             // Release Sprint
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 isSprinting = false;
             }
-            
             // Flip sprite image
             Flip();
 
@@ -253,7 +307,6 @@ namespace Abigail
             {
                 SceneManager.LoadScene(topDownSceneIndex);
             }
-
             OutputLogsToConsole();
         }
 
@@ -274,13 +327,13 @@ namespace Abigail
             isCrouching = crouching;
             playerCollider.size = crouching ? crouchingColliderSize : standingColliderSize;
         }
+
         public bool CanBeKnockedBack() {
             return Time.time - lastKnockbackTime >= knockbackCooldown;
         }
 
         public void ApplyKnockback(Vector2 knockbackVelocity, float duration) {
             if (!CanBeKnockedBack()) return;
-
             lastKnockbackTime = Time.time;
             isKnockedBack = true;
             rb.velocity = knockbackVelocity; // Apply knockback velocity directly
@@ -290,13 +343,21 @@ namespace Abigail
         private IEnumerator ResetKnockbackState(float duration) {
             yield return new WaitForSeconds(duration);
             isKnockedBack = false;
-            // Consider adding logic here to momentarily increase the player's collision layer to ignore the tumbleweed
         }
+
         private float CalculateElaspedTime(float current)
         {
             return Time.realtimeSinceStartup - current;
         }
 
+        // void TryJumpOutOfQuicksand()
+        // {
+        //     Debug.Log("Attempting to jump out of quicksand");
+        //     Debug.Log($"Velocity before jump quicksand: {rb.velocity}");
+        //     rb.velocity = new Vector2(rb.velocity.x, jumpInitialPower * 0.5f);
+        //     Debug.Log($"Velocity after jump quicksand: {rb.velocity}");
+        //     doJump = false;
+        // }
 
         private List<string> GetLogs()
         {
@@ -311,10 +372,8 @@ namespace Abigail
                 "Time Since Last Sprint: " + CalculateElaspedTime(sprintTimeEnd) + "s",
                 "Time Since Last Jump: " + CalculateElaspedTime(jumpTimeStart) + "s",
             };
-
             return messages;
         }
-        
 
         private void OutputLogsToConsole()
         {

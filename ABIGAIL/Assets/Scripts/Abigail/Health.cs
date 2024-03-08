@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     private int currentHealth;
     public HealthBar healthBar;
     public Vector2 respawnPoint; // The position where the player will respawn
-    public float fallThreshold = -10f; // The y-coordinate that triggers a respawn if the player falls below it
+    public float fallThreshold = -5f; // The y-coordinate that triggers a respawn if the player falls below it
 
     private void Start()
     {
