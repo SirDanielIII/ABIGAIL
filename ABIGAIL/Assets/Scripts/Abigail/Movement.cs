@@ -67,7 +67,7 @@ namespace Abigail
         private float jumpTimeStart;
         private float sprintTimeEnd;
         private float slideTimeStart;
-        public float knockbackCooldown = 2f;
+        public float knockbackCooldown = 1f;
         private float lastKnockbackTime = -10f;
 
         // Script References

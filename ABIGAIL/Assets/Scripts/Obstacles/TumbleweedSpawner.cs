@@ -4,7 +4,7 @@ public class TumbleweedSpawner : MonoBehaviour
 {
     public GameObject tumbleweedPrefab;
     public GameObject[] spawnPoints;
-    public float checkInterval = 0.05f;
+    public float checkInterval = 0.01f;
     private Camera mainCamera;
     private float nextCheckTime;
 

@@ -1223,7 +1223,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 755366777}
   - {fileID: 2011232644}
-  checkInterval: 1
+  checkInterval: 0.01
 --- !u!4 &1624290553
 Transform:
   m_ObjectHideFlags: 0

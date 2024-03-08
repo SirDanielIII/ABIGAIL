@@ -27,7 +27,7 @@ public class TumbleweedMovement : MonoBehaviour
                 // Vector2 knockbackVelocity = new Vector2(direction * bounceForce, 1f);
                 Vector2 knockbackVelocity = new Vector2(-4.00f * bounceForce, 1.20f);
 
-                playerMovement.ApplyKnockback(knockbackVelocity, 0.25f);
+                playerMovement.ApplyKnockback(knockbackVelocity, 0.2f);
             }
         }
     }
