@@ -291,11 +291,11 @@ namespace Abigail
 
         private void OutputLogsToConsole()
         {
-            var messages = GetLogs();
-            foreach (string i in messages)
-            {
-                Debug.Log(i);
-            }
+        //    var messages = GetLogs();
+        //    foreach (string i in messages)
+        //    {
+        //        Debug.Log(i);
+        //    }
         }
     }
 }
