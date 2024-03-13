@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Abigail
   - Mirror
+  - StopSurface
+  - Window
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - Player
   - Wall
   - Spotlight
-  - 
-  - 
+  - Mirror
+  - Window
   - 
   - 
   - 
