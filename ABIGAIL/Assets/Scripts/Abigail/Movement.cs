@@ -54,9 +54,9 @@ namespace Abigail
         public float jumpHoldTime = 0.2f; // Jump duration
         public float quicksandJumpHoldTime = 0.05f; // Jump duration in quicksand
         public float crouchSlowdownMultiplier = 0.5f; // How much slower the player moves when crouching
-        public float slideSpeedBoostMultiplier = 1.03f; // How much extra boost the player gets when sliding
+        public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
         public float slideSpeedBoostDuration = 0.05f; // How long the slide boost lasts for
-        public float slideSlowdownRate = 0.1f; // How much the slide slows down the player
+        public float slideSlowdownRate = 0.15f; // How much the slide slows down the player
         public Vector2 colliderSizeStanding = new Vector2(1f, 1);
         public Vector2 colliderSizeCrouching = new Vector2(1f, 0.7f);
         public Vector2 colliderSizeSliding = new Vector2(1f, 0.3f);
