@@ -510,6 +510,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8900350985843869696, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900350985843869696, guid: 17c4513a242a241bf908016a11beef9a, type: 3}
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}

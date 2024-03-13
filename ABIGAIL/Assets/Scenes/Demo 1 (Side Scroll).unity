@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 13366093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20461708, y: -0.35028678, z: -10}
+  m_LocalPosition: {x: -0.20461702, y: -0.35028678, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -691,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6256118824730378662, guid: e510c0d6e841d4d02ae432ddb1b717e6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6256118824730378662, guid: e510c0d6e841d4d02ae432ddb1b717e6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1533,8 +1533,9 @@ MonoBehaviour:
   sprintSpeed: 16
   staminaTotal: 100
   staminaSprintRate: 25
-  staminaJumpRate: 25
+  staminaJumpCost: 25
   staminaSprintJumpRate: 30
+  staminaSlideCost: 8
   staminaRecoveryDelay: 1.5
   staminaRecoveryRate: 15
   sprintJumpBoost: 1.15
@@ -1542,12 +1543,20 @@ MonoBehaviour:
   jumpHoldApplyAfter: 0.06
   jumpHoldPower: 11
   jumpHoldTime: 0.2
+  quicksandJumpHoldTime: 0.05
+  crouchSlowdownMultiplier: 0.5
   slideSpeedBoostMultiplier: 1.05
   slideSpeedBoostDuration: 0.15
-  slideHoldTime: 0.3
+  slideSlowdownRate: 0.3
+  colliderSizeStanding: {x: 1, y: 1}
+  colliderSizeCrouching: {x: 1, y: 0.7}
+  colliderSizeSliding: {x: 1, y: 0.3}
+  isKnockedBack: 0
+  isInQuicksand: 0
   levelType: 0
   sideScrollSceneIndex: -1
   topDownSceneIndex: 2
+  knockbackCooldown: 1
 --- !u!1 &1242747086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1723,7 @@ Transform:
   m_GameObject: {fileID: 1242747086}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20461708, y: -0.35028678, z: -10}
+  m_LocalPosition: {x: -0.20461702, y: -0.35028678, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
