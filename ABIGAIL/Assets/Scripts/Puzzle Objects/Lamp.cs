@@ -6,6 +6,7 @@ public class Lamp : MonoBehaviour
 {
     public GameObject spotlight_object;
     private Spotlight spotlight_script;
+    public int RotationAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,12 @@ public class Lamp : MonoBehaviour
         {
             if (Input.GetKeyDown("z"))
             {
-                transform.eulerAngles += Vector3.forward * 10;
+                transform.eulerAngles += Vector3.forward * RotationAmount;
             }
                 
             if (Input.GetKeyDown("x"))
             {
-                transform.eulerAngles += Vector3.forward * -10;
+                transform.eulerAngles += Vector3.forward * -RotationAmount;
             }
                 
         }
