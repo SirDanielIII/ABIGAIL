@@ -245,6 +245,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a160468ac94d340cda093744bf4c835f, type: 3}
+--- !u!1 &211349566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211349567}
+  m_Layer: 0
+  m_Name: VultureSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211349567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211349566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.77, y: 1.8, z: 282.58597}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213256249
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +598,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &769453334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -82
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174286278677823801, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+      propertyPath: m_Name
+      value: Vulture
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
 --- !u!1 &783083192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1451,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2026193822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026193824}
+  - component: {fileID: 2026193823}
+  m_Layer: 0
+  m_Name: VultureManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2026193823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026193822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b524911773454d65a8f175e595145fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vulturePrefab: {fileID: 6174286278677823801, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
+  spawnPoints:
+  - {fileID: 211349566}
+  checkInterval: 0.01
+--- !u!4 &2026193824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026193822}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -79.02334, y: -0.57448083, z: 90.00001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2072260650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,63 +1705,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!1001 &305844305449597132
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -81.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3348718354437661890, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6174286278677823801, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
-      propertyPath: m_Name
-      value: Vulture
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8a637fbe432644145af119282b8f1d71, type: 3}
 --- !u!1001 &583295540367314823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1793,4 +1872,6 @@ SceneRoots:
   - {fileID: 1624290553}
   - {fileID: 1123541710}
   - {fileID: 3457720279854998926}
-  - {fileID: 305844305449597132}
+  - {fileID: 2026193824}
+  - {fileID: 211349567}
+  - {fileID: 769453334}

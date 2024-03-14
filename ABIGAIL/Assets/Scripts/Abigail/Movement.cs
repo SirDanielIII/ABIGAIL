@@ -307,7 +307,7 @@ namespace Abigail
             {
                 SceneManager.LoadScene(topDownSceneIndex);
             }
-            OutputLogsToConsole();
+            //OutputLogsToConsole();
         }
 
         private void Flip()
