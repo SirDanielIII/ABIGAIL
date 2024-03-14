@@ -26,7 +26,7 @@ public class TumbleweedSpawner : MonoBehaviour
 
     private void SpawnTumbleweed()
     {
-        float spawnAheadDistance = 13.0f; // Adjust this value based on your level design and camera speed
+        float spawnAheadDistance = 14.0f; // Adjust this value based on your level design and camera speed
 
         foreach (var spawnPoint in spawnPoints)
         {

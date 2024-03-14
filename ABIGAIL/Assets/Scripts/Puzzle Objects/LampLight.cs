@@ -40,8 +40,6 @@ public class LampLight : MonoBehaviour
 
         if (hit.collider != null)
         {
-            // Print information about the hit collider
-            Debug.Log("Hit collider: " + hit.collider.gameObject.name + ", Tag: " + hit.collider.tag + ", Point: " + hit.point + ", Normal: " + hit.normal);
 
             // Check if the ray hits a mirror
             if (hit.collider.CompareTag("Mirror"))
@@ -64,7 +62,6 @@ public class LampLight : MonoBehaviour
                 lineRenderer.SetPosition(reflections + 1, finalPosition);
 
                 // Do something when the ray hits a window
-                Debug.Log("Ray hit a window!");
                 isSolved = true;
 
             }
