@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 3.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662b0620fb7b0af46af449c839d56b59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 3
   healthBar: {fileID: 0}
   respawnPoint: {x: 0, y: 0}
   fallThreshold: -10
@@ -194,29 +194,36 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  movementSpeed: 11
-  sprintSpeed: 16
+  facingDirection: 1
+  movementSpeed: 8
+  movementSpeedAcceleration: 5
+  sprintSpeed: 12
   staminaTotal: 100
   staminaSprintRate: 25
-  staminaJumpRate: 25
+  staminaJumpCost: 25
   staminaSprintJumpRate: 30
+  staminaSlideCost: 8
   staminaRecoveryDelay: 1.5
   staminaRecoveryRate: 15
   sprintJumpBoost: 1.15
-  jumpInitialPower: 8
+  jumpInitialPower: 10
   jumpHoldApplyAfter: 0.06
   jumpHoldPower: 11
   jumpHoldTime: 0.2
+  quicksandJumpHoldTime: 0.05
+  crouchSlowdownMultiplier: 0.5
   slideSpeedBoostMultiplier: 1.05
   slideSpeedBoostDuration: 0.15
-  slideHoldTime: 0.3
+  slideSlowdownRate: 0.15
+  colliderSizeStanding: {x: 1, y: 1}
+  colliderSizeCrouching: {x: 1, y: 0.7}
+  colliderSizeSliding: {x: 1, y: 0.3}
   isKnockedBack: 0
   isInQuicksand: 0
   levelType: 0
   sideScrollSceneIndex: -1
   topDownSceneIndex: 2
   knockbackCooldown: 1
-  quicksand: {fileID: 6123905231064382883, guid: 892c2f58c049849fb8760291204ccdb7, type: 3}
 --- !u!1 &5853480923515535493
 GameObject:
   m_ObjectHideFlags: 0

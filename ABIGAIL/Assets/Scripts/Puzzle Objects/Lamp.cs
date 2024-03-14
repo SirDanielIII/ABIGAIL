@@ -6,7 +6,9 @@ public class Lamp : MonoBehaviour
 {
     public GameObject spotlight_object;
     private Spotlight spotlight_script;
-    public int RotationAmount;
+    public float RotationAmount;
+    private readonly float delayBetweenInputs = 0.05f;
+    private float t;
 
     // Start is called before the first frame update
     void Start()
@@ -19,16 +21,19 @@ public class Lamp : MonoBehaviour
     {
         if (spotlight_script.isConnected == true)
         {
-            if (Input.GetKeyDown("z"))
+            if (Input.GetKey("z") && t <= 0)
             {
                 transform.eulerAngles += Vector3.forward * RotationAmount;
+                t = delayBetweenInputs;
             }
                 
-            if (Input.GetKeyDown("x"))
+            if (Input.GetKey("x") && t <= 0)
             {
                 transform.eulerAngles += Vector3.forward * -RotationAmount;
+                t = delayBetweenInputs;
             }
-                
+            t -= Time.deltaTime;
+
         }
     }
 }

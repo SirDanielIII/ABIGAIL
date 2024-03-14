@@ -380,7 +380,7 @@ namespace Abigail
             }
 
             // Jump Movement
-            if (Input.GetKey(KeyCode.Space) && levelType == LevelType.SideScroll)
+            if (Input.GetKeyDown(KeyCode.Space) && levelType == LevelType.SideScroll)
             {
                 if (grounded || isInQuicksand)
                 {
