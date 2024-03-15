@@ -16,7 +16,6 @@ public class VultureSpawner : MonoBehaviour
 
     private void Update()
     {
-        // Periodically check if it's time to spawn vultures
         if (Time.time >= nextCheckTime)
         {
             SpawnVulture();

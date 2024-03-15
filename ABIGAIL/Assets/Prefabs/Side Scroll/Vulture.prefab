@@ -197,3 +197,5 @@ MonoBehaviour:
   heartPrefab: {fileID: 0}
   YDistance: 4.8
   maxSwoopAttempts: 2
+  patrolWidth: 2
+  followSpeed: 1
