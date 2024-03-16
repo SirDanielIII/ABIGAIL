@@ -23,42 +23,103 @@ public class VultureAI : MonoBehaviour
     private Vector3 patrolStartPosition;
     private Vector3 patrolEndPosition;
     private bool hasDamagedPlayer = false;
+    private bool swooped = false;
+    private bool isReturning = false;
+    private bool patrolDirection = true;
 
     void Start()
     {
-        swoopTimer = Random.Range(3, swoopCooldown);
+        int randomInt = (int)Random.Range(1, swoopCooldown);    
+        if (!swooped)   
+        {
+            swoopTimer = randomInt * 3;
+        }
+        else
+        {
+            swoopTimer = randomInt * 1.5f;
+        }
         animator = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag("Abigail").transform;
-        //Debug.Log("Vulture initialized - patrol from: " + patrolStartPosition + " to: " + patrolEndPosition);
     }
 
     void PatrolBehavior() {
-        // Update patrol positions based on the player's current position
-        patrolStartPosition = new Vector3(playerTransform.position.x - patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
-        patrolEndPosition = new Vector3(playerTransform.position.x + patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
+        if (swooped && !isReturning) {
+            StartCoroutine(ReturnToStartPosition());
+        }
+        else if (!isReturning) {
+            if (patrolDirection) {
+                patrolStartPosition = new Vector3(playerTransform.position.x - patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
+                patrolEndPosition = new Vector3(playerTransform.position.x + patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
+            } else {
+                patrolStartPosition = new Vector3(playerTransform.position.x + patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
+                patrolEndPosition = new Vector3(playerTransform.position.x - patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
+            }
 
-        // Calculate the ping pong value over 3 seconds for a round trip
-        float lerpTime = Mathf.PingPong(Time.time * (1f / 3f), 1); // Adjust to 1/3 since PingPong goes from 0 to 1 to 0 in given duration, we want it in 3 seconds
+            float lerpTime = Mathf.PingPong(Time.time, 1.5f) / 1.5f;
+            Vector3 patrolPosition = Vector3.Lerp(patrolStartPosition, patrolEndPosition, lerpTime);
+            transform.position = patrolPosition;
+        }
+    }
 
-        // Lerp between the start and end positions
-        Vector3 patrolPosition = Vector3.Lerp(patrolStartPosition, patrolEndPosition, lerpTime);
 
-        // Apply the calculated position
-        transform.position = patrolPosition;
+    IEnumerator ReturnToStartPosition() {
+        isReturning = true;
 
-        //Debug.Log("Vulture is patrolling at: " + transform.position);
+        // Use the current patrolDirection to determine return start and end positions
+        Vector3 returnStart = patrolDirection ? patrolEndPosition : patrolStartPosition;
+        Vector3 returnEnd = patrolDirection ? patrolStartPosition : patrolEndPosition;
+
+        float startTime = Time.time;
+        while (Time.time - startTime < 1.5f) {
+            float lerpTime = (Time.time - startTime) / 1.5f;
+            Vector3 patrolReturn = Vector3.Lerp(returnStart, returnEnd, lerpTime);
+            transform.position = patrolReturn;
+            yield return null;
+        }
+
+        // Flip the patrol direction after returning
+        patrolDirection = !patrolDirection;
+        swooped = false; // Reset swooped to false after returning
+        isReturning = false;
     }
 
     void Update()
     {
-        Debug.Log(isSwooping);
-        Debug.Log(animator.GetBool("IsPlayerDetected"));
+        Animator animator = GetComponent<Animator>();
+        // Assuming you're interested in the base layer, which is layer 0.
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        // Log the name hash for debugging purposes
+        Debug.Log("Current State Hash: " + stateInfo.fullPathHash);
+
+        // If you know the name hash of specific states, you can compare them like this:
+        if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Patrol"))
+        {
+            Debug.Log("Currently in Patrol state");
+        }
+        else if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.FlyOff"))
+        {
+            Debug.Log("Currently in FlyOff state");
+        }
+        else if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Swoop"))
+        {
+            Debug.Log("Currently in Swoop state");
+        }
+
+
         if (!isSwooping)
         {
             PatrolBehavior();
             if (swoopTimer <= 0)
             {
-                swoopTimer = swoopCooldown;
+                int randomInt = (int)Random.Range(1, swoopCooldown);    
+                if (!swooped)   
+                {
+                    swoopTimer = randomInt * 3;
+                }
+                else
+                {
+                    swoopTimer = randomInt * 1.5f;
+                }
                 TriggerSwoopAttack();
             }
             else
@@ -89,6 +150,7 @@ public class VultureAI : MonoBehaviour
 
     void StartSwoop()
     {
+        animator.SetBool("ReturnToPatrol", false);
         Vector3 startPosition = new Vector3(playerTransform.position.x - patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
         Vector3 endPosition = new Vector3(playerTransform.position.x + patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
         Vector3 controlPoint = new Vector3(startPosition.x + patrolWidth, playerTransform.position.y - YDistanceAbovePlayer, 0);
@@ -110,7 +172,6 @@ public class VultureAI : MonoBehaviour
 
     private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2) 
     {
-        // Quadratic Bezier curve formula
         float u = 1 - t;
         return u * u * p0 + 2 * u * t * p1 + t * t * p2;
     }
@@ -120,6 +181,7 @@ public class VultureAI : MonoBehaviour
         animator.SetBool("IsPlayerDetected", false);
         hasDamagedPlayer = false;
         isSwooping = false;
+        swooped = true;
         swoopCount++;
         if (swoopCount >= maxSwoopAttempts)
         {
@@ -139,8 +201,6 @@ public class VultureAI : MonoBehaviour
 
     private IEnumerator FlyOffScreen()
     {
-        animator.SetBool("IsPlayerDetected", false);
-        animator.SetBool("ReturnToPatrol", false);
         Vector3 startPt = new Vector3(playerTransform.position.x + patrolWidth, playerTransform.position.y + YDistanceAbovePlayer, 0);
         Vector3 endPt = startPt + Vector3.up * 10f;
 
