@@ -445,17 +445,6 @@ namespace Abigail
             }
 
             // Perspective Change
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                if (levelType == LevelType.SideScroll)
-                {
-                    SceneManager.LoadScene(topDownSceneIndex);
-                }
-                else if (levelType == LevelType.TopDown)
-                {
-                    SceneManager.LoadScene(sideScrollSceneIndex);
-                }
-            }
         }
 
 
