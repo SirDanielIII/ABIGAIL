@@ -4,17 +4,13 @@ using UnityEngine;
 public class VultureAI : MonoBehaviour
 {
     // Inspector variables for setting up the behavior
-    public float swoopCooldown = 5f;
-    public float patrolSpeed = 3f;
-    public float swoopSpeed = 4f;
     public float YDistanceAbovePlayer = 5f;
     public int maxSwoopAttempts = 2;
     public float swoopDuration = 3f;
     public float patrolWidth = 4f;
-    public float groundLevel = -4f;
 
     // Runtime variables
-    private float swoopTimer = 3f;
+    private float swoopTimer;
     private int damage = 1;
     private int swoopCount = 0;
     private Animator animator;
@@ -26,18 +22,15 @@ public class VultureAI : MonoBehaviour
     private bool swooped = false;
     private bool isReturning = false;
     private bool patrolDirection = true;
+    private Vector3 startingPosition;
+    public float activationRange = 10f;
+    private bool inRange = false;
 
     void Start()
     {
-        int randomInt = (int)Random.Range(1, swoopCooldown);    
-        if (!swooped)   
-        {
-            swoopTimer = randomInt * 3;
-        }
-        else
-        {
-            swoopTimer = randomInt * 1.5f;
-        }
+        startingPosition = transform.position;
+        int randomInt = Random.Range(1, 4);    
+        swoopTimer = randomInt * 3;
         animator = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag("Abigail").transform;
     }
@@ -64,8 +57,6 @@ public class VultureAI : MonoBehaviour
 
     IEnumerator ReturnToStartPosition() {
         isReturning = true;
-
-        // Use the current patrolDirection to determine return start and end positions
         Vector3 returnStart = patrolDirection ? patrolEndPosition : patrolStartPosition;
         Vector3 returnEnd = patrolDirection ? patrolStartPosition : patrolEndPosition;
 
@@ -76,8 +67,6 @@ public class VultureAI : MonoBehaviour
             transform.position = patrolReturn;
             yield return null;
         }
-
-        // Flip the patrol direction after returning
         patrolDirection = !patrolDirection;
         swooped = false; // Reset swooped to false after returning
         isReturning = false;
@@ -85,53 +74,32 @@ public class VultureAI : MonoBehaviour
 
     void Update()
     {
-        Animator animator = GetComponent<Animator>();
-        // Assuming you're interested in the base layer, which is layer 0.
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        // Log the name hash for debugging purposes
-        Debug.Log("Current State Hash: " + stateInfo.fullPathHash);
-
-        // If you know the name hash of specific states, you can compare them like this:
-        if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Patrol"))
+        Debug.Log(swoopTimer);
+        float distanceToPlayer = Vector3.Distance(playerTransform.position, startingPosition);
+        if (distanceToPlayer <= activationRange || inRange)
         {
-            Debug.Log("Currently in Patrol state");
-        }
-        else if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.FlyOff"))
-        {
-            Debug.Log("Currently in FlyOff state");
-        }
-        else if (stateInfo.fullPathHash == Animator.StringToHash("Base Layer.Swoop"))
-        {
-            Debug.Log("Currently in Swoop state");
-        }
-
-
-        if (!isSwooping)
-        {
-            PatrolBehavior();
-            if (swoopTimer <= 0)
+            inRange = true;
+            if (!isSwooping)
             {
-                int randomInt = (int)Random.Range(1, swoopCooldown);    
-                if (!swooped)   
+                PatrolBehavior();
+                if (swoopTimer <= 0)
                 {
-                    swoopTimer = randomInt * 3;
+                    int randomInt2 = Random.Range(1, 6);    
+                    randomInt2 = randomInt2 % 2 == 0 ? randomInt2 + 1 : randomInt2;
+                    swoopTimer = randomInt2 * 1.5f;
+                    TriggerSwoopAttack();
                 }
                 else
                 {
-                    swoopTimer = randomInt * 1.5f;
+                    swoopTimer -= Time.deltaTime;
                 }
-                TriggerSwoopAttack();
             }
             else
             {
-                swoopTimer -= Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (swoopCount >= maxSwoopAttempts && animator.GetCurrentAnimatorStateInfo(0).IsName("Swoop"))
-            {
-                TriggerFlyOffScreen();
+                if (swoopCount >= maxSwoopAttempts && animator.GetCurrentAnimatorStateInfo(0).IsName("Swoop"))
+                {
+                    TriggerFlyOffScreen();
+                }
             }
         }
     }
@@ -140,10 +108,8 @@ public class VultureAI : MonoBehaviour
     {
         if (!isSwooping && swoopCount < maxSwoopAttempts)
         {
-            swoopTimer = swoopCooldown; // Reset the swoop timer
             isSwooping = true;
             animator.SetBool("IsPlayerDetected", true);
-            Debug.Log("Vulture is swooping down, swoop count: " + swoopCount);
             StartSwoop();
         }
     }
@@ -221,7 +187,6 @@ public class VultureAI : MonoBehaviour
         if (other.CompareTag("Abigail") && !hasDamagedPlayer)
         {
             other.GetComponent<Health>()?.TakeDamage(damage);
-            Debug.Log("Vulture damaged the player.");
             hasDamagedPlayer = true;
         }
     }

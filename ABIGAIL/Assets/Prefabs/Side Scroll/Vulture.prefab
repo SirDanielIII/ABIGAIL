@@ -193,9 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5084844ea0d471b87afa4183c9f61f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swoopCooldown: 3
-  heartPrefab: {fileID: 0}
-  YDistance: 4.8
+  YDistanceAbovePlayer: 5
   maxSwoopAttempts: 2
+  swoopDuration: 3
   patrolWidth: 2
-  followSpeed: 1
