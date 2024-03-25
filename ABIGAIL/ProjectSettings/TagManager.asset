@@ -11,6 +11,7 @@ TagManager:
   - Window
   - TumbleweedSpawn
   - Tumbleweed
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -28,12 +29,6 @@ TagManager:
   - Player
   - Tumbleweed
   - Quicksand
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
   - 
   - 
   - 
