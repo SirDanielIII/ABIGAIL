@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3870450907767965551}
   - component: {fileID: 2858680748984055033}
   - component: {fileID: -3870994393576718381}
+  - component: {fileID: 829810370172860415}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -144,3 +145,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseHoverColor: {r: 0, g: 1, b: 0, a: 1}
+  previousColor: {r: 0, g: 0, b: 0, a: 0}
+  spriteRenderer: {fileID: 0}
+--- !u!114 &829810370172860415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8769012229087471418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f16bdfb25a3c06744b70a043f33063ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
