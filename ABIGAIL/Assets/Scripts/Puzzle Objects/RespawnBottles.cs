@@ -25,8 +25,12 @@ public class RespawnBottles : MonoBehaviour
                 if (!bottle.activeSelf)
                 {
                     bottle.SetActive(true);
-                    destroyable.spriteRenderer.material.color = destroyable.previousColor;
+                    if(destroyable)
+                    {
+                        destroyable.spriteRenderer.material.color = destroyable.previousColor;
+                    }
                 }
+                    
             }
         }
     }
