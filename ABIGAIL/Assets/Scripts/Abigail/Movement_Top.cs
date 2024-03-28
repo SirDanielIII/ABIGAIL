@@ -21,7 +21,7 @@ public class Movement_Top : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 normalizedMovement = movement.normalized;
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + normalizedMovement * speed * Time.fixedDeltaTime);
         
     }
 

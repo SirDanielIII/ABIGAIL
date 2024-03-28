@@ -38,30 +38,23 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         hasKey = false;
+        topDownPlayer.SetActive(false);
     }
 
-    IEnumerator DelayCameraSwitch(CinemachineVirtualCamera newActiveCamera, CinemachineVirtualCamera oldActiveCamera, float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-
-        newActiveCamera.Priority = 11;
-        oldActiveCamera.Priority = 0;
-    }
     public void SwitchPerspective(GameObject currentZone)
     {
+        sideViewCamera.enabled = false;
+        topDownCamera.enabled = false;
         sideViewPlayer.SetActive(false);
         topDownPlayer.SetActive(false);
         foreach (var mapping in transitionMappings)
         {
-            // Check which mapping entry the player is currently in
             if ((isSideViewActive && mapping.sideViewEntry == currentZone) ||
                 (!isSideViewActive && mapping.topDownEntry == currentZone))
             {
-                // Calculate the target position based on the current perspective
                 var targetZone = isSideViewActive ? mapping.topDownEntry : mapping.sideViewEntry;
                 var targetPosition = targetZone.transform.position;
 
-                // Assuming you have a method to move the player
                 MovePlayerToTargetPosition(targetPosition);
 
                 // Toggle the perspective
@@ -69,35 +62,40 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+        StartCoroutine(EnableCamerasAfterDelay(0.1f));
+    }
+
+     private IEnumerator EnableCamerasAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        sideViewCamera.enabled = true;
+        topDownCamera.enabled = true;
     }
 
     private void MovePlayerToTargetPosition(Vector3 targetPosition)
     {
-        // Switch TO side view (since we toggle isSideViewActive *after* this method)
+        // Switch TO side view
         if (!isSideViewActive)
         {
-            // Correcting this block to now properly handle moving to side view
-            sideViewPlayer.SetActive(true); // Ensure the player is active
-            topDownPlayer.SetActive(false); // Deactivate the top-down player
+            sideViewPlayer.SetActive(true); 
+            topDownPlayer.SetActive(false); 
             
             RaycastHit2D hit = Physics2D.Raycast(targetPosition, Vector2.down, Mathf.Infinity, groundLayerMask);
             if (hit.collider != null)
             {
-                // Place the player just above the ground hit point
                 sideViewPlayer.transform.position = new Vector3(targetPosition.x, hit.point.y + playerHeightOffset, sideViewPlayer.transform.position.z);
-}           sideViewCamera.Priority = 11; // Ensure side view camera has higher priority
-            topDownCamera.Priority = 0; // Lower priority for top-down camera
+}           sideViewCamera.Priority = 11;
+            topDownCamera.Priority = 0;
         }
         // Switch TO top-down view
         else
         {
-            // Correcting this block to now properly handle moving to top-down view
-            topDownPlayer.SetActive(true); // Ensure the top-down player is active
-            sideViewPlayer.SetActive(false); // Deactivate the side-view player
+            topDownPlayer.SetActive(true);
+            sideViewPlayer.SetActive(false);
 
-            topDownPlayer.transform.position = targetPosition; // Move the top-down player
-            topDownCamera.Priority = 11; // Ensure top-down camera has higher priority
-            sideViewCamera.Priority = 0; // Lower priority for side view camera
+            topDownPlayer.transform.position = targetPosition; 
+            topDownCamera.Priority = 11; 
+            sideViewCamera.Priority = 0; 
         }
     }
 
