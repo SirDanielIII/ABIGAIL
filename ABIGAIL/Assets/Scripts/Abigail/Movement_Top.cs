@@ -5,36 +5,24 @@ using UnityEngine;
 
 public class Movement_Top : MonoBehaviour
 {
-    public float speed = 11.0f;
+    public float speed = 22.0f;
     public Rigidbody2D rb;
-    private Vector2 moveDirection; 
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    Vector2 movement; 
 
     void Update()
     {
-        ProcessInputs();
-        
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+
+
+
     }
 
     void FixedUpdate()
     {
-        Move();
+        Vector2 normalizedMovement = movement.normalized;
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        
     }
 
-    void ProcessInputs()
-    {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-
-        moveDirection = new Vector2(moveX, moveY).normalized;
-    }
-
-    void Move()
-    {
-        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
-    }
 }

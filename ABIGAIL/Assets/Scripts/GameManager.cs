@@ -1,6 +1,7 @@
 using UnityEngine;
 using Cinemachine;
 using System.Collections.Generic;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -39,8 +40,17 @@ public class GameManager : MonoBehaviour
         hasKey = false;
     }
 
+    IEnumerator DelayCameraSwitch(CinemachineVirtualCamera newActiveCamera, CinemachineVirtualCamera oldActiveCamera, float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        newActiveCamera.Priority = 11;
+        oldActiveCamera.Priority = 0;
+    }
     public void SwitchPerspective(GameObject currentZone)
     {
+        sideViewPlayer.SetActive(false);
+        topDownPlayer.SetActive(false);
         foreach (var mapping in transitionMappings)
         {
             // Check which mapping entry the player is currently in
@@ -90,6 +100,8 @@ public class GameManager : MonoBehaviour
             sideViewCamera.Priority = 0; // Lower priority for side view camera
         }
     }
+
+    
 
 
 
