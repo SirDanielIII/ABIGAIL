@@ -6,7 +6,7 @@ public class KeyPickup : MonoBehaviour
     {
         if (other.CompareTag("Abigail"))
         {
-            GameManager.instance.CollectKey();
+            GameManager.Instance.CollectKey();
             Destroy(gameObject);
         }
     }

@@ -16,11 +16,9 @@ public class GateController : MonoBehaviour
     private void Update()
     {
         float distanceX = Mathf.Abs(transform.position.x - playerTransform.position.x);
-        Debug.Log(distanceX);
-        Debug.Log(GameManager.instance.hasKey);
 
         // Check if the gate has not been opened, the player is horizontally close enough, and the player has the key
-        if (!gateOpened && distanceX <= openDistance && GameManager.instance.hasKey)
+        if (!gateOpened && distanceX <= openDistance && GameManager.Instance.hasKey)
         {
             if (!gateOpened)
             {

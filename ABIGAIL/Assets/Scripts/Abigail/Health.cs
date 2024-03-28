@@ -23,8 +23,9 @@ public class Health : MonoBehaviour
     private void Update()
     {
         // Check for falling below the threshold
-        if (transform.position.y < fallThreshold)
+        if (GameManager.Instance.isSideView() && transform.position.y < fallThreshold)
         {
+            Debug.Log("Fell below threshold");
             Respawn();
         }
     }

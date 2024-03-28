@@ -74,7 +74,7 @@ public class VultureAI : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(swoopTimer);
+        // Debug.Log(swoopTimer);
         float distanceToPlayer = Vector3.Distance(playerTransform.position, startingPosition);
         if (distanceToPlayer <= activationRange || inRange)
         {

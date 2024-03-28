@@ -1,20 +1,33 @@
 using UnityEngine;
+using Cinemachine;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
+    public static GameManager Instance { get; private set; }
     public bool hasKey = false;
+
+    public GameObject sideViewPlayer;
+    public GameObject topDownPlayer;
+
+    public CinemachineVirtualCamera sideViewCamera;
+    public CinemachineVirtualCamera topDownCamera;
+    private bool isSideViewActive = true;
+
+    public bool isSideView()
+    {
+        return isSideViewActive; 
+    }
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -22,13 +35,65 @@ public class GameManager : MonoBehaviour
         hasKey = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SwitchPerspective();
+        }
+    }
+
+    private void SwitchPerspective()
+    {
+        isSideViewActive = !isSideViewActive;
+
+        if (isSideViewActive)
+        {
+            sideViewPlayer.SetActive(true);
+            sideViewCamera.Priority = topDownCamera.Priority + 1;
+
+            TransferPlayerState(topDownPlayer, sideViewPlayer);
+
+            topDownPlayer.SetActive(false);
+        }
+        else
+        {
+            topDownPlayer.SetActive(true);
+            topDownCamera.Priority = sideViewCamera.Priority + 1;
+
+            TransferPlayerState(sideViewPlayer, topDownPlayer);
+
+            sideViewPlayer.SetActive(false);
+        }
+        Debug.Log(isSideViewActive ? "Switched to Side View" : "Switched to Top-Down View");
+    }
+
+    private void TransferPlayerState(GameObject fromPlayer, GameObject toPlayer)
+    {
+        // Rigidbody2D fromRb = fromPlayer.GetComponent<Rigidbody2D>();
+        // Rigidbody2D toRb = toPlayer.GetComponent<Rigidbody2D>();
+        // if (fromRb != null && toRb != null)
+        // {
+        //     toRb.velocity = fromRb.velocity;
+        // }
+        if (!isSideViewActive)
+        {
+            topDownPlayer.transform.position = GetTopDownPosition();
+        }
+    }
+
+    private Vector3 GetTopDownPosition()
+    {
+        return new Vector3(-210, -57, 0);
+    }
+
     public void CollectKey()
     {
         Debug.Log("Key collected!");
         hasKey = true;
-        if (UIManager.instance != null)
+        if (UIManager.Instance != null)
         {
-            UIManager.instance.UpdateKeyIndicator(hasKey);
+            UIManager.Instance.UpdateKeyIndicator(hasKey);
         }    
     }
 }
