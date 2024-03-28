@@ -57,11 +57,23 @@ public class Health : MonoBehaviour
         }
         transform.position = respawnPoint; // Move the player to the respawn point
 
+        GameObject[] tumbleweeds = GameObject.FindGameObjectsWithTag("Tumbleweed");
+        foreach (GameObject tumbleweed in tumbleweeds)
+        {
+            Destroy(tumbleweed);
+        }
+
         // If you have a Rigidbody2D and need to reset velocity, add this:
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
             rb.velocity = Vector2.zero;
         }
+        TumbleweedSpawner spawner = FindObjectOfType<TumbleweedSpawner>();
+        if (spawner != null)
+        {
+            spawner.ResetSpawnPoints();
+        }
+
     }
 }

@@ -35,5 +35,15 @@ public class RespawnPad : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Abigail");
         player.transform.position = respawnPosition;
+                GameObject[] tumbleweeds = GameObject.FindGameObjectsWithTag("Tumbleweed");
+        foreach (GameObject tumbleweed in tumbleweeds)
+        {
+            Destroy(tumbleweed);
+        }
+        TumbleweedSpawner spawner = FindObjectOfType<TumbleweedSpawner>();
+        if (spawner != null)
+        {
+            spawner.ResetSpawnPoints();
+        }
     }
 }

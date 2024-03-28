@@ -50,4 +50,12 @@ public class TumbleweedSpawner : MonoBehaviour
         }
     }
 
+    public void ResetSpawnPoints()
+    {
+        foreach (var spawnPoint in spawnPoints)
+        {
+            spawnPoint.SetActive(true); // Reactivate all spawn points
+        }
+    }
+
 }
