@@ -23,8 +23,6 @@ public class TumbleweedMovement : MonoBehaviour
             Movement playerMovement = playerCollider.GetComponent<Movement>();
             if (playerMovement != null && !playerMovement.isKnockedBack)
             {
-                // float direction = Mathf.Sign(playerCollider.transform.position.x - transform.position.x);
-                // Vector2 knockbackVelocity = new Vector2(direction * bounceForce, 1f);
                 Vector2 knockbackVelocity = new Vector2(-4.00f * bounceForce, 1.20f);
 
                 playerMovement.ApplyKnockback(knockbackVelocity, 0.2f);
@@ -38,11 +36,5 @@ public class TumbleweedMovement : MonoBehaviour
         {
             rb.AddForce(Vector2.left * horizontalSpeed, ForceMode2D.Force);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, checkRadius);
     }
 }

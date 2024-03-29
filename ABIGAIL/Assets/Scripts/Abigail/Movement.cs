@@ -228,6 +228,7 @@ namespace Abigail
 
         void HandlePlatformingInput()
         {
+            if (isKnockedBack) return;
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
             if (movement is { x: 0, y: 0 })
@@ -322,7 +323,7 @@ namespace Abigail
             if (!CanBeKnockedBack()) return;
             lastKnockbackTime = Time.time;
             isKnockedBack = true;
-            rb.velocity = knockbackVelocity; // Apply knockback velocity directly
+            rb.velocity = knockbackVelocity;
             StartCoroutine(ResetKnockbackState(duration));
         }
 

@@ -7,7 +7,6 @@ public class Health : MonoBehaviour
     public int maxHealth = 10;
     private int currentHealth;
     public HealthBar healthBar; // This can now be left unassigned/null
-    public Vector2 respawnPoint; // The position where the player will respawn
     public float fallThreshold = -5f; // The y-coordinate that triggers a respawn if the player falls below it
 
     private void Start()
@@ -55,7 +54,7 @@ public class Health : MonoBehaviour
         {
             healthBar.SetMaxHealth(maxHealth);
         }
-        transform.position = respawnPoint; // Move the player to the respawn point
+        transform.position = CheckpointManager.Instance.GetRespawnPoint();
 
         GameObject[] tumbleweeds = GameObject.FindGameObjectsWithTag("Tumbleweed");
         foreach (GameObject tumbleweed in tumbleweeds)
