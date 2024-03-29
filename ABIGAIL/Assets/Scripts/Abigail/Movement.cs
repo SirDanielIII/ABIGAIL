@@ -10,8 +10,7 @@ namespace Abigail
 {
     public enum LevelType
     {
-        SideScroll,
-        TopDown
+        SideScroll
     }
 
     public enum Direction
@@ -43,7 +42,6 @@ namespace Abigail
         public float staminaSprintRate = 25f;
         public float staminaJumpCost = 25f;
         public float staminaSprintJumpRate = 30f;
-        public float staminaSlideCost = 8;
         public float staminaRecoveryDelay = 1.5f; // The recovery delay after sprinting
         public float staminaRecoveryRate = 15f; // How fast stamina recharges
 
@@ -54,9 +52,6 @@ namespace Abigail
         public float jumpHoldTime = 0.2f; // Jump duration
         public float quicksandJumpHoldTime = 0.05f; // Jump duration in quicksand
         public float crouchSlowdownMultiplier = 0.5f; // How much slower the player moves when crouching
-        public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
-        public float slideSpeedBoostDuration = 0.05f; // How long the slide boost lasts for
-        public float slideSlowdownRate = 0.15f; // How much the slide slows down the player
         public Vector2 colliderSizeStanding = new Vector2(1f, 1);
         public Vector2 colliderSizeCrouching = new Vector2(1f, 0.7f);
         public Vector2 colliderSizeSliding = new Vector2(1f, 0.3f);
@@ -64,7 +59,6 @@ namespace Abigail
         // The Player
         private Rigidbody2D rb;
         private Vector2 movement;
-        private Direction slideDirection;
         private bool isJumping = false;
         private bool doJump = false;
         private BoxCollider2D playerCollider;
@@ -85,7 +79,6 @@ namespace Abigail
         // Timers
         private float jumpTimeStart;
         private float sprintTimeEnd;
-        private float slideTimeStart;
         public float knockbackCooldown = 1f;
         private float lastKnockbackTime = -10f;
 
@@ -109,43 +102,20 @@ namespace Abigail
 
         void FixedUpdate()
         {
-            if (isSliding)
+            // Handle horizontal movement
+            if (!isKnockedBack)
             {
-                HandleSlide();
-                HandleJumping();
+                // Allow horizontal movement always, even in quicksand
+                float speed = isSprinting ? sprintSpeed : movementSpeed;
+                if (isCrouching)
+                {
+                    speed *= crouchSlowdownMultiplier;
+                }
+
+                rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
             }
-            else
-            {
-                // Handle horizontal movement
-                if (!isKnockedBack)
-                {
-                    // Allow horizontal movement always, even in quicksand
-                    float speed = isSprinting ? sprintSpeed : movementSpeed;
-                    if (isCrouching)
-                    {
-                        speed *= crouchSlowdownMultiplier;
-                    }
 
-                    rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
-                }
-
-                // Specific handling for side-scrolling level type
-                if (levelType == LevelType.SideScroll)
-                {
-                    HandleJumping();
-                }
-                else if (levelType == LevelType.TopDown)
-                {
-                    // Apply top-down movement logic if necessary
-                    float speed = isSprinting ? sprintSpeed : movementSpeed;
-                    if (isCrouching)
-                    {
-                        speed *= crouchSlowdownMultiplier;
-                    }
-
-                    rb.velocity = new Vector2(movement.x * speed, movement.y * speed);
-                }
-            }
+            HandleJumping(); 
         }
 
         private void HandleJumping()
@@ -245,76 +215,6 @@ namespace Abigail
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
         }
-
-        private void HandleSlide()
-        {
-            var velocity = rb.velocity;
-            if (CalculateElaspedTime(slideTimeStart) <= slideSpeedBoostDuration)
-            {
-                if (levelType == LevelType.SideScroll)
-                {
-                    velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, velocity.y);
-                }
-                else if (levelType == LevelType.TopDown)
-                {
-                    velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, movement.y * slideSpeedBoostMultiplier);
-                }
-            }
-            else
-            {
-                switch (facingDirection)
-                {
-                    case Direction.Left:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
-                            velocity.y);
-                        break;
-                    case Direction.Right:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
-                            velocity.y);
-                        break;
-                    case Direction.Up:
-                        velocity = new Vector2(
-                            velocity.x,
-                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
-                        break;
-                    case Direction.Down:
-                        velocity = new Vector2(
-                            velocity.x,
-                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
-                        break;
-                    case Direction.TopLeft:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
-                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
-                        break;
-                    case Direction.TopRight:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
-                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
-                        break;
-                    case Direction.BottomLeft:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
-                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
-                        break;
-                    case Direction.BottomRight:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
-                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
-                        break;
-                    case Direction.Idle:
-                        // Stop slide if not moving anymore
-                        isSliding = false;
-                        playerCollider.size = colliderSizeStanding;
-                        break;
-                }
-            }
-            // Debug.Log(velocity);
-            rb.velocity = velocity;
-        }
-
         void Update()
         {
             HandlePlatformingInput();
@@ -409,42 +309,6 @@ namespace Abigail
                 playerCollider.size = colliderSizeCrouching;
             }
 
-            // Slide
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !isSliding && grounded && !isCrouching && stamina >= staminaSlideCost)
-            {
-                stamina = Mathf.Clamp(stamina - staminaSlideCost, 0f, Mathf.Infinity);
-                isSliding = true;
-                slideTimeStart = Time.realtimeSinceStartup;
-                playerCollider.size = colliderSizeSliding;
-            }
-
-            // Release Crouch
-            if (levelType == LevelType.SideScroll && Input.GetKeyUp(KeyCode.S))
-            {
-                isCrouching = false;
-                playerCollider.size = colliderSizeStanding;
-            }
-
-            // Release Jump
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                isJumping = false;
-            }
-
-            // Release Sprint
-            if (Input.GetKeyUp(KeyCode.LeftShift))
-            {
-                isSprinting = false;
-            }
-
-            // Release Slide
-            if (Input.GetKeyUp(KeyCode.LeftControl))
-            {
-                isSliding = false;
-                playerCollider.size = colliderSizeStanding;
-            }
-
-            // Perspective Change
         }
 
 
@@ -494,7 +358,6 @@ namespace Abigail
                 "Is Sprinting: " + isSprinting,
                 "Time Since Last Sprint: " + CalculateElaspedTime(sprintTimeEnd) + "s",
                 "Time Since Last Jump: " + CalculateElaspedTime(jumpTimeStart) + "s",
-                "Slowing Down From Slide: " + (CalculateElaspedTime(slideTimeStart) >= slideSpeedBoostDuration),
                 "Movement: " + movement,
                 "Velocity: " + rb.velocity,
                 "Direction: " + facingDirection
