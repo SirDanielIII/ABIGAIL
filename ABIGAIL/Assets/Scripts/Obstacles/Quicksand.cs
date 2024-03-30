@@ -4,84 +4,30 @@ namespace Abigail
 {
     public class Quicksand : MonoBehaviour
     {
-        [SerializeField] private float slowMovementFactor = 0.3f;
-        [SerializeField] private int damageOnSubmerge = 10;
-        [SerializeField] private Transform topMarker; // Assign this to mark the top of the quicksand
-        [SerializeField] private Transform bottomMarker; // Assign this to mark the bottom of the quicksand
-        private Transform playerTransform;
-        private float playerOriginalSpeed;
-        private bool playerIsInQuicksand = false;
-
-        void Update() 
+        private void OnTriggerEnter2D(Collider2D abigail)
         {
-            if (playerIsInQuicksand && playerTransform != null) 
+            if (abigail.CompareTag("Abigail"))
             {
-                BoxCollider2D playerCollider = playerTransform.GetComponent<BoxCollider2D>();
-                if (playerCollider != null) 
+                Debug.Log("Abigail is in quicksand.");
+                var movement = abigail.GetComponent<Movement>();
+                if (movement != null)
                 {
-                    float playerBottom = playerCollider.bounds.min.y; // Get the player's bottom position from collider bounds
-
-                    // Check if player's bottom position is above the top marker or if no jump attempts are needed
-                    if (playerBottom > topMarker.position.y)
-                    {
-                        ResetSinkDepthAndEscape(playerTransform);
-                        playerIsInQuicksand = false;
-                    }
+                    movement.HandleQuicksand(true);
                 }
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerExit2D(Collider2D abigail)
         {
-            if (collision.CompareTag("Abigail"))
+            if (abigail.CompareTag("Abigail"))
             {
-                playerIsInQuicksand = true;
-                playerTransform = collision.transform;
-                var playerMovement = collision.GetComponent<Movement>();
-                if (playerMovement)
+                Debug.Log("Abigail is out of quicksand.");
+                var movement = abigail.GetComponent<Movement>();
+                if (movement != null)
                 {
-                    playerOriginalSpeed = playerMovement.movementSpeed;
-                    playerMovement.movementSpeed *= slowMovementFactor;
-                    playerMovement.isInQuicksand = true;
+                    movement.HandleQuicksand(false);
                 }
             }
-        }
-        private void OnTriggerStay2D(Collider2D collision)
-        {
-            if (playerIsInQuicksand)
-            {
-                BoxCollider2D playerCollider = collision.transform.GetComponent<BoxCollider2D>();
-                float playerBottom = playerCollider.bounds.min.y;
-                float playerTop = playerCollider.bounds.max.y;
-                float playerHeight = playerTop - playerBottom;
-
-                if (playerBottom < topMarker.position.y - playerHeight)
-                {
-                    var health = collision.GetComponent<Health>();
-                    if (health) health.TakeDamage(damageOnSubmerge);
-                    ResetSinkDepthAndEscape(collision.transform);
-                }
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Abigail"))
-            {
-                ResetSinkDepthAndEscape(collision.transform);
-            }
-        }
-
-        private void ResetSinkDepthAndEscape(Transform playerTransform)
-        {
-            playerIsInQuicksand = false;
-            var playerMovement = playerTransform.GetComponent<Movement>();
-            if (playerMovement)
-            {
-                playerMovement.movementSpeed = playerOriginalSpeed;
-                playerMovement.isInQuicksand = false;
-            }
-            this.playerTransform = null;
         }
     }
 }

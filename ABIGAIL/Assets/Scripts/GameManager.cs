@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     {
         hasKey = false;
         topDownPlayer.SetActive(false);
+        sideViewPlayer.SetActive(true);
+        sideViewCamera.enabled = true;
+        topDownCamera.enabled = false;
     }
 
     public void SwitchPerspective(GameObject currentZone)

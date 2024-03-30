@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
         // Check for falling below the threshold
         if (GameManager.Instance.isSideView() && transform.position.y < fallThreshold)
         {
-            Debug.Log("Fell below threshold");
             Respawn();
         }
     }
@@ -40,14 +39,12 @@ public class Health : MonoBehaviour
         // Example: If health drops to or below 0, destroy the object
         if (currentHealth <= 0)
         {
-            Debug.Log("GAME OVER");
             Respawn();
         }
     }
 
     private void Respawn()
     {
-        Debug.Log("Respawning player.");
         currentHealth = maxHealth;
         // Only set max health if healthBar is not null
         if (healthBar != null)
@@ -62,7 +59,6 @@ public class Health : MonoBehaviour
             Destroy(tumbleweed);
         }
 
-        // If you have a Rigidbody2D and need to reset velocity, add this:
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -73,6 +69,7 @@ public class Health : MonoBehaviour
         {
             spawner.ResetSpawnPoints();
         }
+        DynamiteTrapManager.Instance.RespawnAllTraps();
 
     }
 }
