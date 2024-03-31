@@ -175,7 +175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   healthBar: {fileID: 0}
-  respawnPoint: {x: 0, y: 0}
   fallThreshold: -10
 --- !u!114 &4051027429076291723
 MonoBehaviour:
@@ -202,7 +201,6 @@ MonoBehaviour:
   staminaSprintRate: 25
   staminaJumpCost: 25
   staminaSprintJumpRate: 30
-  staminaSlideCost: 8
   staminaRecoveryDelay: 1.5
   staminaRecoveryRate: 15
   sprintJumpBoost: 1.15
@@ -210,20 +208,18 @@ MonoBehaviour:
   jumpHoldApplyAfter: 0.06
   jumpHoldPower: 11
   jumpHoldTime: 0.2
-  quicksandJumpHoldTime: 0.05
   crouchSlowdownMultiplier: 0.5
-  slideSpeedBoostMultiplier: 1.05
-  slideSpeedBoostDuration: 0.15
-  slideSlowdownRate: 0.15
   colliderSizeStanding: {x: 1, y: 1}
   colliderSizeCrouching: {x: 1, y: 0.7}
   colliderSizeSliding: {x: 1, y: 0.3}
   isKnockedBack: 0
   isInQuicksand: 0
+  quicksandSpeedFactor: 0.01
+  speedMultiplier: 1
   levelType: 0
   sideScrollSceneIndex: -1
   topDownSceneIndex: 2
-  knockbackCooldown: 1
+  knockbackCooldown: 0
 --- !u!1 &5853480923515535493
 GameObject:
   m_ObjectHideFlags: 0

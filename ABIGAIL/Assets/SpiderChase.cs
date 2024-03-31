@@ -5,40 +5,53 @@ public class SpiderChase : MonoBehaviour
     public GameObject player;
     public float speed = 13f;
     private float distance;
-    public float chaseDistance = 40f; // Max distance to continue chase
-    public float startChaseDistance = 20f; // Distance to start chasing
-    private bool isChasing = false; // Tracks whether the spider is currently chasing the player
-
+    public float chaseDistance = 40f;
+    public float startChaseDistance = 20f;
+    private bool isChasing = false;
     private Rigidbody2D rb;
+    private Health playerHealth;
+
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // Ensure there's a Rigidbody2D component attached
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 direction = player.transform.position - transform.position;
-        direction.Normalize();
+        Vector2 direction = (player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        // Check if player is within start chase distance to initiate chase
         if (distance < startChaseDistance)
         {
             isChasing = true;
         }
-        // If player is out of max chase distance, stop chasing
         else if (distance > chaseDistance)
         {
             isChasing = false;
         }
 
-        // If currently chasing, move towards the player
         if (isChasing)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            rb.velocity = direction * speed;
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Abigail")) // Assuming "Abigail" is the tag of the player
+        {
+            playerHealth = collision.gameObject.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(1);
+            }
         }
     }
 }

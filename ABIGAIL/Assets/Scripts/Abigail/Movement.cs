@@ -85,7 +85,7 @@ namespace Abigail
         // Timers
         private float jumpTimeStart;
         private float sprintTimeEnd;
-        public float knockbackCooldown = 1f;
+        public float knockbackCooldown = 0f;
         private float lastKnockbackTime = -10f;
         private IEnumerator quicksandDamageCoroutine;
         private Health playerHealth;
