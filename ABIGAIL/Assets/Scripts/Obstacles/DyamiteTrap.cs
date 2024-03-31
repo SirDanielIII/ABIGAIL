@@ -3,8 +3,8 @@ using System.Collections;
 
 public class DynamiteTrap : MonoBehaviour
 {
-    public float delayBeforeExplosion = 1f;
-    public int damageAmount = 10;
+    public float delayBeforeExplosion = 0.25f;
+    public int damageAmount = 3;
     public float explosionRadius = 1f;
     public GameObject explosionRadiusPrefab;
 
@@ -14,6 +14,7 @@ public class DynamiteTrap : MonoBehaviour
 
     private void Start()
     {
+        DynamiteTrapManager.Instance.RegisterTrap(this);
         spriteRenderer = GetComponent<SpriteRenderer>();
         explosionRadiusIndicator = Instantiate(explosionRadiusPrefab, transform.position, Quaternion.identity, transform);
         explosionRadiusIndicator.SetActive(false);
@@ -60,7 +61,7 @@ public class DynamiteTrap : MonoBehaviour
         }
 
         explosionRadiusIndicator.SetActive(false);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void AdjustIndicatorScale()
@@ -74,5 +75,19 @@ public class DynamiteTrap : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    }
+
+    public void RespawnDynamite()
+    {
+        gameObject.SetActive(true);
+        hasExploded = false;
+        spriteRenderer.color = Color.red;
+        explosionRadiusIndicator.SetActive(false);
+        AdjustIndicatorScale();
+    }
+
+    private void OnDestroy()
+    {
+        DynamiteTrapManager.Instance.UnregisterTrap(this);
     }
 }

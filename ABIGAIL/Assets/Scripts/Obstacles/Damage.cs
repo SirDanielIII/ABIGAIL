@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    public int damageAmount = 10;
+    public int damageAmount = 3;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Abigail"))

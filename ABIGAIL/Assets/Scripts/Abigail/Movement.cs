@@ -5,6 +5,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.XR;
 
 namespace Abigail
 {
@@ -35,7 +36,7 @@ namespace Abigail
         public Direction facingDirection = Direction.Right;
 
         // Movement Values
-        public float movementSpeed = 11f; // Speed of the character (normal)
+        public float movementSpeed = 8f; // Speed of the character (normal)
         public float movementSpeedAcceleration = 5; // How fast / slow the player accelerates 
         public float sprintSpeed = 16f; // Speed of the character (when sprinting)
         public float staminaTotal = 100f;
@@ -50,7 +51,6 @@ namespace Abigail
         public float jumpHoldApplyAfter = 0.06f;
         public float jumpHoldPower = 11f; // Speed of jump (hold)
         public float jumpHoldTime = 0.2f; // Jump duration
-        public float quicksandJumpHoldTime = 0.05f; // Jump duration in quicksand
         public float crouchSlowdownMultiplier = 0.5f; // How much slower the player moves when crouching
         public Vector2 colliderSizeStanding = new Vector2(1f, 1);
         public Vector2 colliderSizeCrouching = new Vector2(1f, 0.7f);
@@ -69,7 +69,13 @@ namespace Abigail
         private bool isCrouching = false;
         public bool isKnockedBack = false;
         public bool isInQuicksand = false;
-        private float sinkingSpeed = -0.05f;
+        public float quicksandSpeedFactor = 0.01f;
+        private float speed;
+        public float speedMultiplier = 1f;
+        private float quicksandSinkRate = -0.35f;
+        private float quicksandJumpPower = 1.2f;
+        private float quicksandJumpHoldTime = 0.05f;
+
 
         // Level Modifiers
         public LevelType levelType;
@@ -79,12 +85,10 @@ namespace Abigail
         // Timers
         private float jumpTimeStart;
         private float sprintTimeEnd;
-        public float knockbackCooldown = 1f;
+        public float knockbackCooldown = 0f;
         private float lastKnockbackTime = -10f;
-
-        // Script References
-        private Quicksand quicksand;
-
+        private IEnumerator quicksandDamageCoroutine;
+        private Health playerHealth;
 
         void Start()
         {
@@ -92,133 +96,165 @@ namespace Abigail
             rb = GetComponent<Rigidbody2D>();
             playerCollider = GetComponent<BoxCollider2D>();
             playerRenderer = GetComponent<SpriteRenderer>();
+            playerHealth = GetComponent<Health>();
 
             // Set attributes
             playerCollider.size = colliderSizeStanding;
 
             // Set variables
             stamina = staminaTotal;
+            speed = movementSpeed;
         }
 
         void FixedUpdate()
         {
-            // Handle horizontal movement
+            HandleMovement(); 
+            if (isInQuicksand && !isJumping)
+            {
+                SinkInQuicksand();
+            }
+        }
+
+        void Update()
+        {
+            HandlePlatformingInput();
+        }
+
+        public void HandleQuicksand(bool isInQuicksand)
+        {
+            this.isInQuicksand = isInQuicksand;
+            if (isInQuicksand)
+            {
+                speed = movementSpeed * quicksandSpeedFactor;
+                rb.gravityScale = 0;
+                if (quicksandDamageCoroutine == null)
+                {
+                    quicksandDamageCoroutine = ApplyQuicksandDamage();
+                    StartCoroutine(quicksandDamageCoroutine);
+                }
+                
+            }
+            else
+            {
+                speed = movementSpeed;
+                rb.gravityScale = 3.5f;
+                if (quicksandDamageCoroutine != null)
+                {
+                    StopCoroutine(quicksandDamageCoroutine);
+                    quicksandDamageCoroutine = null;
+                }
+            }
+        }
+
+        private IEnumerator ApplyQuicksandDamage()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(2f);
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(1);
+                }
+            }
+        }
+        private void SinkInQuicksand()
+        {
+            // Manually apply a sinking effect by moving the player down at a constant rate
+            rb.velocity = new Vector2(rb.velocity.x, quicksandSinkRate);
+        }
+
+
+        private void HandleMovement()
+        {
             if (!isKnockedBack)
             {
-                // Allow horizontal movement always, even in quicksand
                 float speed = isSprinting ? sprintSpeed : movementSpeed;
                 if (isCrouching)
                 {
                     speed *= crouchSlowdownMultiplier;
                 }
 
-                rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+                rb.velocity = new Vector2(movement.x * speed * speedMultiplier, rb.velocity.y);
             }
-
-            HandleJumping(); 
+            HandleJumping();
         }
 
         private void HandleJumping()
         {
-            if (isInQuicksand)
-            {
-                HandleQuicksandJump();
-            }
-            else
-            {
-                if (doJump)
-                {
-                    Jump();
-                }
-
-                if (isJumping)
-                {
-                    ContinueJump();
-                }
-            }
-        }
-
-        private void HandleQuicksandJump()
-        {
-            if (!doJump && !isJumping)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, sinkingSpeed);
-            }
-
             if (doJump)
             {
-                QuicksandJump();
-                doJump = false;
+                Jump();
             }
 
             if (isJumping)
             {
-                ContinueQuicksandJump();
-            }
+                ContinueJump();
+            } 
         }
 
         private void Jump()
         {
-            float multiplier = 1.0f;
-            // If stamina is less than the full amount of stamina  
-            if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
+            if (isInQuicksand)
             {
-                multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
+                rb.velocity = new Vector2(rb.velocity.x, quicksandJumpPower);
+                rb.gravityScale = 0;
+                StartCoroutine(ResetJumpAfterDelay(quicksandJumpHoldTime));
             }
+            else
+            {
+                float multiplier = 1.0f;
+                // If stamina is less than the full amount of stamina  
+                if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
+                {
+                    multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
+                }
 
-            // Subtract from the stamina
-            stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
-            // Clamp the value to ensure it doesn't go below zero
-            stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
-            // Do the jump
-            rb.velocity = isSprinting
-                ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
-                : new Vector2(rb.velocity.x, jumpInitialPower);
-            // Set this variable back to false so we don't jump a second time
+                // Subtract from the stamina
+                stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
+                // Clamp the value to ensure it doesn't go below zero
+                stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
+                // Do the jump
+                rb.velocity = isSprinting
+                    ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
+                    : new Vector2(rb.velocity.x, jumpInitialPower); 
+            }
             doJump = false;
         }
 
         private void ContinueJump()
         {
             float elapsedTime = CalculateElaspedTime(jumpTimeStart);
-            // Let's you jump higher if you hold down the key
-            if (elapsedTime <= jumpHoldTime)
+            if (!isInQuicksand && isJumping)
             {
-                // Calculate the normalized jump hold duration
-                float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
-                // Calculate the jump force based on the normalized hold time
-                float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
-                // Apply the jump force
-                rb.velocity = isSprinting
-                    ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
-                    : new Vector2(rb.velocity.x, jumpForce);
+                if (elapsedTime <= jumpHoldTime)
+                {
+                    // Calculate the normalized jump hold duration
+                    float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
+                    // Calculate the jump force based on the normalized hold time
+                    float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
+                    // Apply the jump force
+                    rb.velocity = isSprinting
+                        ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
+                        : new Vector2(rb.velocity.x, jumpForce);
+                }
+                else
+                {
+                    isJumping = false;
+                }
+
             }
         }
 
-        private void QuicksandJump()
+        private IEnumerator ResetJumpAfterDelay(float delay)
         {
-            float multiplier = 0.3f;
-            rb.velocity = new Vector2(rb.velocity.x, jumpInitialPower * multiplier);
-        }
+            yield return new WaitForSeconds(delay);
+            isJumping = false;
 
-        private void ContinueQuicksandJump()
-        {
-            float elapsedTime = CalculateElaspedTime(jumpTimeStart);
-            // Let's you jump higher if you hold down the key
-            if (elapsedTime <= quicksandJumpHoldTime)
+            // Reset gravity if no longer in quicksand
+            if (!isInQuicksand)
             {
-                // Calculate the normalized jump hold duration
-                float normalizedHoldTime = Mathf.Clamp01(elapsedTime / quicksandJumpHoldTime);
-                // Calculate the jump force based on the normalized hold time
-                float jumpForce = Mathf.Lerp(jumpInitialPower * 0.2f, 0, normalizedHoldTime);
-                // Apply the jump force
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.gravityScale = 3.5f;
             }
-        }
-        void Update()
-        {
-            HandlePlatformingInput();
-            OutputLogsToConsole();
         }
 
         private bool IsGrounded()
@@ -281,7 +317,7 @@ namespace Abigail
             }
 
             // Jump Movement
-            if (Input.GetKeyDown(KeyCode.Space) && levelType == LevelType.SideScroll)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (grounded || isInQuicksand)
                 {
@@ -293,6 +329,13 @@ namespace Abigail
                 }
                 else if (isJumping)
                 {
+                    if (isInQuicksand)
+                    {
+                        if (CalculateElaspedTime(jumpTimeStart) >= quicksandJumpHoldTime)
+                        {
+                            isJumping = false; // Stop jump after a certain amount of elapsed time
+                        }
+                    }
                     if (CalculateElaspedTime(jumpTimeStart) >= jumpHoldTime)
                     {
                         isJumping = false; // Stop jump after a certain amount of elapsed time
@@ -304,7 +347,7 @@ namespace Abigail
             }
 
             // Crouch Movement S 
-            if (levelType == LevelType.SideScroll && Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 isCrouching = true;
                 playerCollider.size = colliderSizeCrouching;
@@ -337,15 +380,6 @@ namespace Abigail
         {
             return Time.realtimeSinceStartup - current;
         }
-
-        // void TryJumpOutOfQuicksand()
-        // {
-        //     Debug.Log("Attempting to jump out of quicksand");
-        //     Debug.Log($"Velocity before jump quicksand: {rb.velocity}");
-        //     rb.velocity = new Vector2(rb.velocity.x, jumpInitialPower * 0.5f);
-        //     Debug.Log($"Velocity after jump quicksand: {rb.velocity}");
-        //     doJump = false;
-        // }
 
         private List<string> GetLogs()
         {

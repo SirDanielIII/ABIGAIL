@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
         // Check for falling below the threshold
         if (GameManager.Instance.isSideView() && transform.position.y < fallThreshold)
         {
-            Debug.Log("Fell below threshold");
             Respawn();
         }
     }
@@ -40,29 +39,32 @@ public class Health : MonoBehaviour
         // Example: If health drops to or below 0, destroy the object
         if (currentHealth <= 0)
         {
-            Debug.Log("GAME OVER");
             Respawn();
         }
     }
 
     private void Respawn()
     {
-        Debug.Log("Respawning player.");
         currentHealth = maxHealth;
-        // Only set max health if healthBar is not null
         if (healthBar != null)
         {
             healthBar.SetMaxHealth(maxHealth);
         }
+        if (!GameManager.Instance.isSideView())
+        {
+            GameManager.Instance.topDownPlayer.SetActive(false);
+            GameManager.Instance.sideViewPlayer.SetActive(true);
+            GameManager.Instance.sideViewCamera.enabled = true;
+            GameManager.Instance.topDownCamera.enabled = false;
+            GameManager.Instance.isSideViewActive = true;
+            // StartCoroutine(GameManager.Instance.EnableCamerasAfterDelay(0.1f));
+        }
         transform.position = CheckpointManager.Instance.GetRespawnPoint();
-
         GameObject[] tumbleweeds = GameObject.FindGameObjectsWithTag("Tumbleweed");
         foreach (GameObject tumbleweed in tumbleweeds)
         {
             Destroy(tumbleweed);
         }
-
-        // If you have a Rigidbody2D and need to reset velocity, add this:
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -73,6 +75,6 @@ public class Health : MonoBehaviour
         {
             spawner.ResetSpawnPoints();
         }
-
+        DynamiteTrapManager.Instance.RespawnAllTraps();
     }
 }

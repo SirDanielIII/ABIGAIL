@@ -33,9 +33,10 @@ public class TumbleweedSpawner : MonoBehaviour
             if (spawnPoint.activeSelf)
             {
                 float distanceToCamera = spawnPoint.transform.position.x - mainCamera.transform.position.x;
+                float verticalDistanceToCamera = spawnPoint.transform.position.y - mainCamera.transform.position.y;
                 
                 // For a right-moving camera
-                if (distanceToCamera > 0 && distanceToCamera < spawnAheadDistance)
+                if (distanceToCamera > 0 && distanceToCamera < spawnAheadDistance && verticalDistanceToCamera > 0.0f)
                 {
                     Instantiate(tumbleweedPrefab, spawnPoint.transform.position, Quaternion.identity);
                     spawnPoint.SetActive(false); // Prevent re-spawning
@@ -44,7 +45,7 @@ public class TumbleweedSpawner : MonoBehaviour
                 else if (distanceToCamera < 0 && Mathf.Abs(distanceToCamera) < spawnAheadDistance)
                 {
                     Instantiate(tumbleweedPrefab, spawnPoint.transform.position, Quaternion.identity);
-                    spawnPoint.SetActive(false); // Prevent re-spawning
+                    spawnPoint.SetActive(false);
                 }
             }
         }

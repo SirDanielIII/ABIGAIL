@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public CinemachineVirtualCamera sideViewCamera;
     public CinemachineVirtualCamera topDownCamera;
-    private bool isSideViewActive = true;
+    public bool isSideViewActive = true;
     public List<TransitionMapping> transitionMappings;
     private float playerHeightOffset = 0.5f;
     public LayerMask groundLayerMask;
@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     {
         hasKey = false;
         topDownPlayer.SetActive(false);
+        sideViewPlayer.SetActive(true);
+        sideViewCamera.enabled = true;
+        topDownCamera.enabled = false;
     }
 
     public void SwitchPerspective(GameObject currentZone)
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(EnableCamerasAfterDelay(0.1f));
     }
 
-     private IEnumerator EnableCamerasAfterDelay(float delay)
+    public IEnumerator EnableCamerasAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         sideViewCamera.enabled = true;
