@@ -24,21 +24,19 @@ public class GateController : MonoBehaviour
             if (GameManager.Instance.hasKey)
             {
                 OpenGate();
-                noKeyUIElement.SetActive(false); // Hide the UI element when the player has the key and the gate is close enough to open
-                respawnPad.SetActive(false); // Hide the respawn pad when the gate is open
+                noKeyUIElement.SetActive(false); 
+                respawnPad.SetActive(false);
             }
             else
             {
-                // Show the UI element when the player is close enough but doesn't have the key
                 noKeyUIElement.SetActive(true);
-                respawnPad.SetActive(true); // Show the respawn pad when the gate is closed
-                Debug.Log("You need a key to open this gate");
+                respawnPad.SetActive(true); 
             }
         }
         else
         {
-            noKeyUIElement.SetActive(false); // Ensure the UI element is hidden in all other cases
-            respawnPad.SetActive(false); // Ensure the respawn pad is hidden in all other cases
+            noKeyUIElement.SetActive(false); 
+            respawnPad.SetActive(false); 
             if (gateOpened && distanceX > openDistance)
             {
                 CloseGate();
@@ -49,14 +47,12 @@ public class GateController : MonoBehaviour
 
     private void OpenGate()
     {
-        Debug.Log("Opening gate");
         animator.SetTrigger("GateOpen");
         gateOpened = true;
     }
 
     private void CloseGate()
     {
-        Debug.Log("Closing gate");
         animator.SetTrigger("GateClose");
         gateOpened = false;
     }
