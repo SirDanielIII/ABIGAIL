@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -9,31 +8,15 @@ using UnityEngine.XR;
 
 namespace Abigail
 {
-    public enum LevelType
-    {
-        SideScroll
-    }
-
-    public enum Direction
-    {
-        Left,
-        Right,
-        Up,
-        Down,
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight,
-        Idle
-    }
-
     public class Movement : MonoBehaviour
     {
         // Ground Check
         public Transform playerFeet;
-        public float checkRadius = 0.1f;
+        public float checkRadius = 0.13f;
         public LayerMask groundLayer;
-        public Direction facingDirection = Direction.Right;
+        public GlobalEnums.Direction facingDirection = GlobalEnums.Direction.Right;
+        public bool enableSliding = false;
+        public bool enableCrouching = true;
 
         // Movement Values
         public float movementSpeed = 8f; // Speed of the character (normal)
@@ -43,49 +26,43 @@ namespace Abigail
         public float staminaSprintRate = 25f;
         public float staminaJumpCost = 25f;
         public float staminaSprintJumpRate = 30f;
+        public float staminaSlideCost = 8;
         public float staminaRecoveryDelay = 1.5f; // The recovery delay after sprinting
         public float staminaRecoveryRate = 15f; // How fast stamina recharges
-
         public float sprintJumpBoost = 1.15f; // How much extra jump there is when sprinting
         public float jumpInitialPower = 8f; // Speed of jump (normal)
         public float jumpHoldApplyAfter = 0.06f;
         public float jumpHoldPower = 11f; // Speed of jump (hold)
         public float jumpHoldTime = 0.2f; // Jump duration
         public float crouchSlowdownMultiplier = 0.5f; // How much slower the player moves when crouching
-        public Vector2 colliderSizeStanding = new Vector2(1f, 1);
-        public Vector2 colliderSizeCrouching = new Vector2(1f, 0.7f);
-        public Vector2 colliderSizeSliding = new Vector2(1f, 0.3f);
+        public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
+        public float slideSpeedBoostDuration = 0.05f; // How long the slide boost lasts for
+        public float slideSlowdownRate = 0.15f; // How much the slide slows down the player
 
         // The Player
         private Rigidbody2D rb;
         private Vector2 movement;
+        private GlobalEnums.Direction slideDirection;
         private bool isJumping = false;
         private bool doJump = false;
-        private BoxCollider2D playerCollider;
-        private SpriteRenderer playerRenderer;
         private float stamina;
         private bool isSprinting = false;
         private bool isSliding = false;
         private bool isCrouching = false;
         public bool isKnockedBack = false;
         public bool isInQuicksand = false;
-        public float quicksandSpeedFactor = 0.01f;
-        private float speed;
-        public float speedMultiplier = 1f;
-        private float quicksandSinkRate = -0.35f;
-        private float quicksandJumpPower = 1.2f;
-        private float quicksandJumpHoldTime = 0.05f;
-
+        public float sinkingSpeed = -0.05f;
 
         // Level Modifiers
-        public LevelType levelType;
-        public int sideScrollSceneIndex = -1;
-        public int topDownSceneIndex = -1;
+        public GlobalEnums.LevelType levelType;
+        // public int sideScrollSceneIndex = -1;
+        // public int topDownSceneIndex = -1;
 
         // Timers
         private float jumpTimeStart;
         private float sprintTimeEnd;
-        public float knockbackCooldown = 0f;
+        private float slideTimeStart;
+        public float knockbackCooldown = 1f;
         private float lastKnockbackTime = -10f;
         private IEnumerator quicksandDamageCoroutine;
         private Health playerHealth;
@@ -94,13 +71,6 @@ namespace Abigail
         {
             // Get the player's attributes
             rb = GetComponent<Rigidbody2D>();
-            playerCollider = GetComponent<BoxCollider2D>();
-            playerRenderer = GetComponent<SpriteRenderer>();
-            playerHealth = GetComponent<Health>();
-
-            // Set attributes
-            playerCollider.size = colliderSizeStanding;
-
             // Set variables
             stamina = staminaTotal;
             speed = movementSpeed;
@@ -171,16 +141,74 @@ namespace Abigail
                 float speed = isSprinting ? sprintSpeed : movementSpeed;
                 if (isCrouching)
                 {
-                    speed *= crouchSlowdownMultiplier;
+                    HandleSlide();
                 }
 
-                rb.velocity = new Vector2(movement.x * speed * speedMultiplier, rb.velocity.y);
+                HandleJumping();
             }
-            HandleJumping();
+            else
+            {
+                // Handle horizontal movement
+                if (!isKnockedBack)
+                {
+                    // Allow horizontal movement always, even in quicksand
+                    float speed = isSprinting ? sprintSpeed : movementSpeed;
+                    if (isCrouching && IsGrounded())
+                    {
+                        speed *= crouchSlowdownMultiplier;
+                    }
+
+                    // Specific handling for level types
+                    if (levelType == GlobalEnums.LevelType.SideScroll)
+                    {
+                        HandleJumping();
+                        // Move Player (Side Scroll)
+                        rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+                    }
+                    else if (levelType == GlobalEnums.LevelType.TopDown)
+                    {
+                        // Move Player (Top Down)
+                        rb.velocity = new Vector2(movement.x * speed * topDownSpeedMultiplier, movement.y * speed * topDownSpeedMultiplier);
+                    }
+                }
+            }
         }
 
         private void HandleJumping()
         {
+            if (isInQuicksand)
+            {
+                HandleQuicksandJump();
+            }
+            else
+            {
+                if (doJump)
+                {
+                    Jump();
+                }
+
+                if (isJumping)
+                {
+                    ContinueJump();
+                }
+
+                if (rb.velocity.y < 0) // Player is falling
+                {
+                    // Make Falling Faster
+                    facingDirection = GlobalEnums.Direction.Falling;
+                    rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
+                }
+            }
+        }
+
+
+        private void HandleQuicksandJump()
+        {
+            if (!doJump && !isJumping)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, sinkingSpeed);
+            }
+
             if (doJump)
             {
                 Jump();
@@ -257,36 +285,115 @@ namespace Abigail
             }
         }
 
-        private bool IsGrounded()
+        private void HandleSlide()
+        {
+            var velocity = rb.velocity;
+            if (CalculateElaspedTime(slideTimeStart) <= slideSpeedBoostDuration)
+            {
+                if (levelType == GlobalEnums.LevelType.SideScroll)
+                {
+                    velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, velocity.y);
+                }
+                else if (levelType == GlobalEnums.LevelType.TopDown)
+                {
+                    velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, movement.y * slideSpeedBoostMultiplier);
+                }
+            }
+            else
+            {
+                switch (facingDirection)
+                {
+                    case GlobalEnums.Direction.Left:
+                        velocity = new Vector2(
+                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
+                            velocity.y);
+                        break;
+                    case GlobalEnums.Direction.Right:
+                        velocity = new Vector2(
+                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
+                            velocity.y);
+                        break;
+                    case GlobalEnums.Direction.Up:
+                        velocity = new Vector2(
+                            velocity.x,
+                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
+                        break;
+                    case GlobalEnums.Direction.Down:
+                        velocity = new Vector2(
+                            velocity.x,
+                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
+                        break;
+                    case GlobalEnums.Direction.TopLeft:
+                        velocity = new Vector2(
+                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
+                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
+                        break;
+                    case GlobalEnums.Direction.TopRight:
+                        velocity = new Vector2(
+                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
+                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
+                        break;
+                    case GlobalEnums.Direction.BottomLeft:
+                        velocity = new Vector2(
+                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
+                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
+                        break;
+                    case GlobalEnums.Direction.BottomRight:
+                        velocity = new Vector2(
+                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
+                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
+                        break;
+                    case GlobalEnums.Direction.Idle:
+                        // Stop slide if not moving anymore
+                        isSliding = false;
+                        break;
+                }
+            }
+
+            rb.velocity = velocity;
+        }
+
+        void Update()
+        {
+            HandlePlatformingInput();
+            OutputLogsToConsole();
+        }
+
+        public bool IsGrounded()
         {
             return Physics2D.OverlapCircle(playerFeet.position, checkRadius, groundLayer);
         }
 
+        public bool IsGrounded(float radius)
+        {
+            return Physics2D.OverlapCircle(playerFeet.position, radius, groundLayer);
+        }
+
         void HandlePlatformingInput()
         {
-            if (isKnockedBack) return;
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
-            if (movement is { x: 0, y: 0 })
+            var grounded = IsGrounded();
+            
+            if (movement is { x: 0, y: 0 } || (movement.x == 0 && grounded))
             {
-                facingDirection = Direction.Idle;
+                facingDirection = GlobalEnums.Direction.Idle;
             }
             else
                 facingDirection = movement.x switch
                 {
-                    < 0 when movement.y < 0 => Direction.BottomLeft,
-                    < 0 when movement.y > 0 => Direction.TopLeft,
-                    < 0 => Direction.Left,
+                    < 0 when movement.y < 0 => GlobalEnums.Direction.BottomLeft,
+                    < 0 when movement.y > 0 => GlobalEnums.Direction.TopLeft,
+                    < 0 => GlobalEnums.Direction.Left,
                     > 0 => movement.y switch
                     {
-                        < 0 => Direction.BottomRight,
-                        > 0 => Direction.TopRight,
-                        _ => Direction.Right
+                        < 0 => GlobalEnums.Direction.BottomRight,
+                        > 0 => GlobalEnums.Direction.TopRight,
+                        _ => GlobalEnums.Direction.Right
                     },
-                    _ => movement.y < 0 ? Direction.Down : Direction.Up
+                    _ => movement.y < 0 ? GlobalEnums.Direction.Down : GlobalEnums.Direction.Up
                 };
 
-            var grounded = IsGrounded();
             // Restore Stamina
             // If not sprinting, and enough time has passed since the last sprint, start the recovery
             if (!isSprinting && CalculateElaspedTime(sprintTimeEnd) >= staminaRecoveryDelay)
@@ -316,15 +423,28 @@ namespace Abigail
                 }
             }
 
+            // Crouch Movement S 
+            if (levelType == GlobalEnums.LevelType.SideScroll && Input.GetKeyDown(KeyCode.S) && enableCrouching)
+            {
+                isCrouching = true;
+            }
+
+            // Slide
+            if (Input.GetKeyDown(KeyCode.LeftControl) && !isSliding && grounded && !isCrouching && stamina >= staminaSlideCost && enableSliding)
+            {
+                stamina = Mathf.Clamp(stamina - staminaSlideCost, 0f, Mathf.Infinity);
+                isSliding = true;
+                slideTimeStart = Time.realtimeSinceStartup;
+            }
+
             // Jump Movement
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKey(KeyCode.Space) && levelType == GlobalEnums.LevelType.SideScroll)
             {
                 if (grounded || isInQuicksand)
                 {
                     isJumping = true; // Indicate that we're jumping
                     doJump = true; // Tell code in FixedUpdate to jump
                     jumpTimeStart = Time.realtimeSinceStartup; // Save start time of jump
-                    isCrouching = false;
                     isSliding = false;
                 }
                 else if (isJumping)
@@ -341,18 +461,33 @@ namespace Abigail
                         isJumping = false; // Stop jump after a certain amount of elapsed time
                     }
 
-                    isCrouching = false;
                     isSliding = false;
                 }
             }
 
-            // Crouch Movement S 
-            if (Input.GetKeyDown(KeyCode.S))
+            // Release Crouch
+            if ((levelType == GlobalEnums.LevelType.SideScroll && Input.GetKeyUp(KeyCode.S) && enableCrouching))
             {
-                isCrouching = true;
-                playerCollider.size = colliderSizeCrouching;
+                isCrouching = false;
             }
 
+            // Release Jump
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                isJumping = false;
+            }
+
+            // Release Sprint
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                isSprinting = false;
+            }
+
+            // Release Slide
+            if (Input.GetKeyUp(KeyCode.LeftControl) && enableSliding)
+            {
+                isSliding = false;
+            }
         }
 
 
@@ -381,32 +516,85 @@ namespace Abigail
             return Time.realtimeSinceStartup - current;
         }
 
+        // void TryJumpOutOfQuicksand()
+        // {
+        //     Debug.Log("Attempting to jump out of quicksand");
+        //     Debug.Log($"Velocity before jump quicksand: {rb.velocity}");
+        //     rb.velocity = new Vector2(rb.velocity.x, jumpInitialPower * 0.5f);
+        //     Debug.Log($"Velocity after jump quicksand: {rb.velocity}");
+        //     doJump = false;
+        // }
+
+
         private List<string> GetLogs()
         {
             var messages = new List<string>
             {
-                "Current View: " + levelType,
-                "Stamina Left: " + stamina,
+                // "Current View: " + levelType,
+                // "Stamina Left: " + stamina,
                 "Is Crouching: " + isCrouching,
                 "Is Jumping: " + isJumping,
-                "Is Sliding: " + isSliding,
-                "Is Sprinting: " + isSprinting,
-                "Time Since Last Sprint: " + CalculateElaspedTime(sprintTimeEnd) + "s",
-                "Time Since Last Jump: " + CalculateElaspedTime(jumpTimeStart) + "s",
-                "Movement: " + movement,
-                "Velocity: " + rb.velocity,
-                "Direction: " + facingDirection
+                // "Is Sliding: " + isSliding,
+                // "Is Sprinting: " + isSprinting,
+                // "Time Since Last Sprint: " + CalculateElaspedTime(sprintTimeEnd) + "s",
+                // "Time Since Last Jump: " + CalculateElaspedTime(jumpTimeStart) + "s",
+                // "Slowing Down From Slide: " + (CalculateElaspedTime(slideTimeStart) >= slideSpeedBoostDuration),
+                // "Movement: " + movement,
+                // "Velocity: " + rb.velocity,
+                "Direction: " + facingDirection,
+                "Grounded: " + IsGrounded(),
+                "Feet Position: " + GetFeetPosition()
             };
             return messages;
         }
 
         private void OutputLogsToConsole()
         {
-        //    var messages = GetLogs();
-        //    foreach (string i in messages)
-        //    {
-        //        Debug.Log(i);
-        //    }
+            var messages = GetLogs();
+            foreach (string i in messages)
+            {
+                Debug.Log(i);
+            }
+        }
+
+        public GlobalEnums.Direction GetDirection()
+        {
+            return facingDirection;
+        }
+
+        public GlobalEnums.LevelType GetLevelType()
+        {
+            return levelType;
+        }
+
+        public bool PlayerSprinting()
+        {
+            return isSprinting;
+        }
+
+        public bool PlayerCrouching()
+        {
+            return isCrouching;
+        }
+
+        public bool PlayerJumping()
+        {
+            return isJumping;
+        }
+
+        public bool PlayerSliding()
+        {
+            return isSliding;
+        }
+
+        public Vector3 GetFeetPosition()
+        {
+            return playerFeet.position;
+        }
+
+        public void SetFeetPosition(Vector3 t)
+        {
+            playerFeet.position = t;
         }
     }
 }
