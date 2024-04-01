@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace Abigail
     {
         // Ground Check
         public Transform playerFeet;
-        public float checkRadius = 0.13f;
+        public float checkRadius = 0.1f;
         public LayerMask groundLayer;
         public GlobalEnums.Direction facingDirection = GlobalEnums.Direction.Right;
         public bool enableSliding = false;
@@ -31,7 +30,7 @@ namespace Abigail
         public float jumpHoldApplyAfter = 0.06f;
         public float jumpHoldPower = 11f; // Speed of jump (hold)
         public float jumpHoldTime = 0.2f; // Jump duration
-        public float fallMultiplier = 2.5f; // Modifies the falling speed during jump
+        // public float fallMultiplier = 2.5f; // Modifies the falling speed during jump
         public float crouchSlowdownMultiplier = 0.5f; // How much slower the player moves when crouching
         public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
         public float slideSpeedBoostDuration = 0.05f; // How long the slide boost lasts for
@@ -71,50 +70,48 @@ namespace Abigail
         {
             // Get the player's attributes
             rb = GetComponent<Rigidbody2D>();
+            playerHealth = GetComponent<Health>();
             // Set variables
             stamina = staminaTotal;
         }
 
         void FixedUpdate()
         {
-            if (isSliding && !isInQuicksand)
-            {
-                if (enableSliding)
-                {
-                    HandleSlide();
-                }
-
-                HandleJumping();
-            }
-            else if (isInQuicksand && !isJumping)
+            HandleMovement();
+            if (isInQuicksand && !isJumping)
             {
                 // Handle quicksand logic
                 SinkInQuicksand();
             }
-            else
-            {
-                // Handle horizontal movement
-                if (isKnockedBack) return;
-                // Allow horizontal movement always, even in quicksand
-                float speed = isSprinting ? sprintSpeed : movementSpeed;
-                if (isCrouching && IsGrounded())
-                {
-                    speed *= crouchSlowdownMultiplier;
-                }
+            // else
+            // {
+            //     // Handle horizontal movement
+            //     if (isKnockedBack) return;
+            //     // Allow horizontal movement always, even in quicksand
+            //     float speed = isSprinting ? sprintSpeed : movementSpeed;
+            //     if (isCrouching && IsGrounded())
+            //     {
+            //         speed *= crouchSlowdownMultiplier;
+            //     }
 
-                // Specific handling for level types
-                if (levelType == GlobalEnums.LevelType.SideScroll)
-                {
-                    HandleJumping();
-                    // Move Player (Side Scroll)
-                    rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
-                }
-                else if (levelType == GlobalEnums.LevelType.TopDown)
-                {
-                    // Move Player (Top Down)
-                    rb.velocity = new Vector2(movement.x * speed * topDownSpeedMultiplier, movement.y * speed * topDownSpeedMultiplier);
-                }
-            }
+            //     // Specific handling for level types
+            //     if (levelType == GlobalEnums.LevelType.SideScroll)
+            //     {
+            //         HandleJumping();
+            //         // Move Player (Side Scroll)
+            //         rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+            //     }
+            //     else if (levelType == GlobalEnums.LevelType.TopDown)
+            //     {
+            //         // Move Player (Top Down)
+            //         rb.velocity = new Vector2(movement.x * speed * topDownSpeedMultiplier, movement.y * speed * topDownSpeedMultiplier);
+            //     }
+            // }
+        }
+
+        void Update()
+        {
+            HandlePlatformingInput();
         }
 
         public void HandleQuicksand(bool isInQuicksand)
@@ -150,8 +147,11 @@ namespace Abigail
             while (true)
             {
                 yield return new WaitForSeconds(2f);
+                Debug.Log("Quicksand Damage");
+                Debug.Log("Player Health: " + playerHealth);
                 if (playerHealth != null)
                 {
+                    Debug.Log("Applying Quicksand Damage");
                     playerHealth.TakeDamage(1);
                 }
             }
@@ -159,11 +159,54 @@ namespace Abigail
 
         private void SinkInQuicksand()
         {
-            // Manually apply a sinking effect by moving the player down at a constant rate
             rb.velocity = new Vector2(rb.velocity.x, quicksandSinkRate);
         }
 
+        private void HandleMovement()
+        {
+            if (!isKnockedBack)
+            {
+                float speed = isSprinting ? sprintSpeed : movementSpeed;
+                if (isCrouching)
+                {
+                    speed *= crouchSlowdownMultiplier;
+                }
+
+                rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+            }
+            HandleJumping();
+        }
+
         private void HandleJumping()
+        {
+            // if (isInQuicksand)
+            // {
+            //     rb.velocity = new Vector2(rb.velocity.x, quicksandJumpPower);
+            //     rb.gravityScale = 0;
+            //     StartCoroutine(ResetJumpAfterDelay(quicksandJumpHoldTime));
+            // }
+            // else
+            // {
+            if (doJump)
+            {
+                Jump();
+            }
+
+            if (isJumping)
+            {
+                ContinueJump();
+            }
+
+                // if (rb.velocity.y < 0) // Player is falling
+                // {
+                //     // Make Falling Faster
+                //     facingDirection = GlobalEnums.Direction.Falling;
+                //     rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
+                // }
+            // }
+        }
+
+        private void Jump()
         {
             if (isInQuicksand)
             {
@@ -172,147 +215,141 @@ namespace Abigail
                 StartCoroutine(ResetJumpAfterDelay(quicksandJumpHoldTime));
             }
             else
-            {
-                if (doJump)
                 {
-                    Jump();
+                float multiplier = 1.0f;
+                // If stamina is less than the full amount of stamina  
+                if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
+                {
+                    multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
                 }
 
-                if (isJumping)
-                {
-                    ContinueJump();
-                }
-
-                if (rb.velocity.y < 0) // Player is falling
-                {
-                    // Make Falling Faster
-                    facingDirection = GlobalEnums.Direction.Falling;
-                    rb.velocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
-                }
+                // Subtract from the stamina
+                stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
+                // Clamp the value to ensure it doesn't go below zero
+                stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
+                // Do the jump
+                rb.velocity = isSprinting
+                    ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
+                    : new Vector2(rb.velocity.x, jumpInitialPower);
             }
-        }
-
-        private void Jump()
-        {
-            float multiplier = 1.0f;
-            // If stamina is less than the full amount of stamina  
-            if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
-            {
-                multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
-            }
-
-            // Subtract from the stamina
-            stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
-            // Clamp the value to ensure it doesn't go below zero
-            stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
-            // Do the jump
-            rb.velocity = isSprinting
-                ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
-                : new Vector2(rb.velocity.x, jumpInitialPower);
-            // Set this variable back to false so we don't jump a second time
             doJump = false;
         }
 
         private void ContinueJump()
         {
             float elapsedTime = CalculateElaspedTime(jumpTimeStart);
-            // Let's you jump higher if you hold down the key
-            if (elapsedTime <= jumpHoldTime)
+            if (!isInQuicksand && isJumping)
             {
-                // Calculate the normalized jump hold duration
-                float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
-                // Calculate the jump force based on the normalized hold time
-                float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
-                // Apply the jump force
-                rb.velocity = isSprinting
-                    ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
-                    : new Vector2(rb.velocity.x, jumpForce);
+                if (elapsedTime <= jumpHoldTime)
+                {
+                    // Calculate the normalized jump hold duration
+                    float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
+                    // Calculate the jump force based on the normalized hold time
+                    float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
+                    // Apply the jump force
+                    rb.velocity = isSprinting
+                        ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
+                        : new Vector2(rb.velocity.x, jumpForce);
+                }
+                else
+                {
+                    isJumping = false;
+                }
             }
         }
 
-        private void HandleSlide()
-        {
-            var velocity = rb.velocity;
-            if (CalculateElaspedTime(slideTimeStart) <= slideSpeedBoostDuration)
-            {
-                if (levelType == GlobalEnums.LevelType.SideScroll)
-                {
-                    velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, velocity.y);
-                }
-                else if (levelType == GlobalEnums.LevelType.TopDown)
-                {
-                    velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, movement.y * slideSpeedBoostMultiplier);
-                }
-            }
-            else
-            {
-                switch (facingDirection)
-                {
-                    case GlobalEnums.Direction.Left:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
-                            velocity.y);
-                        break;
-                    case GlobalEnums.Direction.Right:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
-                            velocity.y);
-                        break;
-                    case GlobalEnums.Direction.Up:
-                        velocity = new Vector2(
-                            velocity.x,
-                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
-                        break;
-                    case GlobalEnums.Direction.Down:
-                        velocity = new Vector2(
-                            velocity.x,
-                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
-                        break;
-                    case GlobalEnums.Direction.TopLeft:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
-                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
-                        break;
-                    case GlobalEnums.Direction.TopRight:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
-                            Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
-                        break;
-                    case GlobalEnums.Direction.BottomLeft:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
-                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
-                        break;
-                    case GlobalEnums.Direction.BottomRight:
-                        velocity = new Vector2(
-                            Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
-                            Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
-                        break;
-                    case GlobalEnums.Direction.Idle:
-                        // Stop slide if not moving anymore
-                        isSliding = false;
-                        break;
-                }
-            }
+        // private void HandleSlide()
+        // {
+        //     var velocity = rb.velocity;
+        //     if (CalculateElaspedTime(slideTimeStart) <= slideSpeedBoostDuration)
+        //     {
+        //         if (levelType == GlobalEnums.LevelType.SideScroll)
+        //         {
+        //             velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, velocity.y);
+        //         }
+        //         else if (levelType == GlobalEnums.LevelType.TopDown)
+        //         {
+        //             velocity = new Vector2(velocity.x * slideSpeedBoostMultiplier, movement.y * slideSpeedBoostMultiplier);
+        //         }
+        //     }
+        //     else
+        //     {
+        //         switch (facingDirection)
+        //         {
+        //             case GlobalEnums.Direction.Left:
+        //                 velocity = new Vector2(
+        //                     Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
+        //                     velocity.y);
+        //                 break;
+        //             case GlobalEnums.Direction.Right:
+        //                 velocity = new Vector2(
+        //                     Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
+        //                     velocity.y);
+        //                 break;
+        //             case GlobalEnums.Direction.Up:
+        //                 velocity = new Vector2(
+        //                     velocity.x,
+        //                     Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
+        //                 break;
+        //             case GlobalEnums.Direction.Down:
+        //                 velocity = new Vector2(
+        //                     velocity.x,
+        //                     Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
+        //                 break;
+        //             case GlobalEnums.Direction.TopLeft:
+        //                 velocity = new Vector2(
+        //                     Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
+        //                     Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
+        //                 break;
+        //             case GlobalEnums.Direction.TopRight:
+        //                 velocity = new Vector2(
+        //                     Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
+        //                     Math.Clamp(velocity.y - slideSlowdownRate, 0F, Mathf.Infinity));
+        //                 break;
+        //             case GlobalEnums.Direction.BottomLeft:
+        //                 velocity = new Vector2(
+        //                     Math.Clamp(velocity.x + slideSlowdownRate, Mathf.NegativeInfinity, 0F),
+        //                     Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
+        //                 break;
+        //             case GlobalEnums.Direction.BottomRight:
+        //                 velocity = new Vector2(
+        //                     Math.Clamp(velocity.x - slideSlowdownRate, 0F, Mathf.Infinity),
+        //                     Math.Clamp(velocity.y - slideSlowdownRate, Mathf.NegativeInfinity, 0));
+        //                 break;
+        //             case GlobalEnums.Direction.Idle:
+        //                 // Stop slide if not moving anymore
+        //                 isSliding = false;
+        //                 break;
+        //         }
+        //     }
 
-            rb.velocity = velocity;
-        }
+        //     rb.velocity = velocity;
+        // }
 
-        void Update()
+        private IEnumerator ResetJumpAfterDelay(float delay)
         {
-            HandlePlatformingInput();
-            // OutputLogsToConsole();
+            yield return new WaitForSeconds(delay);
+            isJumping = false;
+
+            // Reset gravity if no longer in quicksand
+            if (!isInQuicksand)
+            {
+                rb.gravityScale = 3.5f;
+            }
         }
 
         public bool IsGrounded()
         {
-            return Physics2D.OverlapCircle(playerFeet.position, checkRadius, groundLayer);
+            BoxCollider2D feetCollider = playerFeet.GetComponent<BoxCollider2D>();
+            Vector2 boxSize = new Vector2(0.8f, 0.1f);
+            Vector2 adjustedOffset = new Vector2(-0.05f, feetCollider.offset.y + 1.03f);
+
+            Vector2 boxCenter = (Vector2)playerFeet.position + adjustedOffset + Vector2.down * boxSize.y / 2;
+
+            Collider2D hit = Physics2D.OverlapBox(boxCenter, boxSize, 0f, groundLayer);
+            return hit != null;        
         }
 
-        public bool IsGrounded(float radius)
-        {
-            return Physics2D.OverlapCircle(playerFeet.position, radius, groundLayer);
-        }
 
         void HandlePlatformingInput()
         {
@@ -371,21 +408,21 @@ namespace Abigail
             }
 
             // Crouch Movement S 
-            if (levelType == GlobalEnums.LevelType.SideScroll && Input.GetKeyDown(KeyCode.S) && enableCrouching)
-            {
-                isCrouching = true;
-            }
+            // if (levelType == GlobalEnums.LevelType.SideScroll && Input.GetKeyDown(KeyCode.S) && enableCrouching)
+            // {
+            //     isCrouching = true;
+            // }
 
             // Slide
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !isSliding && grounded && !isCrouching && stamina >= staminaSlideCost && enableSliding)
-            {
-                stamina = Mathf.Clamp(stamina - staminaSlideCost, 0f, Mathf.Infinity);
-                isSliding = true;
-                slideTimeStart = Time.realtimeSinceStartup;
-            }
+            // if (Input.GetKeyDown(KeyCode.LeftControl) && !isSliding && grounded && !isCrouching && stamina >= staminaSlideCost && enableSliding)
+            // {
+            //     stamina = Mathf.Clamp(stamina - staminaSlideCost, 0f, Mathf.Infinity);
+            //     isSliding = true;
+            //     slideTimeStart = Time.realtimeSinceStartup;
+            // }
 
             // Jump Movement
-            if (Input.GetKey(KeyCode.Space) && levelType == GlobalEnums.LevelType.SideScroll)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (grounded || isInQuicksand)
                 {
@@ -416,12 +453,6 @@ namespace Abigail
             if ((levelType == GlobalEnums.LevelType.SideScroll && Input.GetKeyUp(KeyCode.S) && enableCrouching))
             {
                 isCrouching = false;
-            }
-
-            // Release Jump
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                isJumping = false;
             }
 
             // Release Sprint
@@ -463,26 +494,14 @@ namespace Abigail
             return Time.realtimeSinceStartup - current;
         }
 
-        private IEnumerator ResetJumpAfterDelay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            isJumping = false;
-
-            // Reset gravity if no longer in quicksand
-            if (!isInQuicksand)
-            {
-                rb.gravityScale = 3.5f;
-            }
-        }
-
         private List<string> GetLogs()
         {
             var messages = new List<string>
             {
                 // "Current View: " + levelType,
                 // "Stamina Left: " + stamina,
-                "Is Crouching: " + isCrouching,
-                "Is Jumping: " + isJumping,
+                // "Is Crouching: " + isCrouching,
+                // "Is Jumping: " + isJumping,
                 // "Is Sliding: " + isSliding,
                 // "Is Sprinting: " + isSprinting,
                 // "Time Since Last Sprint: " + CalculateElaspedTime(sprintTimeEnd) + "s",
@@ -490,9 +509,8 @@ namespace Abigail
                 // "Slowing Down From Slide: " + (CalculateElaspedTime(slideTimeStart) >= slideSpeedBoostDuration),
                 // "Movement: " + movement,
                 // "Velocity: " + rb.velocity,
-                "Direction: " + facingDirection,
-                "Grounded: " + IsGrounded(),
-                "Feet Position: " + GetFeetPosition()
+                // "Direction: " + facingDirection,
+                // "Grounded: " + IsGrounded(),
             };
             return messages;
         }
@@ -534,16 +552,6 @@ namespace Abigail
         public bool PlayerSliding()
         {
             return isSliding;
-        }
-
-        public Vector3 GetFeetPosition()
-        {
-            return playerFeet.position;
-        }
-
-        public void SetFeetPosition(Vector3 t)
-        {
-            playerFeet.position = t;
         }
     }
 }

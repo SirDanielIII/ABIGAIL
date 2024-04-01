@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2351112212375681748}
   - component: {fileID: 2452172553885507197}
   - component: {fileID: 3776479605852354290}
-  - component: {fileID: 3125348944483521322}
+  - component: {fileID: 4838211193488632242}
   m_Layer: 7
   m_Name: Player (Top)
   m_TagString: Abigail
@@ -176,7 +176,7 @@ MonoBehaviour:
   maxHealth: 3
   healthBar: {fileID: 0}
   fallThreshold: -10
---- !u!114 &3125348944483521322
+--- !u!114 &4838211193488632242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,42 +185,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1595409634326186117}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3dc453b5d81fa48b876ee86a1145f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 335dbf845b8754d1ca4c930b4f331466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFeet: {fileID: 0}
-  checkRadius: 0.13
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  facingDirection: 1
-  enableSliding: 0
-  enableCrouching: 1
-  movementSpeed: 8
-  topDownSpeedMultiplier: 1.8
-  sprintSpeed: 16
-  staminaTotal: 100
-  staminaSprintRate: 25
-  staminaJumpCost: 25
-  staminaSprintJumpRate: 30
-  staminaSlideCost: 8
-  staminaRecoveryDelay: 1.5
-  staminaRecoveryRate: 15
-  sprintJumpBoost: 1.15
-  jumpInitialPower: 8
-  jumpHoldApplyAfter: 0.06
-  jumpHoldPower: 11
-  jumpHoldTime: 0.2
-  fallMultiplier: 2.5
-  crouchSlowdownMultiplier: 0.5
-  slideSpeedBoostMultiplier: 1.05
-  slideSpeedBoostDuration: 0.05
-  slideSlowdownRate: 0.15
-  isKnockedBack: 0
-  isInQuicksand: 0
-  quicksandSpeedFactor: 0.01
-  levelType: 1
-  knockbackCooldown: 0
+  speed: 22
+  rb: {fileID: 2452172553885507197}
 --- !u!1 &7701219058172060646
 GameObject:
   m_ObjectHideFlags: 0

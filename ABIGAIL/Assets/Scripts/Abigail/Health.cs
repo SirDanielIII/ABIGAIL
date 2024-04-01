@@ -30,13 +30,10 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
-        // Only set health if healthBar is not null
         if (healthBar != null)
         {
             healthBar.SetHealth(currentHealth);
         }
-
-        // Example: If health drops to or below 0, destroy the object
         if (currentHealth <= 0)
         {
             Respawn();

@@ -59,33 +59,33 @@ namespace Abigail
                 }
                 else if (script.PlayerCrouching() && grounded)
                 {
-                    playerCollider.offset = crouchColliderOffset;
-                    playerCollider.size = crouchColliderSize;
+                    // playerCollider.offset = crouchColliderOffset;
+                    // playerCollider.size = crouchColliderSize;
                     animator.Play("Crouch_Abigail");
                 }
                 else if (direction == GlobalEnums.Direction.Falling && !grounded)
                 {
                     // Change offsets when we get new sprite
-                    playerCollider.offset = jumpColliderOffset;
-                    playerCollider.size = jumpColliderSize;
+                    // playerCollider.offset = jumpColliderOffset;
+                    // playerCollider.size = jumpColliderSize;
                     animator.Play("Jump_Abigail");
                 }
                 else if (script.PlayerJumping())
                 {
-                    playerCollider.offset = jumpColliderOffset;
-                    playerCollider.size = jumpColliderSize;
+                    // playerCollider.offset = jumpColliderOffset;
+                    // playerCollider.size = jumpColliderSize;
                     animator.Play("Jump_Abigail");
                 }
                 else if (direction == GlobalEnums.Direction.Idle && grounded)
                 {
-                    playerCollider.offset = idleColliderOffset;
-                    playerCollider.size = idleColliderSize;
+                    // playerCollider.offset = idleColliderOffset;
+                    // playerCollider.size = idleColliderSize;
                     animator.Play("Idle_Abigail");
                 }
                 else if (grounded)
                 {
-                    playerCollider.offset = runColliderOffset;
-                    playerCollider.size = runColliderSize;
+                    // playerCollider.offset = runColliderOffset;
+                    // playerCollider.size = runColliderSize;
                     animator.Play("Run_Abigail");
                 }
 
