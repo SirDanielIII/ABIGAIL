@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2808858387227923762}
   - component: {fileID: 6028330235013091198}
   - component: {fileID: 4051027429076291723}
+  - component: {fileID: 2418490936580597521}
+  - component: {fileID: 5067528104327122102}
   m_Layer: 7
   m_Name: Player
   m_TagString: Abigail
@@ -31,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8103556486244268989}
@@ -75,15 +77,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -381655621
+  m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd63a40896ab13340852d9252188b2fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 14.999999, y: 21.603374}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -121,18 +123,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.5, y: -3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 14.999999, y: 21.603374}
+    newSize: {x: 14.999999, y: 21.603374}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 9, y: 12}
   m_EdgeRadius: 0
 --- !u!50 &2808858387227923762
 Rigidbody2D:
@@ -189,37 +191,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerFeet: {fileID: 8103556486244268989}
-  checkRadius: 0.1
+  checkRadius: 0.13
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   facingDirection: 1
-  movementSpeed: 8
-  movementSpeedAcceleration: 5
-  sprintSpeed: 12
+  enableSliding: 0
+  enableCrouching: 1
+  movementSpeed: 10
+  topDownSpeedMultiplier: 1.8
+  sprintSpeed: 16
   staminaTotal: 100
   staminaSprintRate: 25
   staminaJumpCost: 25
   staminaSprintJumpRate: 30
+  staminaSlideCost: 8
   staminaRecoveryDelay: 1.5
   staminaRecoveryRate: 15
   sprintJumpBoost: 1.15
-  jumpInitialPower: 10
+  jumpInitialPower: 8
   jumpHoldApplyAfter: 0.06
   jumpHoldPower: 11
   jumpHoldTime: 0.2
+  fallMultiplier: 2.5
   crouchSlowdownMultiplier: 0.5
-  colliderSizeStanding: {x: 1, y: 1}
-  colliderSizeCrouching: {x: 1, y: 0.7}
-  colliderSizeSliding: {x: 1, y: 0.3}
+  slideSpeedBoostMultiplier: 1.05
+  slideSpeedBoostDuration: 0.05
+  slideSlowdownRate: 0.15
   isKnockedBack: 0
   isInQuicksand: 0
   quicksandSpeedFactor: 0.01
-  speedMultiplier: 1
   levelType: 0
-  sideScrollSceneIndex: -1
-  topDownSceneIndex: 2
-  knockbackCooldown: 0
+  knockbackCooldown: 1
+--- !u!95 &2418490936580597521
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306329111843377023}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e870682587c4b6047a79090850e52e17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5067528104327122102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306329111843377023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0720201f29d5870498c73a4b94dc465a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleColliderOffset: {x: 0, y: -0.5}
+  idleColliderSize: {x: 6, y: 20}
+  runColliderOffset: {x: -0.5, y: -1.4}
+  runColliderSize: {x: 9, y: 18.5}
+  jumpColliderOffset: {x: 0, y: 1.4}
+  jumpColliderSize: {x: 11, y: 16}
+  crouchColliderOffset: {x: 0, y: -3}
+  crouchColliderSize: {x: 9, y: 12}
+  slideColliderOffset: {x: 0, y: 0}
+  slideColliderSize: {x: 0, y: 0}
 --- !u!1 &5853480923515535493
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,9 +291,9 @@ Transform:
   m_GameObject: {fileID: 5853480923515535493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.51, z: 0}
+  m_LocalPosition: {x: 0, y: -9.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2683761953058297233}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

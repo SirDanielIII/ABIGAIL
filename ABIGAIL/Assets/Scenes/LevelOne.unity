@@ -27656,6 +27656,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4051027429076291723, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
+      propertyPath: playerFeet
+      value: 
+      objectReference: {fileID: 1756027489}
+    - target: {fileID: 4051027429076291723, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
+      propertyPath: movementSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051027429076291723, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
+      propertyPath: knockbackCooldown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6028330235013091198, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
       propertyPath: healthBar
       value: 
@@ -28318,6 +28330,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6700479925310960577, guid: 059d36e00158e4b6485396b88276c9c4, type: 3}
   m_PrefabInstance: {fileID: 1823799335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1756027489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8103556486244268989, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
+  m_PrefabInstance: {fileID: 1704411404}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1758685861
 PrefabInstance:

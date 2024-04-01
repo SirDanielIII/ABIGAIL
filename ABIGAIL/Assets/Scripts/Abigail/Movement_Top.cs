@@ -13,16 +13,11 @@ public class Movement_Top : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
-
-
     }
 
     void FixedUpdate()
     {
         Vector2 normalizedMovement = movement.normalized;
-        rb.MovePosition(rb.position + normalizedMovement * speed * Time.fixedDeltaTime);
-        
+        rb.MovePosition(rb.position + normalizedMovement * (speed * Time.fixedDeltaTime));
     }
-
 }
