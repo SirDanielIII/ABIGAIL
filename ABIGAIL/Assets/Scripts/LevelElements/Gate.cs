@@ -21,7 +21,7 @@ public class GateController : MonoBehaviour
 
         if (!gateOpened && distanceX <= openDistance)
         {
-            if (GameManager.Instance.hasKey)
+            if (LevelManager.Instance.hasKey)
             {
                 OpenGate();
                 noKeyUIElement.SetActive(false); 
