@@ -3,7 +3,7 @@ using Abigail;
 
 public class TumbleweedMovement : MonoBehaviour
 {
-    public float horizontalSpeed = 7f;
+    public float horizontalSpeed = 6f;
     public LayerMask Player;
     public float checkRadius = 0.75f;
     public float bounceForce = 10000f;
@@ -23,7 +23,7 @@ public class TumbleweedMovement : MonoBehaviour
             Movement playerMovement = playerCollider.GetComponent<Movement>();
             if (playerMovement != null && !playerMovement.isKnockedBack)
             {
-                Vector2 knockbackVelocity = new Vector2(-4.00f * bounceForce, 1.20f);
+                Vector2 knockbackVelocity = new Vector2(-3.50f * bounceForce, 1.30f);
 
                 playerMovement.ApplyKnockback(knockbackVelocity, 0.2f);
             }
