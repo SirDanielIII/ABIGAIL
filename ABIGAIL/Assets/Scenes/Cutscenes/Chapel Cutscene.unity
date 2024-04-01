@@ -136,6 +136,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].name
+      value: Abigail's Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].name
       value: Ominous Voice
       objectReference: {fileID: 0}
@@ -149,8 +153,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 97fdeb4db899da34aa4e877b1ca80fa2, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fecfc0ce66e0b548b356408521ac1e9, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dddf228eaf6e9ab4d812f55d5206a907, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fecfc0ce66e0b548b356408521ac1e9, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 97fdeb4db899da34aa4e877b1ca80fa2, type: 3}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.size
       value: 3

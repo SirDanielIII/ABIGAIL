@@ -21,7 +21,12 @@ public class CombineColour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach(GameObject bottle in bottles)
+        // Reset color values
+        red = 0f;
+        green = 0f;
+        blue = 0f;
+
+        foreach (GameObject bottle in bottles)
         {
             if (bottle.activeSelf)
             {
@@ -37,9 +42,9 @@ public class CombineColour : MonoBehaviour
         }
         if (destroyed < 3)
         {
-            red = red / 3;
-            green = green / 3;
-            blue = blue / 3;
+            red = red / (3 - destroyed);
+            green = green / (3 - destroyed);
+            blue = blue / (3 - destroyed);
             spriteRenderer.material.color = new Color(red, green, blue);
         }
         else
