@@ -318,7 +318,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[0]
       value: It's a normal, albeit more sombre, day for the town. After all, it's
-        only been a few dats since the death of the Sheriff and the General Store
+        only been a few days since the death of the Sheriff and the General Store
         Owner.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
@@ -344,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[5]
       value: Suddenly, the sky begins to darken, and ominous laughter penetrates
-        throghout the town.
+        throughout the town.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.data[0]
@@ -480,7 +480,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[0]
       value: He flashes a wide grin, and the Outlaw is dead. The Gunslinger's revolver
-        in and out of his holster faster tna anyone can see.
+        in and out of his holster faster than anyone can see.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[1]
@@ -489,7 +489,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[2]
       value: The Bartender and his Wife rush into the Saloon, shutting the doors
-        behind them. The Stablemaster and the Child barricadr themselves in the Stables.
+        behind them. The Stablemaster and the Child barricade themselves in the Stables.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[3]
