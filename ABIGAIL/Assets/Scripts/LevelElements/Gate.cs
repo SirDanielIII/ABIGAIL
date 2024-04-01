@@ -56,4 +56,14 @@ public class GateController : MonoBehaviour
         animator.SetTrigger("GateClose");
         gateOpened = false;
     }
+
+    public bool IsGateOpened()
+    {
+        return gateOpened;
+    }
+
+    public Vector2 GetGatePosition()
+    {
+        return transform.position;
+    }
 }

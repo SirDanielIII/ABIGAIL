@@ -8,7 +8,6 @@ namespace Abigail
         {
             if (abigail.CompareTag("Abigail"))
             {
-                Debug.Log("Abigail is in quicksand.");
                 var movement = abigail.GetComponent<Movement>();
                 if (movement != null)
                 {
@@ -21,7 +20,6 @@ namespace Abigail
         {
             if (abigail.CompareTag("Abigail"))
             {
-                Debug.Log("Abigail is out of quicksand.");
                 var movement = abigail.GetComponent<Movement>();
                 if (movement != null)
                 {

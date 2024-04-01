@@ -25,19 +25,16 @@ public class SpiderChase : MonoBehaviour
         
         Vector2 rayStart = (Vector2)transform.position + direction * 0.1f;
         RaycastHit2D hit = Physics2D.Raycast(rayStart, direction, chaseDistance, obstacleLayer);
-        Debug.DrawRay(rayStart, direction * chaseDistance, Color.red);
 
         if (hit.collider != null)
         {
             if (hit.collider.gameObject == player && distance < startChaseDistance)
             {
                 isChasing = true;
-                Debug.Log("Player spotted - chase on!");
             }
             else
             {
                 isChasing = false;
-                Debug.Log("Lost sight of the player - chase off.");
             }
         }
 
@@ -60,7 +57,6 @@ public class SpiderChase : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(1);
-                Debug.Log("Player hit by spider.");
             }
         }
     }

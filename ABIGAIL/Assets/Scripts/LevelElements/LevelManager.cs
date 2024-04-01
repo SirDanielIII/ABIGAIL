@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
 
     public bool hasKey = false;
+    public GateController gateController;
+    public Transform playerTransform;
+
+    public GameManager gameManager;
 
     void Awake()
     {
@@ -25,10 +29,19 @@ public class LevelManager : MonoBehaviour
         hasKey = false;
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        if (gateController != null && gateController.IsGateOpened())
+        {
+            if (playerTransform.position.x > gateController.GetGatePosition().x + 7f)
+            {
+                gameManager.LoadNextScene();
+            }
+        }
+    }
+
     public void CollectKey()
     {
-        Debug.Log("Key collected!");
         hasKey = true;
         if (UIManager.Instance != null)
         {

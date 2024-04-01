@@ -6,7 +6,6 @@ public class CheckpointTrigger : MonoBehaviour
     {
         if (other.CompareTag("Abigail"))
         {
-            Debug.Log("Checkpoint reached.");
             CheckpointManager.Instance.SetRespawnPoint(transform.position);
         }
     }

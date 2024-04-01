@@ -8,7 +8,6 @@ public class RespawnPad : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Player is on pad: " + playerIsOnPad);
         if (playerIsOnPad && Input.GetKeyDown(KeyCode.R))
         {
             RespawnPlayer();
