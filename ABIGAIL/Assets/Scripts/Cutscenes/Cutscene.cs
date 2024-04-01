@@ -84,5 +84,6 @@ public class CharacterDialogue
 {
     public string name;
     public Sprite characterSprite;
+    [TextArea(3,10)]
     public string[] sentences;
 }

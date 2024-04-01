@@ -1,0 +1,662 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1001 &228006478
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.size
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].name
+      value: The Deputy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].name
+      value: The Deputy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].name
+      value: The Outlaw
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].name
+      value: The Barber
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[18].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[19].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[20].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[21].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[18].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[19].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[20].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[21].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[0]
+      value: It's a normal, albeit more sombre, day for the town. After all, it's
+        only been a few dats since the death of the Sheriff and the General Store
+        Owner.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[1]
+      value: Everyone's extra on edge from the Outlaw's report yesterday, but life
+        goes on.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[2]
+      value: The Bartender's Wife sits on a chair outside the Saloon. The Child and
+        the Stablemaster tend to horses at the Stables.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[3]
+      value: The Deputy is making his rounds, now all alone. The Barber and his Wife
+        are shooting targets they've set up by their store.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[4]
+      value: The Outlaw stands anxiously near the Sheriff's Office while the Priest
+        paces in front of the Saloon.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[5]
+      value: Suddenly, the sky begins to darken, and ominous laughter penetrates
+        throghout the town.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[0]
+      value: Finally!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[1]
+      value: After all this time, my prize is finally within grasp!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[2]
+      value: The Bartender's Wife sits on a chair outside the Saloon. The Child and
+        the Stablemaster tend to horses at the Stables.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[3]
+      value: The Deputy is making his rounds, now all alone. The Barber and his Wife
+        are shooting targets they've set up by their store.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[4]
+      value: The Outlaw stands anxiously near the Sheriff's Office while the Priest
+        paces in front of the Saloon.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[5]
+      value: Suddenly, the sky begins to darken, and ominous laughter penetrates
+        throghout the town.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].sentences.Array.data[0]
+      value: A dark figure crosses over the horizon, and the Gunslinger appears.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].sentences.Array.data[1]
+      value: Riding atop his horse of shadow, he trots into town.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].sentences.Array.data[2]
+      value: The Deputy nervously stands to intercept him.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].sentences.Array.data[0]
+      value: Hold it right there! This town is under my protection!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].sentences.Array.data[1]
+      value: Turn back now! You've been warned.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].sentences.Array.data[0]
+      value: The Gunslinger chuckles and dismounts his horse.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].sentences.Array.data[1]
+      value: Turn back now! You've been warned.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[0]
+      value: Nothing like a good old-fashioned duel to start things off.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[0]
+      value: Last warning!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[0]
+      value: Hahaha, right.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[1]
+      value: ...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[2]
+      value: DRAW!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[0]
+      value: The Gunslinger's draw is fast as lightning. The Deputy falls backwards,
+        a smoking wound in the center of his chest.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[1]
+      value: That's when the Outlaw decides to strike.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[2]
+      value: A gunshot rings out.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[3]
+      value: The bullet bounces harmlessly off of the Gunslinger's hat, though it
+        does manage to catch his attention.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[0]
+      value: Not a bad shot. What do we have here?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[1]
+      value: That's when the Outlaw decides to strike.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[2]
+      value: A gunshot rings out.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[3]
+      value: The bullet bounces harmlessly off of the Gunslinger's hat, though it
+        does manage to catch his attention.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.data[0]
+      value: Just a man trying to do the right thing.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.data[1]
+      value: You don't belong round here, and he didn't deserve anything like that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.data[0]
+      value: The Outlaw looks sorrowfully at the fallen Deputy.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.data[1]
+      value: You don't belong round here, and he didn't deserve anything like that.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.data[0]
+      value: How heroic.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.data[0]
+      value: He flashes a wide grin, and the Outlaw is dead. The Gunslinger's revolver
+        in and out of his holster faster tna anyone can see.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.data[1]
+      value: Everyone panics.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.data[2]
+      value: The Bartender and his Wife rush into the Saloon, shutting the doors
+        behind them. The Stablemaster and the Child barricadr themselves in the Stables.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.data[3]
+      value: The Barber sends his wife inside and goes out to meet the Gunslinger
+        who is preoccupied with the one man with seemingly nowhere to run, the Priest.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.data[0]
+      value: You know something!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.data[1]
+      value: The Bartender and his Wife rush into the Saloon, shutting the doors
+        behind them. The Stablemaster and the Child barricadr themselves in the Stables.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.data[2]
+      value: The Barber sends his wife inside and goes out to meet the Gunslinger
+        who is preoccupied with the one man with seemingly nowhere to run, the Priest.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.data[3]
+      value: The Barber sends his wife inside and goes out to meet the Gunslinger
+        who is preoccupied with the one man with seemingly nowhere to run, the Priest.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].sentences.Array.data[0]
+      value: The Priest, too stunned to speak, starts to run away towards the Church.
+        The Gunslinger follows after him when the Barber decides to strike.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].sentences.Array.data[1]
+      value: The Priest, too stunned to speak, starts to run away towards the Church.
+        The Gunslinger follows after him when the Barber decides to strike.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].sentences.Array.data[2]
+      value: Three rapid gunshots pierce the air.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].sentences.Array.data[3]
+      value: The shots aim true, directly into the Gunslinger's back. He's barely
+        phased but suprised, and turns towards his shooter.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].sentences.Array.data[0]
+      value: Not bad. I felt that one a little bit.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].sentences.Array.data[1]
+      value: Three rapid gunshots pierce the air.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].sentences.Array.data[2]
+      value: The shots aim true, directly into the Gunslinger's back. He's barely
+        phased but suprised, and turns towards his shooter.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].sentences.Array.data[3]
+      value: The shots aim true, directly into the Gunslinger's back. He's barely
+        phased but suprised, and turns towards his shooter.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].sentences.Array.data[0]
+      value: There's a lot more yer gonna feel!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[18].sentences.Array.data[0]
+      value: Three more shots, bouncing harmlessly off his chest.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[19].sentences.Array.data[0]
+      value: Almost got me there.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[20].sentences.Array.data[0]
+      value: He narrows his eyes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[20].sentences.Array.data[1]
+      value: '*BANG*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[20].sentences.Array.data[2]
+      value: The Barber slumps over, smoking.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[21].sentences.Array.data[0]
+      value: Now, to find that bumbling idiot.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[21].sentences.Array.data[1]
+      value: '*BANG*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[21].sentences.Array.data[2]
+      value: The Barber slumps over, smoking.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].sentences.Array.data[0]
+      value: The Gunslinger paces after the priest around the corner and out of sight.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].sentences.Array.data[1]
+      value: With the Gunslinger temporarily occupied, the townsfolk cautiously reappear
+        to survey the damage.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].sentences.Array.data[2]
+      value: The Barber's Wife runs to her fallen husband, distraught at his lifeless
+        body on the ground.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].sentences.Array.data[3]
+      value: She screams and wails as the scene fades.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4034066483164802495, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_Name
+      value: Cutscene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884027927456689455, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 228006478}

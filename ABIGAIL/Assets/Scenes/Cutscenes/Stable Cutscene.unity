@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1317056493045776843
+--- !u!1001 &1738286511
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -133,27 +133,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.size
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].name
-      value: Ominous Voice
+      value: The Gunslinger
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].name
-      value: The Priest
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].name
-      value: Ominous Voice
+      value: The Gunslinger
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].name
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].name
+      value: The Gunslinger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.size
@@ -161,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].sentences.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].sentences.Array.size
@@ -169,63 +185,120 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[0]
-      value: The Priest cowers behind the lectern, his face pale and bloodied.
+      value: The Gunslinger bursts down the doors of the Stables to the fright of
+        the Stablemaster and the Child hiding inside.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[1]
-      value: Destruction surrounds him; not much still stands within the Chapel.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[2]
-      value: A deep, grave voice fills the room.
+      value: The Gunslinger looks at the child and smiles.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.data[0]
-      value: Where is it!?
+      value: There you are.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.data[1]
-      value: I've tracked it for days, I know it's here!
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[2]
-      value: A deep, grave voice fills the room.
+      value: I can feel it, however faintly, it's here. You have it!
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].sentences.Array.data[0]
-      value: I have no idea what you are talking about!
+      value: The Child looks at the Gunslinger in terror and fingers the pieces of
+        the compass in his pocket.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].sentences.Array.data[1]
-      value: As God is my witness--
+      value: I can feel it, however faintly, it's here. You have it!
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].sentences.Array.data[0]
-      value: You are no man of God.
+      value: Give it to me, and I'll spare you.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].sentences.Array.data[1]
-      value: And he will not save you now.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[3].sentences.Array.data[2]
-      value: He slumps over, dead and smoking.
+      value: Time grows short, little one.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].sentences.Array.data[0]
-      value: The lectern explodes, the room filling with smoke.
+      value: The Child takes the pieces out of his pocket and throws them towards
+        the Gunslinger.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].sentences.Array.data[1]
-      value: Ethereal gunshots prelude the pained wails of the Priest.
+      value: Time grows short, little one.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[4].sentences.Array.data[2]
-      value: He slumps over, dead and smoking.
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[0]
+      value: Noooooo! What have you done? I could feel myself growing weaker, and
+        now I know why!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[1]
+      value: "You idiot! You\u2019ll pay for this!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[0]
+      value: The Gunslinger reaches for his revolver, but the Stablemaster jumps
+        in front of his son before the shot rings out.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[1]
+      value: The Stablemaster falls to the floor in a lifeless heap. The Gunslinger
+        tries to shoot again but fails.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[2]
+      value: He begins to fade into a puff of smoke, drawing itself into the compass.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[0]
+      value: This isn't over boy! I'll be back, and when I am, destruction will fall
+        upon you! I curse your family for all time!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[1]
+      value: You will know only heartbreak and sorrow! I will come back and destroy
+        you once and for all!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[2]
+      value: One day, one day, I'll have my revenge!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[0]
+      value: His essence is completely sucked into the compass pieces, which begin
+        to vibrate softly. The Child, too stunned to speak, collects the pieces and
+        pockets them.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[1]
+      value: He spends the next hour digging. With the grave dug, he buries his father,
+        tears streaming in his eyes.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[2]
+      value: Fearful of what the town has become and guilty for what he caused its
+        people, he saddles up a horse and rides away west, broken and defeated, with
+        the compass pieces in his pocket.
       objectReference: {fileID: 0}
     - target: {fileID: 4034066483164802495, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: m_Name
@@ -280,4 +353,4 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1317056493045776843}
+  - {fileID: 1738286511}
