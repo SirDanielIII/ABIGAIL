@@ -2,9 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
-using UnityEngine.XR;
 
 namespace Abigail
 {
@@ -20,7 +17,7 @@ namespace Abigail
 
         // Movement Values
         public float movementSpeed = 8f; // Speed of the character (normal)
-        public float movementSpeedAcceleration = 5; // How fast / slow the player accelerates 
+        public float topDownSpeedMultiplier = 1.8f; // Speed multiplier for top-down view
         public float sprintSpeed = 16f; // Speed of the character (when sprinting)
         public float staminaTotal = 100f;
         public float staminaSprintRate = 25f;
@@ -34,6 +31,7 @@ namespace Abigail
         public float jumpHoldApplyAfter = 0.06f;
         public float jumpHoldPower = 11f; // Speed of jump (hold)
         public float jumpHoldTime = 0.2f; // Jump duration
+        public float fallMultiplier = 2.5f; // Modifies the falling speed during jump
         public float crouchSlowdownMultiplier = 0.5f; // How much slower the player moves when crouching
         public float slideSpeedBoostMultiplier = 1.05f; // How much extra boost the player gets when sliding
         public float slideSpeedBoostDuration = 0.05f; // How long the slide boost lasts for
@@ -49,20 +47,22 @@ namespace Abigail
         private bool isSprinting = false;
         private bool isSliding = false;
         private bool isCrouching = false;
+
         public bool isKnockedBack = false;
         public bool isInQuicksand = false;
-        public float sinkingSpeed = -0.05f;
+        public float quicksandSpeedFactor = 0.01f;
+        private float quicksandSinkRate = -0.35f;
+        private float quicksandJumpPower = 2f;
+        private float quicksandJumpHoldTime = 0.05f;
 
         // Level Modifiers
         public GlobalEnums.LevelType levelType;
-        // public int sideScrollSceneIndex = -1;
-        // public int topDownSceneIndex = -1;
 
         // Timers
         private float jumpTimeStart;
         private float sprintTimeEnd;
         private float slideTimeStart;
-        public float knockbackCooldown = 1f;
+        public float knockbackCooldown = 0f;
         private float lastKnockbackTime = -10f;
         private IEnumerator quicksandDamageCoroutine;
         private Health playerHealth;
@@ -73,25 +73,53 @@ namespace Abigail
             rb = GetComponent<Rigidbody2D>();
             // Set variables
             stamina = staminaTotal;
-            speed = movementSpeed;
         }
 
         void FixedUpdate()
         {
-            HandleMovement(); 
-            if (isInQuicksand && !isJumping)
+            if (isSliding && !isInQuicksand)
             {
+                if (enableSliding)
+                {
+                    HandleSlide();
+                }
+
+                HandleJumping();
+            }
+            else if (isInQuicksand && !isJumping)
+            {
+                // Handle quicksand logic
                 SinkInQuicksand();
             }
-        }
+            else
+            {
+                // Handle horizontal movement
+                if (isKnockedBack) return;
+                // Allow horizontal movement always, even in quicksand
+                float speed = isSprinting ? sprintSpeed : movementSpeed;
+                if (isCrouching && IsGrounded())
+                {
+                    speed *= crouchSlowdownMultiplier;
+                }
 
-        void Update()
-        {
-            HandlePlatformingInput();
+                // Specific handling for level types
+                if (levelType == GlobalEnums.LevelType.SideScroll)
+                {
+                    HandleJumping();
+                    // Move Player (Side Scroll)
+                    rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
+                }
+                else if (levelType == GlobalEnums.LevelType.TopDown)
+                {
+                    // Move Player (Top Down)
+                    rb.velocity = new Vector2(movement.x * speed * topDownSpeedMultiplier, movement.y * speed * topDownSpeedMultiplier);
+                }
+            }
         }
 
         public void HandleQuicksand(bool isInQuicksand)
         {
+            float speed;
             this.isInQuicksand = isInQuicksand;
             if (isInQuicksand)
             {
@@ -102,7 +130,6 @@ namespace Abigail
                     quicksandDamageCoroutine = ApplyQuicksandDamage();
                     StartCoroutine(quicksandDamageCoroutine);
                 }
-                
             }
             else
             {
@@ -114,6 +141,8 @@ namespace Abigail
                     quicksandDamageCoroutine = null;
                 }
             }
+
+            rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
         }
 
         private IEnumerator ApplyQuicksandDamage()
@@ -127,58 +156,20 @@ namespace Abigail
                 }
             }
         }
+
         private void SinkInQuicksand()
         {
             // Manually apply a sinking effect by moving the player down at a constant rate
             rb.velocity = new Vector2(rb.velocity.x, quicksandSinkRate);
         }
 
-
-        private void HandleMovement()
-        {
-            if (!isKnockedBack)
-            {
-                float speed = isSprinting ? sprintSpeed : movementSpeed;
-                if (isCrouching)
-                {
-                    HandleSlide();
-                }
-
-                HandleJumping();
-            }
-            else
-            {
-                // Handle horizontal movement
-                if (!isKnockedBack)
-                {
-                    // Allow horizontal movement always, even in quicksand
-                    float speed = isSprinting ? sprintSpeed : movementSpeed;
-                    if (isCrouching && IsGrounded())
-                    {
-                        speed *= crouchSlowdownMultiplier;
-                    }
-
-                    // Specific handling for level types
-                    if (levelType == GlobalEnums.LevelType.SideScroll)
-                    {
-                        HandleJumping();
-                        // Move Player (Side Scroll)
-                        rb.velocity = new Vector2(movement.x * speed, rb.velocity.y);
-                    }
-                    else if (levelType == GlobalEnums.LevelType.TopDown)
-                    {
-                        // Move Player (Top Down)
-                        rb.velocity = new Vector2(movement.x * speed * topDownSpeedMultiplier, movement.y * speed * topDownSpeedMultiplier);
-                    }
-                }
-            }
-        }
-
         private void HandleJumping()
         {
             if (isInQuicksand)
             {
-                HandleQuicksandJump();
+                rb.velocity = new Vector2(rb.velocity.x, quicksandJumpPower);
+                rb.gravityScale = 0;
+                StartCoroutine(ResetJumpAfterDelay(quicksandJumpHoldTime));
             }
             else
             {
@@ -201,87 +192,41 @@ namespace Abigail
             }
         }
 
-
-        private void HandleQuicksandJump()
-        {
-            if (!doJump && !isJumping)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, sinkingSpeed);
-            }
-
-            if (doJump)
-            {
-                Jump();
-            }
-
-            if (isJumping)
-            {
-                ContinueJump();
-            } 
-        }
-
         private void Jump()
         {
-            if (isInQuicksand)
+            float multiplier = 1.0f;
+            // If stamina is less than the full amount of stamina  
+            if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
             {
-                rb.velocity = new Vector2(rb.velocity.x, quicksandJumpPower);
-                rb.gravityScale = 0;
-                StartCoroutine(ResetJumpAfterDelay(quicksandJumpHoldTime));
+                multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
             }
-            else
-            {
-                float multiplier = 1.0f;
-                // If stamina is less than the full amount of stamina  
-                if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
-                {
-                    multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
-                }
 
-                // Subtract from the stamina
-                stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
-                // Clamp the value to ensure it doesn't go below zero
-                stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
-                // Do the jump
-                rb.velocity = isSprinting
-                    ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
-                    : new Vector2(rb.velocity.x, jumpInitialPower); 
-            }
+            // Subtract from the stamina
+            stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
+            // Clamp the value to ensure it doesn't go below zero
+            stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
+            // Do the jump
+            rb.velocity = isSprinting
+                ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
+                : new Vector2(rb.velocity.x, jumpInitialPower);
+            // Set this variable back to false so we don't jump a second time
             doJump = false;
         }
 
         private void ContinueJump()
         {
             float elapsedTime = CalculateElaspedTime(jumpTimeStart);
-            if (!isInQuicksand && isJumping)
+            // Let's you jump higher if you hold down the key
+            if (elapsedTime <= jumpHoldTime)
             {
-                if (elapsedTime <= jumpHoldTime)
-                {
-                    // Calculate the normalized jump hold duration
-                    float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
-                    // Calculate the jump force based on the normalized hold time
-                    float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
-                    // Apply the jump force
-                    rb.velocity = isSprinting
-                        ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
-                        : new Vector2(rb.velocity.x, jumpForce);
-                }
-                else
-                {
-                    isJumping = false;
-                }
-
-            }
-        }
-
-        private IEnumerator ResetJumpAfterDelay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            isJumping = false;
-
-            // Reset gravity if no longer in quicksand
-            if (!isInQuicksand)
-            {
-                rb.gravityScale = 3.5f;
+                // Calculate the normalized jump hold duration
+                float normalizedHoldTime = Mathf.Clamp01(elapsedTime / jumpHoldTime);
+                // Calculate the jump force based on the normalized hold time
+                float jumpForce = Mathf.Lerp(jumpInitialPower, jumpHoldPower, normalizedHoldTime);
+                // Apply the jump force
+                rb.velocity = isSprinting
+                    ? new Vector2(rb.velocity.x, jumpForce * sprintJumpBoost)
+                    : new Vector2(rb.velocity.x, jumpForce);
             }
         }
 
@@ -356,7 +301,7 @@ namespace Abigail
         void Update()
         {
             HandlePlatformingInput();
-            OutputLogsToConsole();
+            // OutputLogsToConsole();
         }
 
         public bool IsGrounded()
@@ -371,10 +316,12 @@ namespace Abigail
 
         void HandlePlatformingInput()
         {
+            if (isKnockedBack) return;
+
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
             var grounded = IsGrounded();
-            
+
             if (movement is { x: 0, y: 0 } || (movement.x == 0 && grounded))
             {
                 facingDirection = GlobalEnums.Direction.Idle;
@@ -456,7 +403,7 @@ namespace Abigail
                             isJumping = false; // Stop jump after a certain amount of elapsed time
                         }
                     }
-                    if (CalculateElaspedTime(jumpTimeStart) >= jumpHoldTime)
+                    else if (CalculateElaspedTime(jumpTimeStart) >= jumpHoldTime)
                     {
                         isJumping = false; // Stop jump after a certain amount of elapsed time
                     }
@@ -516,15 +463,17 @@ namespace Abigail
             return Time.realtimeSinceStartup - current;
         }
 
-        // void TryJumpOutOfQuicksand()
-        // {
-        //     Debug.Log("Attempting to jump out of quicksand");
-        //     Debug.Log($"Velocity before jump quicksand: {rb.velocity}");
-        //     rb.velocity = new Vector2(rb.velocity.x, jumpInitialPower * 0.5f);
-        //     Debug.Log($"Velocity after jump quicksand: {rb.velocity}");
-        //     doJump = false;
-        // }
+        private IEnumerator ResetJumpAfterDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            isJumping = false;
 
+            // Reset gravity if no longer in quicksand
+            if (!isInQuicksand)
+            {
+                rb.gravityScale = 3.5f;
+            }
+        }
 
         private List<string> GetLogs()
         {

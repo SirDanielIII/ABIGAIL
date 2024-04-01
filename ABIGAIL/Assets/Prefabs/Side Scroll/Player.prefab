@@ -198,7 +198,7 @@ MonoBehaviour:
   facingDirection: 1
   enableSliding: 0
   enableCrouching: 1
-  movementSpeed: 11
+  movementSpeed: 10
   topDownSpeedMultiplier: 1.8
   sprintSpeed: 16
   staminaTotal: 100
@@ -214,14 +214,13 @@ MonoBehaviour:
   jumpHoldPower: 11
   jumpHoldTime: 0.2
   fallMultiplier: 2.5
-  quicksandJumpHoldTime: 0.05
   crouchSlowdownMultiplier: 0.5
   slideSpeedBoostMultiplier: 1.05
   slideSpeedBoostDuration: 0.05
   slideSlowdownRate: 0.15
   isKnockedBack: 0
   isInQuicksand: 0
-  sinkingSpeed: -0.05
+  quicksandSpeedFactor: 0.01
   levelType: 0
   knockbackCooldown: 1
 --- !u!95 &2418490936580597521
@@ -259,19 +258,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleColliderOffset: {x: 0, y: -0.5}
   idleColliderSize: {x: 6, y: 20}
-  idleFeet: {x: 0, y: -9.5, z: 0}
   runColliderOffset: {x: -0.5, y: -1.4}
   runColliderSize: {x: 9, y: 18.5}
-  runFeet: {x: 0, y: -9.5, z: 0}
   jumpColliderOffset: {x: 0, y: 1.4}
   jumpColliderSize: {x: 11, y: 16}
-  jumpFeet: {x: 0, y: -6.7, z: 0}
   crouchColliderOffset: {x: 0, y: -3}
   crouchColliderSize: {x: 9, y: 12}
-  crouchFeet: {x: 0, y: -8.3, z: 0}
   slideColliderOffset: {x: 0, y: 0}
   slideColliderSize: {x: 0, y: 0}
-  slideFeet: {x: 0, y: 0, z: 0}
 --- !u!1 &5853480923515535493
 GameObject:
   m_ObjectHideFlags: 0

@@ -6240,6 +6240,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9197761465502970810, guid: 185ef7326960647fd88575f9f373a32f, type: 3}
   m_PrefabInstance: {fileID: 564988403}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &383702860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383702848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3dc453b5d81fa48b876ee86a1145f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerFeet: {fileID: 0}
+  checkRadius: 0.13
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  facingDirection: 1
+  enableSliding: 0
+  enableCrouching: 1
+  movementSpeed: 8
+  topDownSpeedMultiplier: 1.8
+  sprintSpeed: 16
+  staminaTotal: 100
+  staminaSprintRate: 25
+  staminaJumpCost: 25
+  staminaSprintJumpRate: 30
+  staminaSlideCost: 8
+  staminaRecoveryDelay: 1.5
+  staminaRecoveryRate: 15
+  sprintJumpBoost: 1.15
+  jumpInitialPower: 8
+  jumpHoldApplyAfter: 0.06
+  jumpHoldPower: 11
+  jumpHoldTime: 0.2
+  fallMultiplier: 2.5
+  crouchSlowdownMultiplier: 0.5
+  slideSpeedBoostMultiplier: 1.05
+  slideSpeedBoostDuration: 0.05
+  slideSlowdownRate: 0.15
+  isKnockedBack: 0
+  isInQuicksand: 0
+  quicksandSpeedFactor: 0.01
+  levelType: 1
+  knockbackCooldown: 0
 --- !u!1001 &383942966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9332,10 +9377,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7395821568434573684, guid: 185ef7326960647fd88575f9f373a32f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1595409634326186117, guid: 185ef7326960647fd88575f9f373a32f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 383702860}
   m_SourcePrefab: {fileID: 100100000, guid: 185ef7326960647fd88575f9f373a32f, type: 3}
 --- !u!4 &566152492 stripped
 Transform:
@@ -12208,6 +12257,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2683761953058297233, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051027429076291723, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
+      propertyPath: movementSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4051027429076291723, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
+      propertyPath: knockbackCooldown
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6028330235013091198, guid: 58e4efb168afc422ea831056828dcc6f, type: 3}
