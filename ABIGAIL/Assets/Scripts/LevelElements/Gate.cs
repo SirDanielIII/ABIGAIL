@@ -21,7 +21,7 @@ public class GateController : MonoBehaviour
 
         if (!gateOpened && distanceX <= openDistance)
         {
-            if (GameManager.Instance.hasKey)
+            if (LevelManager.Instance.hasKey)
             {
                 OpenGate();
                 noKeyUIElement.SetActive(false); 
@@ -55,5 +55,15 @@ public class GateController : MonoBehaviour
     {
         animator.SetTrigger("GateClose");
         gateOpened = false;
+    }
+
+    public bool IsGateOpened()
+    {
+        return gateOpened;
+    }
+
+    public Vector2 GetGatePosition()
+    {
+        return transform.position;
     }
 }

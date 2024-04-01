@@ -18,7 +18,6 @@ public class CactusBounce : MonoBehaviour
                 Vector2 incomingVelocityDirection = playerRigidbody.velocity.normalized;
                 
                 Vector2 knockbackVelocity = -incomingVelocityDirection * bounceForce;
-                Debug.Log(knockbackVelocity);
 
                 playerMovement.ApplyKnockback(knockbackVelocity, 0.1f);
             }

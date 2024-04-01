@@ -2,11 +2,10 @@ using UnityEngine;
 using Cinemachine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public bool hasKey = false;
-
     public GameObject sideViewPlayer;
     public GameObject topDownPlayer;
 
@@ -37,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        hasKey = false;
         topDownPlayer.SetActive(false);
         sideViewPlayer.SetActive(true);
         sideViewCamera.enabled = true;
@@ -102,17 +100,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
-
-
-    public void CollectKey()
+    public void SaveCurrentScene()
     {
-        Debug.Log("Key collected!");
-        hasKey = true;
-        if (UIManager.Instance != null)
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
+        PlayerPrefs.Save();
+    }
+
+    public void LoadNextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            UIManager.Instance.UpdateKeyIndicator(hasKey);
-        }    
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

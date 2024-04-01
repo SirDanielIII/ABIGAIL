@@ -71,7 +71,6 @@ public class Cutscene : MonoBehaviour
         }
         else
         {
-            // If all characters' dialogues are displayed, end the cutscene
             Debug.Log("Cutscene complete");
         }
     }
