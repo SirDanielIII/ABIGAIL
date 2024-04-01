@@ -73,7 +73,7 @@ namespace Abigail
         private float speed;
         public float speedMultiplier = 1f;
         private float quicksandSinkRate = -0.35f;
-        private float quicksandJumpPower = 1.2f;
+        private float quicksandJumpPower = 2f;
         private float quicksandJumpHoldTime = 0.05f;
 
 

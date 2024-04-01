@@ -10,7 +10,7 @@ public class SpiderChase : MonoBehaviour
     private bool isChasing = false;
     private Rigidbody2D rb;
     private Health playerHealth;
-
+    public LayerMask obstacleLayer;
 
     void Start()
     {
@@ -22,14 +22,23 @@ public class SpiderChase : MonoBehaviour
         distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = (player.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        
+        Vector2 rayStart = (Vector2)transform.position + direction * 0.1f;
+        RaycastHit2D hit = Physics2D.Raycast(rayStart, direction, chaseDistance, obstacleLayer);
+        Debug.DrawRay(rayStart, direction * chaseDistance, Color.red);
 
-        if (distance < startChaseDistance)
+        if (hit.collider != null)
         {
-            isChasing = true;
-        }
-        else if (distance > chaseDistance)
-        {
-            isChasing = false;
+            if (hit.collider.gameObject == player && distance < startChaseDistance)
+            {
+                isChasing = true;
+                Debug.Log("Player spotted - chase on!");
+            }
+            else
+            {
+                isChasing = false;
+                Debug.Log("Lost sight of the player - chase off.");
+            }
         }
 
         if (isChasing)
@@ -51,6 +60,7 @@ public class SpiderChase : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(1);
+                Debug.Log("Player hit by spider.");
             }
         }
     }
