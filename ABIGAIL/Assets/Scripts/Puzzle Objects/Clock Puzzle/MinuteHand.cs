@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class MinuteHand : MonoBehaviour
 {
-    public Slot slot;
+    public int slotNumber;
+    public Transform hand_script;
 
-    void Start()
+    void Rotate()
     {
-        Vector3 dir = (slot.GetComponent<Slot>().GetPos().position - this.transform.position).normalized;
-        this.transform.rotation = Quaternion.FromToRotation(Vector3.forward, dir);
+        hand_script = gameObject.GetComponent<Transform>();
+        Vector3 pivotPoint = new Vector3(90, -5, 0);
+        Quaternion rot = Quaternion.Euler(0, 0, 30*(12-slotNumber));
+        hand_script.transform.position = rot * (hand_script.transform.position - pivotPoint) + pivotPoint;
+	    hand_script.transform.rotation = rot * hand_script.transform.rotation;
     }
 
 }
