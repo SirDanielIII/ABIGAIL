@@ -9,6 +9,7 @@ public class Cutscene : MonoBehaviour
     public Animator animator;
     public CharacterDialogue[] characterDialogues;
     public Image characterImage; // Reference to the UI image object for character sprite
+    public GameManager gameManager;
 
     private int currentCharacterIndex = 0;
     private int currentSentenceIndex = 0;
@@ -71,7 +72,7 @@ public class Cutscene : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cutscene complete");
+            gameManager.LoadNextScene();
         }
     }
 }
