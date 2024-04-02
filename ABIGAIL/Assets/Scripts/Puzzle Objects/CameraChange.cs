@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Abigail;
 
 public class CameraChange : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class CameraChange : MonoBehaviour
     public Camera solvedCam;
     public GameObject lamplight_object;
     private LampLight lamplight_script;
-    public GameObject Player;
+    public GameObject playerObject; // Renamed to avoid conflict with the Player GameObject
+
+    private Movement movement; // Declared movement script reference
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,9 @@ public class CameraChange : MonoBehaviour
         churchCam.enabled = true;
         unsolvedCam.enabled = false;
         solvedCam.enabled = false;
+
+        // Get reference to the Movement script
+        movement = playerObject.GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -27,7 +33,8 @@ public class CameraChange : MonoBehaviour
         {
             if (churchCam.enabled)
             {
-                Player.SetActive(false);
+                // Disable Movement script
+                movement.enabled = false;
 
                 if (lamplight_script.isSolved)
                 {
@@ -44,7 +51,8 @@ public class CameraChange : MonoBehaviour
             }
             else
             {
-                Player.SetActive(true);
+                // Enable Movement script
+                movement.enabled = true;
                 churchCam.enabled = true;
                 unsolvedCam.enabled = false;
                 solvedCam.enabled = false;

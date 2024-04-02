@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Continue : MonoBehaviour
 {
+    public SceneManagement sceneManager;
     public void Advance()
     {
-        Debug.Log("Puzzle Finished!");
+        sceneManager.LoadNextScene();
     }
 }
