@@ -10,6 +10,7 @@ public class DynamiteTrap : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private GameObject explosionRadiusIndicator;
+    public GameObject explosionEffectPrefab;
     private bool hasExploded = false;
 
     private void Start()
@@ -46,6 +47,11 @@ public class DynamiteTrap : MonoBehaviour
     void Explode()
     {
         if (!this) return; // Check if the GameObject has already been destroyed
+
+        if (explosionEffectPrefab)
+        {
+            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+        }
 
         Collider2D[] objectsInRadius = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var obj in objectsInRadius)
