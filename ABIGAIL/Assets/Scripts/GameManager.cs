@@ -2,7 +2,6 @@ using UnityEngine;
 using Cinemachine;
 using System.Collections.Generic;
 using System.Collections;
-using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -97,28 +96,6 @@ public class GameManager : MonoBehaviour
             topDownPlayer.transform.position = targetPosition; 
             topDownCamera.Priority = 11; 
             sideViewCamera.Priority = 0; 
-        }
-    }
-
-    public void SaveCurrentScene()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("SavedScene", currentSceneIndex);
-        PlayerPrefs.Save();
-    }
-
-    public void LoadNextScene()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
-
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
-        else
-        {
-            SceneManager.LoadScene(0);
         }
     }
 }

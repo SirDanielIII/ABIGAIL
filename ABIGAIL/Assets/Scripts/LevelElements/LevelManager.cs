@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     public GateController gateController;
     public Transform playerTransform;
 
-    public GameManager gameManager;
+    public SceneManagement sceneManager;
 
     void Awake()
     {
@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
         {
             if (playerTransform.position.x > gateController.GetGatePosition().x + 7f)
             {
-                gameManager.LoadNextScene();
+                sceneManager.LoadNextScene();
             }
         }
     }

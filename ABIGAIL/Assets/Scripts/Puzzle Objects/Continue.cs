@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Continue : MonoBehaviour
 {
-    public GameManager gameManager;
+    public SceneManagement sceneManager;
     public void Advance()
     {
-        gameManager.LoadNextScene();
+        sceneManager.LoadNextScene();
     }
 }
