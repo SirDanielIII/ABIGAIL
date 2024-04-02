@@ -264,7 +264,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.210799
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -289,7 +289,7 @@ Transform:
   m_GameObject: {fileID: 94250851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 80.51, y: -4.91, z: -10}
+  m_LocalPosition: {x: 80.51, y: -3.9099998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1367,11 +1367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2062177191581826001, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.40059713
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 2062177191581826001, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.33923244
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 2062177191581826001, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1451,35 +1451,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.014
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.873
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7070885
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.005092088
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0050920877
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7070885
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5142690044599882064, guid: 6522cc66ae56c5b4bafcee49e0f23fff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1599,8 +1599,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 0.764151, g: 0.55770284, b: 0.2991723, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 213a29c9049266d49b1dd96b281a7f44, type: 3}
+  m_Color: {r: 0.8962264, g: 0.8962264, b: 0.8962264, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2289,7 +2289,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0.9961091, b: 0.08962262, a: 0.6745098}
   m_FlipX: 0
@@ -2364,7 +2364,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -2375,8 +2375,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.02357483
-        value: 0.32907486
+        time: 0.02160263
+        value: 0.21796036
         inSlope: 0
         outSlope: 0
         tangentMode: 0
