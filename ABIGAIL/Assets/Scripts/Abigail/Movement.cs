@@ -341,13 +341,26 @@ namespace Abigail
         public bool IsGrounded()
         {
             BoxCollider2D feetCollider = playerFeet.GetComponent<BoxCollider2D>();
-            Vector2 boxSize = new Vector2(0.8f, 0.1f);
+            Vector2 boxSize = new Vector2(0.78f, 0.1f);
             Vector2 adjustedOffset = new Vector2(-0.05f, feetCollider.offset.y + 1.03f);
 
             Vector2 boxCenter = (Vector2)playerFeet.position + adjustedOffset + Vector2.down * boxSize.y / 2;
 
             Collider2D hit = Physics2D.OverlapBox(boxCenter, boxSize, 0f, groundLayer);
             return hit != null;        
+        }
+        //gizmo
+
+        private void OnDrawGizmos()
+        {
+            BoxCollider2D feetCollider = playerFeet.GetComponent<BoxCollider2D>();
+            Vector2 boxSize = new Vector2(0.798f, 0.1f);
+            Vector2 adjustedOffset = new Vector2(-0.05f, feetCollider.offset.y + 1.03f);
+
+            Vector2 boxCenter = (Vector2)playerFeet.position + adjustedOffset + Vector2.down * boxSize.y / 2;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(boxCenter, boxSize);
         }
 
 
