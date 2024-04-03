@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1125945153666903472, guid: e510c0d6e841d4d02ae432ddb1b717e6, type: 3}
       propertyPath: m_Name
-      value: Cactus (4) Variant
+      value: Cactus_1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3627550610122527512, guid: e510c0d6e841d4d02ae432ddb1b717e6, type: 3}
       propertyPath: m_Sprite
@@ -115,7 +115,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
