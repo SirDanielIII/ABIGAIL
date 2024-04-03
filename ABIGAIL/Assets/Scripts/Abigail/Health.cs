@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     private int currentHealth;
     public HealthBar healthBar; // This can now be left unassigned/null
     public float fallThreshold = -5f; // The y-coordinate that triggers a respawn if the player falls below it
+    public AudioSource damage;
 
     private void Start()
     {
@@ -30,6 +31,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
+        damage.Play();
         if (healthBar != null)
         {
             healthBar.SetHealth(currentHealth);
