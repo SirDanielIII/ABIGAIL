@@ -19,13 +19,13 @@ namespace Abigail
         public float topDownSpeedMultiplier = 1.8f; // Speed multiplier for top-down view
         public float sprintSpeed = 16f; // Speed of the character (when sprinting)
         public float staminaTotal = 100f;
-        public float staminaSprintRate = 25f;
-        public float staminaJumpCost = 25f;
-        public float staminaSprintJumpRate = 30f;
+        public float staminaSprintRate = 30f;
+        // public float staminaJumpCost = 25f;
+        // public float staminaSprintJumpRate = 30f;
         public float staminaSlideCost = 8;
         public float staminaRecoveryDelay = 1.5f; // The recovery delay after sprinting
         public float staminaRecoveryRate = 15f; // How fast stamina recharges
-        public float sprintJumpBoost = 1.15f; // How much extra jump there is when sprinting
+        public float sprintJumpBoost = 1.05f; // How much extra jump there is when sprinting
         public float jumpInitialPower = 8f; // Speed of jump (normal)
         public float jumpHoldApplyAfter = 0.06f;
         public float jumpHoldPower = 11f; // Speed of jump (hold)
@@ -42,7 +42,7 @@ namespace Abigail
         private GlobalEnums.Direction slideDirection;
         private bool isJumping = false;
         private bool doJump = false;
-        private float stamina;
+        public float stamina;
         private bool isSprinting = false;
         private bool isSliding = false;
         private bool isCrouching = false;
@@ -147,8 +147,6 @@ namespace Abigail
             while (true)
             {
                 yield return new WaitForSeconds(2f);
-                Debug.Log("Quicksand Damage");
-                Debug.Log("Player Health: " + playerHealth);
                 if (playerHealth != null)
                 {
                     Debug.Log("Applying Quicksand Damage");
@@ -218,16 +216,15 @@ namespace Abigail
                 {
                 float multiplier = 1.0f;
                 // If stamina is less than the full amount of stamina  
-                if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
-                {
-                    multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
-                }
-
-                // Subtract from the stamina
-                stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
-                // Clamp the value to ensure it doesn't go below zero
-                stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
-                // Do the jump
+                // if (stamina < (isSprinting ? staminaSprintJumpRate : staminaJumpCost))
+                // {
+                //     multiplier = stamina / (isSprinting ? staminaSprintJumpRate : staminaJumpCost);
+                // }
+                // // Subtract from the stamina
+                // stamina -= isSprinting ? staminaSprintJumpRate : staminaJumpCost;
+                // // Clamp the value to ensure it doesn't go below zero
+                // stamina = Mathf.Clamp(stamina, 0f, Mathf.Infinity);
+                // // Do the jump
                 rb.velocity = isSprinting
                     ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
                     : new Vector2(rb.velocity.x, jumpInitialPower);
