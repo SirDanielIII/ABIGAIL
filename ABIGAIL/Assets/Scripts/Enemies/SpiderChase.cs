@@ -11,10 +11,16 @@ public class SpiderChase : MonoBehaviour
     private Rigidbody2D rb;
     private Health playerHealth;
     public LayerMask obstacleLayer;
+    private Animator animator;
+    private Quaternion lastChasingRotation;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        lastChasingRotation = transform.rotation;
+
     }
 
     void FixedUpdate()
@@ -31,6 +37,8 @@ public class SpiderChase : MonoBehaviour
             if (hit.collider.gameObject == player && distance < startChaseDistance)
             {
                 isChasing = true;
+                lastChasingRotation = Quaternion.Euler(Vector3.forward * angle);
+                transform.rotation = lastChasingRotation;
             }
             else
             {
@@ -42,16 +50,25 @@ public class SpiderChase : MonoBehaviour
         {
             rb.velocity = direction * speed;
             transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            if (!animator.GetBool("IsChasing"))
+            {
+                animator.SetBool("IsChasing", true);
+            }
         }
         else
         {
             rb.velocity = Vector2.zero;
+            transform.rotation = lastChasingRotation;
+            if (animator.GetBool("IsChasing"))
+            {
+                animator.SetBool("IsChasing", false);
+            }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Abigail")) // Assuming "Abigail" is the tag of the player
+        if (collision.gameObject.CompareTag("Abigail"))
         {
             playerHealth = collision.gameObject.GetComponent<Health>();
             if (playerHealth != null)
