@@ -435,7 +435,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -342.44467, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -649,8 +649,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 325}
-  m_SizeDelta: {x: 200, y: 350}
+  m_AnchoredPosition: {x: -646.0618, y: 487.0645}
+  m_SizeDelta: {x: 819.2, y: 692.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2206228780201000070
 CanvasRenderer:
@@ -728,7 +728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -380.69998}
+  m_AnchoredPosition: {x: 0, y: -1648.8452}
   m_SizeDelta: {x: 1700, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5942125084386868151
@@ -837,5 +837,101 @@ MonoBehaviour:
   nameText: {fileID: 2780948001558143394}
   dialogueText: {fileID: 6454902523988422133}
   animator: {fileID: 3868282901006806860}
-  characterDialogues: []
+  characterDialogues:
+  - name: Abigail's Journal
+    characterSprite: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    sentences:
+    - Everyone is enjoying some much-needed merriment at the Saloon together.
+    - The Bartenders and the Barbers are laughing together with the Deputy at the
+      bar. The Barbers are entertaining with their old stories of adventure.
+    - The Child and the Stablemaster sit together at a table. The Child, still a
+      little distraught is comforted by his father.
+    - The Priest sits alone near the bar, clearly happy to spend some time away from
+      the often empty Church.
+    - Suddenly, the Outlaw barges into the room.
+  - name: The Outlaw
+    characterSprite: {fileID: 21300000, guid: ffd7fb103676d274d8e9dabeb57604b2, type: 3}
+    sentences:
+    - There's something coming!
+  - name: The Bartender
+    characterSprite: {fileID: 21300000, guid: 3b3f031e97b4be04bb7f918b09d63cbf, type: 3}
+    sentences:
+    - Hold on now, son. What do you mean?
+  - name: The Deputy
+    characterSprite: {fileID: 21300000, guid: d7c709d6b2ea74746980ad80cf322749, type: 3}
+    sentences:
+    - You got a lot of nerve coming back here.
+    - Tell me why I shouldn't lock you up right now.
+  - name: The Outlaw
+    characterSprite: {fileID: 21300000, guid: ffd7fb103676d274d8e9dabeb57604b2, type: 3}
+    sentences:
+    - Sure, arrest me.
+    - You should be happy I'm back here at all, warning all y'all.
+  - name: Abigail's Journal
+    characterSprite: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    sentences:
+    - The Outlaw's previously steel demeanour has faded into pure terror.
+  - name: The Outlaw
+    characterSprite: {fileID: 21300000, guid: ffd7fb103676d274d8e9dabeb57604b2, type: 3}
+    sentences:
+    - It's coming! I don't know what it is, but it's on it's way and fast.
+  - name: The Barber
+    characterSprite: {fileID: 21300000, guid: 39b957f73f5921b498069f6aed0ccdec, type: 3}
+    sentences:
+    - What do you mean?
+  - name: The Priest
+    characterSprite: {fileID: 21300000, guid: 0012218f218b26047b98b11f61edcc66, type: 3}
+    sentences:
+    - Yeah, what's coming? Haven't we had enough trouble?
+  - name: The Outlaw
+    characterSprite: {fileID: 21300000, guid: ffd7fb103676d274d8e9dabeb57604b2, type: 3}
+    sentences:
+    - I don't know.
+    - Something dark, on a shadowy horse.
+    - It was riding fast as a blur straight towards this town. It's coming here.
+      I can feel it.
+  - name: Abigail's Journal
+    characterSprite: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    sentences:
+    - The conversation causes the Child to grow more and more pale.
+    - Hearing the Outlaw's report scares him more than his father can reassure him.
+    - He quickly runs out of the Saloon.
+  - name: The Barber's Wife
+    characterSprite: {fileID: 21300000, guid: 5595456f2b8c29b4f90e0873d3c82898, type: 3}
+    sentences:
+    - What's wrong with him?
+  - name: The Stablemaster
+    characterSprite: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    sentences:
+    - Don't worry. I think he's scared. Something he said before.
+    - I'll go after him.
+  - name: Abigail's Journal
+    characterSprite: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    sentences:
+    - The Child, having tushed out of the Saloon, takes the compass out of his pocket.
+    - He looks at it and smashes against a rock on the ground.
+    - It shatters and blows up into a brilliant ball of light.
+    - For a second, the boy seems to notice it, and then it's gone.
+  - name: The Stablemaster
+    characterSprite: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    sentences:
+    - Son? Where are you?
+    - Come back inside! Everything will be okay.
+  - name: Abigail's Journal
+    characterSprite: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    sentences:
+    - The Child quickly picks up the broken pieces to hide them from his father.
+  - name: The Child
+    characterSprite: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    sentences:
+    - I'm here, Dad. Sorry. Just a little shaken up.
+  - name: The Stablemaster
+    characterSprite: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    sentences:
+    - Don't worry, son. I get it. Let's go inside. Everything will be okay.
+  - name: The Child
+    characterSprite: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    sentences:
+    - Yeah, right. Nothing to worry about.
   characterImage: {fileID: 8663378599157569514}
+  sceneManager: {fileID: 0}

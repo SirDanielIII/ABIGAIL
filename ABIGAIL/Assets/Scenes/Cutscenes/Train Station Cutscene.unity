@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[9].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[10].name
@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[11].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[12].name
@@ -205,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[17].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[18].name
@@ -213,8 +213,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[19].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[18].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ec5fdd71e623db84b8d3898f9d1c7f05, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[19].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.size
       value: 4

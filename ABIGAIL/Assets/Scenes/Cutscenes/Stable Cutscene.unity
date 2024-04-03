@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].name
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[5].name
@@ -161,7 +161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[6].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[7].name
@@ -169,8 +169,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[8].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.size
       value: 2
@@ -271,7 +303,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[6].sentences.Array.data[2]
-      value: He begins to fade into a puff of smoke, drawing itself into the compass.
+      value: He begins to fade into a puff of smoke, which draws itself into the
+        compass.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[7].sentences.Array.data[0]
