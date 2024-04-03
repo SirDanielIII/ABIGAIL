@@ -200,7 +200,7 @@ MonoBehaviour:
   enableCrouching: 1
   movementSpeed: 8
   topDownSpeedMultiplier: 1.8
-  sprintSpeed: 12
+  sprintSpeed: 10
   staminaTotal: 100
   staminaSprintRate: 30
   staminaSlideCost: 8

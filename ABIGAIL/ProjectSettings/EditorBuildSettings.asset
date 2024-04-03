@@ -39,14 +39,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Cutscenes/Train Station Cutscene.unity
     guid: 466c226ebb6c985498be1bfc56dcff10
   - enabled: 1
-    path: Assets/Scenes/LevelTwo.unity
-    guid: 19ebcedf344a7426298f2d83ac264e54
-  - enabled: 1
     path: Assets/Scenes/BottlePuzzle.unity
     guid: 07d827fe3b3eb094e9c8d530be60402c
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Saloon Cutscene.unity
     guid: 572a6aef51114ec46a194c85fa2b3dd9
+  - enabled: 1
+    path: Assets/Scenes/LevelTwo.unity
+    guid: 19ebcedf344a7426298f2d83ac264e54
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Main Street Cutscene.unity
     guid: 0a1b260e285993f418e97cbf40e95f97

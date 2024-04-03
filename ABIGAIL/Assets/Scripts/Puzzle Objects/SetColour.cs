@@ -37,7 +37,7 @@ public class SetColour : MonoBehaviour
         }
         else
         {
-            Debug.LogError("No HiddenColour components found on bottles.");
+            // Debug.LogError("No HiddenColour components found on bottles.");
         }
     }
 }

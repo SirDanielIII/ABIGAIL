@@ -12,7 +12,7 @@ public class Symbol : MonoBehaviour
     void Start()
     {
         slotTransform = slot.GetComponent<Slot>().GetPos();
-        Debug.Log("Symbol " + symbolNumber + " Position: " + slotTransform.position);
+        // Debug.Log("Symbol " + symbolNumber + " Position: " + slotTransform.position);
         this.transform.position = slotTransform.position;
     }
 

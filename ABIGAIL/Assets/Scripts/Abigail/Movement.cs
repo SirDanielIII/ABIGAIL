@@ -149,7 +149,6 @@ namespace Abigail
                 yield return new WaitForSeconds(2f);
                 if (playerHealth != null)
                 {
-                    Debug.Log("Applying Quicksand Damage");
                     playerHealth.TakeDamage(1);
                 }
             }
@@ -525,14 +524,14 @@ namespace Abigail
             return messages;
         }
 
-        private void OutputLogsToConsole()
-        {
-            var messages = GetLogs();
-            foreach (string i in messages)
-            {
-                Debug.Log(i);
-            }
-        }
+        // private void OutputLogsToConsole()
+        // {
+        //     var messages = GetLogs();
+        //     foreach (string i in messages)
+        //     {
+        //         Debug.Log(i);
+        //     }
+        // }
 
         public GlobalEnums.Direction GetDirection()
         {
