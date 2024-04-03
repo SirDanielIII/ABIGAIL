@@ -29,16 +29,13 @@ public class TumbleweedMovement : MonoBehaviour
         Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, checkRadius, Player);
         if (playerCollider != null)
         {
-            if (!playerCollider.GetComponent<Movement>().isKnockedBack)
+            Movement playerMovement = playerCollider.GetComponent<Movement>();
+            if (playerMovement != null && !playerMovement.isKnockedBack)
             {
-                Movement playerMovement = playerCollider.GetComponent<Movement>();
-                if (playerMovement != null && !playerMovement.isKnockedBack)
-                {
-                    Vector2 knockbackVelocity = new Vector2(-3.50f * bounceForce, 1.30f);
+                Vector2 knockbackVelocity = new Vector2(-3.50f * bounceForce, 1.30f);
 
-                    playerMovement.ApplyKnockback(knockbackVelocity, 0.2f);
-                }
-            }
+                playerMovement.ApplyKnockback(knockbackVelocity, 0.2f);
+            }    
         }
         if ((rb.position - lastPosition).magnitude < 0.01)
         {
