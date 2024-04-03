@@ -145,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].name
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[5].name
@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[8].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[9].name
@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[11].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[12].name
@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[14].name
@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[15].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[16].name
@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[18].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[19].name
@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[20].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[21].name
@@ -225,8 +225,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[22].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d7c709d6b2ea74746980ad80cf322749, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ffd7fb103676d274d8e9dabeb57604b2, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 39b957f73f5921b498069f6aed0ccdec, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[18].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[19].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[20].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[21].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[22].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.size
       value: 6
@@ -289,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[15].sentences.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[16].sentences.Array.size
@@ -322,7 +398,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[0]
       value: It's a normal, albeit more sombre, day for the town. After all, it's
-        only been a few dats since the death of the Sheriff and the General Store
+        only been a few days since the death of the Sheriff and the General Store
         Owner.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
@@ -348,7 +424,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[5]
       value: Suddenly, the sky begins to darken, and ominous laughter penetrates
-        throghout the town.
+        throughout the town.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.data[0]
@@ -388,7 +464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].sentences.Array.data[2]
-      value: The Deputy nervously stands to intercept him.
+      value: The Deputy nervously paces to intercept him.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].sentences.Array.data[0]
@@ -484,7 +560,7 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[0]
       value: He flashes a wide grin, and the Outlaw is dead. The Gunslinger's revolver
-        in and out of his holster faster tna anyone can see.
+        in and out of his holster faster than anyone can see.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[1]
@@ -493,11 +569,11 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[2]
       value: The Bartender and his Wife rush into the Saloon, shutting the doors
-        behind them. The Stablemaster and the Child barricadr themselves in the Stables.
+        behind them. The Stablemaster and the Child barricade themselves in the Stables.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[13].sentences.Array.data[3]
-      value: The Barber sends his wife inside and goes out to meet the Gunslinger
+      value: The Barber sends his wife inside and goes out to meet the Gunslinger;
         who is preoccupied with the one man with seemingly nowhere to run, the Priest.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
@@ -522,16 +598,16 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[15].sentences.Array.data[0]
       value: The Priest, too stunned to speak, starts to run away towards the Church.
-        The Gunslinger follows after him when the Barber decides to strike.
+        The Gunslinger begins to follow after him when the Barber decides to strike.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[15].sentences.Array.data[1]
-      value: The Priest, too stunned to speak, starts to run away towards the Church.
-        The Gunslinger follows after him when the Barber decides to strike.
+      value: Three rapid gunshots pierce the air.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[15].sentences.Array.data[2]
-      value: Three rapid gunshots pierce the air.
+      value: The shots aim true, directly into the Gunslinger's back. He's barely
+        phased, but suprised, and turns towards his shooter.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[15].sentences.Array.data[3]

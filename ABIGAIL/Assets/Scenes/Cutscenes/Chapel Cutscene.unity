@@ -197,8 +197,128 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].name
-      value: 
+      value: Abigail's Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].name
+      value: Abigail's Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].name
+      value: Abigail's Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].name
+      value: The Child
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].name
+      value: The Child
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].name
+      value: The Stablemaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].name
+      value: The Child
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].name
+      value: The Child
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[1].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[2].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0012218f218b26047b98b11f61edcc66, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[3].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b5161b0db0ea7e44f9b065a08a57c64f, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[4].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f54db8e1e1577e543847cb1badc8e5a6, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9914d10829885744b92c1bf9e77913c1, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].characterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d71cbc3a6e7500945af219429fe6c145, type: 3}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.size
       value: 3
@@ -212,12 +332,48 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[3].sentences.Array.size
+      propertyPath: characterDialogues.Array.data[4].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[4].sentences.Array.size
-      value: 3
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[0]
@@ -225,23 +381,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[1]
-      value: Destruction surrounds him; not much still stands within the Chapel.
+      value: Destruction surrounds him. Not much still stands in the Chapel.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[0].sentences.Array.data[2]
-      value: A deep, grave voice fills the room.
+      value: A deep grave voice fills the room.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[0].sentences.Array.data[3]
+      value: Suddenly, the Outlaw barges into the room.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.data[0]
-      value: Where is it!?
+      value: Where is it?!
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[1].sentences.Array.data[1]
-      value: I've tracked it for days, I know it's here!
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[1].sentences.Array.data[2]
-      value: A deep, grave voice fills the room.
+      value: I've tracked it for days, and I know it's here!
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[2].sentences.Array.data[0]
@@ -257,15 +413,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[3].sentences.Array.data[1]
-      value: And he will not save you now.
-      objectReference: {fileID: 0}
-    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
-      propertyPath: characterDialogues.Array.data[3].sentences.Array.data[2]
-      value: He slumps over, dead and smoking.
+      value: And he won't save you now.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].sentences.Array.data[0]
-      value: The lectern explodes, the room filling with smoke.
+      value: The lectern explodes, filling the room with smoke.
       objectReference: {fileID: 0}
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].sentences.Array.data[1]
@@ -274,6 +426,158 @@ PrefabInstance:
     - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: characterDialogues.Array.data[4].sentences.Array.data[2]
       value: He slumps over, dead and smoking.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[0]
+      value: Son? Where are you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[5].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[0]
+      value: Son? Where are you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[6].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[0]
+      value: Son? Where are you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[7].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[0]
+      value: The Child quickly picks up the broken pieces to hide them from his father.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[8].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[0]
+      value: The Child quickly picks up the broken pieces to hide them from his father.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[9].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.data[0]
+      value: I'm here, Dad. Sorry. Just a little shaken up.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[10].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.data[0]
+      value: I'm here, Dad. Sorry. Just a little shaken up.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[11].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.data[0]
+      value: Don't worry, son. I get it. Let's go inside. Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.data[2]
+      value: It shatters and blows up into a brilliant ball of light.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[12].sentences.Array.data[3]
+      value: For a second, the boy seems to notice it, and then it's gone.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.data[0]
+      value: Don't worry, son. I get it. Let's go inside. Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[13].sentences.Array.data[1]
+      value: Come back inside! Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[14].sentences.Array.data[0]
+      value: Don't worry, son. I get it. Let's go inside. Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[15].sentences.Array.data[0]
+      value: Don't worry, son. I get it. Let's go inside. Everything will be okay.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[16].sentences.Array.data[0]
+      value: Yeah, right. Nothing to worry about.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881556266829312841, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
+      propertyPath: characterDialogues.Array.data[17].sentences.Array.data[0]
+      value: Yeah, right. Nothing to worry about.
       objectReference: {fileID: 0}
     - target: {fileID: 4034066483164802495, guid: 05afb4c71fea2e54885d3460fc32441d, type: 3}
       propertyPath: m_Name
