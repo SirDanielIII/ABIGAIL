@@ -200,15 +200,13 @@ MonoBehaviour:
   enableCrouching: 1
   movementSpeed: 8
   topDownSpeedMultiplier: 1.8
-  sprintSpeed: 16
+  sprintSpeed: 12
   staminaTotal: 100
-  staminaSprintRate: 25
-  staminaJumpCost: 25
-  staminaSprintJumpRate: 30
+  staminaSprintRate: 30
   staminaSlideCost: 8
   staminaRecoveryDelay: 1.5
   staminaRecoveryRate: 15
-  sprintJumpBoost: 1.15
+  sprintJumpBoost: 1.05
   jumpInitialPower: 10
   jumpHoldApplyAfter: 0.06
   jumpHoldPower: 11
@@ -217,6 +215,7 @@ MonoBehaviour:
   slideSpeedBoostMultiplier: 1.05
   slideSpeedBoostDuration: 0.05
   slideSlowdownRate: 0.15
+  stamina: 0
   isKnockedBack: 0
   isInQuicksand: 0
   quicksandSpeedFactor: 0.01
