@@ -65,6 +65,7 @@ namespace Abigail
         private float lastKnockbackTime = -10f;
         private IEnumerator quicksandDamageCoroutine;
         private Health playerHealth;
+        public AudioSource jumpSound;
 
         void Start()
         {
@@ -227,6 +228,7 @@ namespace Abigail
                 rb.velocity = isSprinting
                     ? new Vector2(rb.velocity.x, jumpInitialPower + sprintJumpBoost * multiplier)
                     : new Vector2(rb.velocity.x, jumpInitialPower);
+                jumpSound.Play();
             }
             doJump = false;
         }
@@ -386,6 +388,7 @@ namespace Abigail
                     },
                     _ => movement.y < 0 ? GlobalEnums.Direction.Down : GlobalEnums.Direction.Up
                 };
+            
 
             // Restore Stamina
             // If not sprinting, and enough time has passed since the last sprint, start the recovery

@@ -9,6 +9,7 @@ public class Lamp : MonoBehaviour
     public float RotationAmount;
     private readonly float delayBetweenInputs = 0.05f;
     private float t;
+    public AudioSource lampRotate;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +24,14 @@ public class Lamp : MonoBehaviour
         {
             if (Input.GetKey("z") && t <= 0)
             {
+                lampRotate.Play();
                 transform.eulerAngles += Vector3.forward * RotationAmount;
                 t = delayBetweenInputs;
             }
                 
             if (Input.GetKey("x") && t <= 0)
             {
+                lampRotate.Play();
                 transform.eulerAngles += Vector3.forward * -RotationAmount;
                 t = delayBetweenInputs;
             }

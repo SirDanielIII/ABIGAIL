@@ -12,6 +12,7 @@ public class DynamiteTrap : MonoBehaviour
     private GameObject explosionRadiusIndicator;
     public GameObject explosionEffectPrefab;
     private bool hasExploded = false;
+    public AudioSource dynamiteSound;
 
     private void Start()
     {
@@ -42,6 +43,7 @@ public class DynamiteTrap : MonoBehaviour
     {
         yield return new WaitForSeconds(delayBeforeExplosion);
         Explode();
+        dynamiteSound.Play();
     }
 
     void Explode()
