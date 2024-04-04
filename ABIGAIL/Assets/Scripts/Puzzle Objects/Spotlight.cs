@@ -11,6 +11,7 @@ public class Spotlight : MonoBehaviour
     public GameObject Player;
     public bool isConnected = false;
     public GameObject groundObject;
+    public AudioSource barrelSlide;
 
     // This method is called when the script is loaded or a value is changed in the Inspector
     void OnValidate()
@@ -42,6 +43,7 @@ public class Spotlight : MonoBehaviour
             else
             {
                 Connect();
+                barrelSlide.Play();
             }
         }
     }

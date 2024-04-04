@@ -8,6 +8,7 @@ public class GateController : MonoBehaviour
     private bool gateOpened = false;
     public GameObject noKeyUIElement;
     public GameObject respawnPad;
+    public AudioSource gateSound;
     
 
     private void Start()
@@ -26,6 +27,7 @@ public class GateController : MonoBehaviour
                 OpenGate();
                 noKeyUIElement.SetActive(false); 
                 respawnPad.SetActive(false);
+                gateSound.Play();
             }
             else
             {
