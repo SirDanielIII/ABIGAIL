@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 923931101}
         m_TargetAssemblyTypeName: Continue, Assembly-CSharp
         m_MethodName: Advance
         m_Mode: 1

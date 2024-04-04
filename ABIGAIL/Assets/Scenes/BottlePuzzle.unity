@@ -351,7 +351,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146915142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -888,8 +888,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1474511894}
   - {fileID: 146915143}
+  - {fileID: 1474511894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3608,6 +3608,70 @@ MonoBehaviour:
   - {fileID: 1703407596}
   - {fileID: 772192714}
   spriteRenderer: {fileID: 1185033186}
+--- !u!1 &1232555200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1232555202}
+  - component: {fileID: 1232555201}
+  m_Layer: 0
+  m_Name: PuzzleSolution
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1232555201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232555200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d999416c7bf484a96c3238d2cc1612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1474511895}
+  puzzleData:
+  - colours:
+    - {fileID: 1061011035}
+    - {fileID: 177048923}
+  - colours:
+    - {fileID: 1324968244}
+    - {fileID: 1568723013}
+  - colours:
+    - {fileID: 1002941925}
+    - {fileID: 1185033183}
+  - colours:
+    - {fileID: 982044919}
+    - {fileID: 1364489669}
+  - colours:
+    - {fileID: 957580508}
+    - {fileID: 1571207951}
+  - colours:
+    - {fileID: 753123373}
+    - {fileID: 458759142}
+--- !u!4 &1232555202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232555200}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.753134, y: -7.8782415, z: -194.50827}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1240026003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6396,8 +6460,8 @@ SceneRoots:
   - {fileID: 458759141}
   - {fileID: 1185033182}
   - {fileID: 1568723012}
-  - {fileID: 957580511}
   - {fileID: 1061011038}
+  - {fileID: 957580511}
   - {fileID: 982044922}
   - {fileID: 753123376}
   - {fileID: 1002941928}
@@ -6408,3 +6472,4 @@ SceneRoots:
   - {fileID: 405816644}
   - {fileID: 393220981}
   - {fileID: 980219867}
+  - {fileID: 1232555202}
