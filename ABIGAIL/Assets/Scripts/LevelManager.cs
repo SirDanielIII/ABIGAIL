@@ -33,12 +33,8 @@ public class LevelManager : MonoBehaviour
     {
         if (gateController != null && gateController.IsGateOpened())
         {
-            Debug.Log("Gate is opened");
-            Debug.Log("Player position: " + playerTransform.position.x);
-            Debug.Log("Gate position: " + gateController.GetGatePosition().x);
             if (playerTransform.position.x > gateController.GetGatePosition().x + 6f)
             {
-                Debug.Log("Player has passed the gate");
                 sceneManager.LoadNextScene();
             }
         }

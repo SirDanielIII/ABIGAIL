@@ -30,7 +30,7 @@ TagManager:
   - Tumbleweed
   - Quicksand
   - Transition
-  - 
+  - Background
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Top Down Ground
     uniqueID: 2270548223
+    locked: 0
+  - name: Background
+    uniqueID: 1111499967
     locked: 0
   - name: Default
     uniqueID: 0
