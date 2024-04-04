@@ -7,6 +7,7 @@ public class Destroyable : MonoBehaviour
     public Color mouseHoverColor = Color.green;
     public Color previousColor;
     public SpriteRenderer spriteRenderer;
+    public AudioSource bottlebreak;
 
     private void Start()
     {
@@ -17,6 +18,7 @@ public class Destroyable : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.SetActive(false);
+        bottlebreak.Play();
     }
 
     private void OnMouseOver()

@@ -7,6 +7,7 @@ public class TumbleweedSpawner : MonoBehaviour
     public float checkInterval = 0.01f;
     private Camera mainCamera;
     private float nextCheckTime;
+    public AudioSource tumbleweedSound;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class TumbleweedSpawner : MonoBehaviour
                 {
                     Instantiate(tumbleweedPrefab, spawnPoint.transform.position, Quaternion.identity);
                     spawnPoint.SetActive(false);
+                    tumbleweedSound.Play();
                 }
             }
         }

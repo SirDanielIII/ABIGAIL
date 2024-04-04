@@ -3,9 +3,23 @@ using UnityEngine;
 public class TransitionZone : MonoBehaviour
 {
     private bool playerIsInside = false;
+    public AudioSource transitionSound;
+    public bool musicPlaying = false;
 
     void Update()
     {
+        // Audio
+        if (playerIsInside && !musicPlaying)
+        {
+            transitionSound.Play();
+            musicPlaying = true;
+        }
+        if (!playerIsInside && musicPlaying)
+        {
+            transitionSound.Stop();
+            musicPlaying = false;
+        }
+        
         // Check if the player is inside the transition zone and presses "R"
         if (playerIsInside && Input.GetKeyDown(KeyCode.R))
         {
