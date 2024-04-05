@@ -52,4 +52,13 @@ public class TumbleweedSpawner : MonoBehaviour
         }
     }
 
+    public void DestroyAllTumbleweeds()
+    {
+        GameObject[] tumbleweeds = GameObject.FindGameObjectsWithTag("Tumbleweed");
+        foreach (GameObject tumbleweed in tumbleweeds)
+        {
+            Destroy(tumbleweed);
+        }
+    }
+
 }

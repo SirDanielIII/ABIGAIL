@@ -22,16 +22,22 @@ public class Lamp : MonoBehaviour
     {
         if (spotlight_script.isConnected == true)
         {
-            if (Input.GetKey("z") && t <= 0)
+            if (Input.GetKeyDown("z") || Input.GetKeyDown("x"))
             {
                 lampRotate.Play();
+            }
+            if (Input.GetKeyUp("z") || Input.GetKeyUp("x"))
+            {
+                lampRotate.Stop();
+            }
+            if (Input.GetKey("z") && t <= 0)
+            {
                 transform.eulerAngles += Vector3.forward * RotationAmount;
                 t = delayBetweenInputs;
             }
                 
             if (Input.GetKey("x") && t <= 0)
             {
-                lampRotate.Play();
                 transform.eulerAngles += Vector3.forward * -RotationAmount;
                 t = delayBetweenInputs;
             }

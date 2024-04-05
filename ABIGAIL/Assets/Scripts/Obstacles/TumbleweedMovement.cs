@@ -27,7 +27,7 @@ public class TumbleweedMovement : MonoBehaviour
     void Update()
     {
         Collider2D playerCollider = Physics2D.OverlapCircle(transform.position, checkRadius, Player);
-        if (playerCollider != null)
+        if (playerCollider != null && isRotating)
         {
             Movement playerMovement = playerCollider.GetComponent<Movement>();
             if (playerMovement != null && !playerMovement.isKnockedBack)
