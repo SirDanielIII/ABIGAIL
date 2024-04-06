@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 10;
-    private int currentHealth;
+    public int maxHealth = 3;
+    public int currentHealth;
     public HealthBar healthBar; // This can now be left unassigned/null
+    public StaminaBar staminaBar; // This can now be left unassigned/null
     public float fallThreshold = -5f; // The y-coordinate that triggers a respawn if the player falls below it
     public AudioSource damageSound;
+    public Abigail.Movement playerMovement;
+    
+    
 
     private void Start()
     {
@@ -22,7 +26,6 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        // Check for falling below the threshold
         if (GameManager.Instance.isSideView() && transform.position.y < fallThreshold)
         {
             Respawn();
@@ -49,6 +52,11 @@ public class Health : MonoBehaviour
         {
             healthBar.SetMaxHealth(maxHealth);
         }
+        if (staminaBar != null && playerMovement != null)
+        {
+            playerMovement.stamina = playerMovement.staminaTotal;
+            staminaBar.SetMaxStamina(playerMovement.staminaTotal);
+        }
         if (!GameManager.Instance.isSideView())
         {
             GameManager.Instance.topDownPlayer.SetActive(false);
@@ -73,7 +81,14 @@ public class Health : MonoBehaviour
         if (spawner != null)
         {
             spawner.ResetSpawnPoints();
+            spawner.DestroyAllTumbleweeds();
         }
+        StartCoroutine(RespawnTraps());
+    }
+
+    IEnumerator RespawnTraps()
+    {
+        yield return new WaitForSeconds(0.5f);
         DynamiteTrapManager.Instance.RespawnAllTraps();
     }
 }

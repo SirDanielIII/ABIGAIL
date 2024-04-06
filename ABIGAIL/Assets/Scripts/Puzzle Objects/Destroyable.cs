@@ -17,17 +17,29 @@ public class Destroyable : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (QuitMenuController.isMenuOpen)
+        {
+            return;
+        }
         gameObject.SetActive(false);
         bottlebreak.Play();
     }
 
     private void OnMouseOver()
     {
+        if (QuitMenuController.isMenuOpen)
+        {
+            return;
+        }
         spriteRenderer.material.color = mouseHoverColor;
     }
 
     private void OnMouseExit()
     {
+        if (QuitMenuController.isMenuOpen)
+        {
+            return;
+        }
         spriteRenderer.material.color = previousColor;
     }
 

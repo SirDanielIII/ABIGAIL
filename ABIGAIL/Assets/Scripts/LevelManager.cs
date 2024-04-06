@@ -26,7 +26,24 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
-        hasKey = false;
+        LoadKeyState();
+    }
+
+    void LoadKeyState()
+    {
+        if (PlayerPrefs.HasKey("HasKey"))
+        {
+            hasKey = PlayerPrefs.GetInt("HasKey") == 1;
+        }
+        else
+        {
+            hasKey = false;
+        }
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateKeyIndicator(hasKey);
+        }
     }
 
     void Update()
@@ -43,9 +60,27 @@ public class LevelManager : MonoBehaviour
     public void CollectKey()
     {
         hasKey = true;
+        SaveKeyState();
         if (UIManager.Instance != null)
         {
             UIManager.Instance.UpdateKeyIndicator(hasKey);
         }    
+    }
+
+    void SaveKeyState()
+    {
+        PlayerPrefs.SetInt("HasKey", hasKey ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+    
+    public void ResetKeyState()
+    {
+        hasKey = false;
+        SaveKeyState();
+
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateKeyIndicator(hasKey);
+        }
     }
 }
