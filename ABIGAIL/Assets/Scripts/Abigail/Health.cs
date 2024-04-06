@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     public AudioSource damageSound;
     public Abigail.Movement playerMovement;
     
+    
 
     private void Start()
     {
@@ -25,7 +26,6 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        // Check for falling below the threshold
         if (GameManager.Instance.isSideView() && transform.position.y < fallThreshold)
         {
             Respawn();
@@ -83,6 +83,12 @@ public class Health : MonoBehaviour
             spawner.ResetSpawnPoints();
             spawner.DestroyAllTumbleweeds();
         }
+        StartCoroutine(RespawnTraps());
+    }
+
+    IEnumerator RespawnTraps()
+    {
+        yield return new WaitForSeconds(0.5f);
         DynamiteTrapManager.Instance.RespawnAllTraps();
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class RespawnPad : MonoBehaviour
 {
@@ -43,6 +44,14 @@ public class RespawnPad : MonoBehaviour
         if (spawner != null)
         {
             spawner.ResetSpawnPoints();
+            spawner.DestroyAllTumbleweeds();
         }
+        StartCoroutine(RespawnTraps());
+    }
+
+    IEnumerator RespawnTraps()
+    {
+        yield return new WaitForSeconds(0.5f);
+        DynamiteTrapManager.Instance.RespawnAllTraps();
     }
 }
