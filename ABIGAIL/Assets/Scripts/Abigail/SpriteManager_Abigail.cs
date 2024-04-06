@@ -34,6 +34,10 @@ namespace Abigail
 
         private void Update()
         {
+            if (QuitMenuController.isMenuOpen)
+            {
+                return;
+            }
             // Update Direction
             var direction = script.GetDirection();
             bool grounded = script.IsGrounded();

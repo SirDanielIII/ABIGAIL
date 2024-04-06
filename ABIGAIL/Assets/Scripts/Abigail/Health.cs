@@ -5,7 +5,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int maxHealth = 3;
-    private int currentHealth;
+    public int currentHealth;
     public HealthBar healthBar; // This can now be left unassigned/null
     public StaminaBar staminaBar; // This can now be left unassigned/null
     public float fallThreshold = -5f; // The y-coordinate that triggers a respawn if the player falls below it

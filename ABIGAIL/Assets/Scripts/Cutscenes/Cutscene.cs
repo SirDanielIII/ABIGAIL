@@ -17,6 +17,10 @@ public class Cutscene : MonoBehaviour
 
     void Update()
     {
+        if (QuitMenuController.isMenuOpen)
+        {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isDialoguePlaying)
@@ -67,7 +71,7 @@ public class Cutscene : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("No character sprite assigned for the current character.");
+                // Debug.LogWarning("No character sprite assigned for the current character.");
             }
         }
         else

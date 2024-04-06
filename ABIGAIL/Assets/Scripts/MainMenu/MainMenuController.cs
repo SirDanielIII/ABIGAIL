@@ -1,24 +1,42 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class MainMenuController : MonoBehaviour
 {
+
+    public SceneManagement SceneManagement;
     public void NewGame()
     {
-        PlayerPrefs.SetInt("SavedScene", 1); // Replace index_of_starting_level with the actual index
+        int startingSceneIndex = 1;
+        ResetGameState();
+        PlayerPrefs.SetInt("SavedScene", startingSceneIndex);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("Scenes/Cutscenes/Chapel Cutscene");
+        SceneManager.LoadScene(startingSceneIndex, LoadSceneMode.Single);
+    }
+
+    private void ResetGameState()
+    {
+        PlayerPrefs.DeleteKey("PlayerHealth");
+        PlayerPrefs.DeleteKey("PlayerStamina");
+        PlayerPrefs.DeleteKey("CheckpointPositionX");
+        PlayerPrefs.DeleteKey("CheckpointPositionY");
+        PlayerPrefs.DeleteKey("HasKey");
         
+
+        PlayerPrefs.Save();
     }
 
     public void ContinueGame()
     {
-        int sceneToLoad = PlayerPrefs.GetInt("SavedScene", 0); // Assuming 0 is your main menu or starting level
-        SceneManager.LoadScene(sceneToLoad);
+        int sceneToLoad = PlayerPrefs.GetInt("SavedScene", 1);
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
     }
 
-    public void Options()
+    public void QuitGame()
     {
-        SceneManager.LoadScene("Options");
+        SceneManagement.SaveGameState();
+        Debug.Log("Game is exiting...");
+        Application.Quit();
     }
 }

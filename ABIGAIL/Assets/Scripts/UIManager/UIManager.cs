@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        SetKeyTransparency(0.3f);
+        // SetKeyTransparency(0.3f);
     }
 
     public void UpdateKeyIndicator(bool hasKey)
