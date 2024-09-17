@@ -1,4 +1,4 @@
-# DEVIL'S REACH (WIP)
+# DEVIL'S REACH
 
 ## Our Game
 
